@@ -13,7 +13,7 @@ export default class Confetti extends React.Component {
   render() {
     let canvasStyles = {
       zIndex: 2,
-      position: absolute,
+      position: 'absolute',
       top: 0,
       left: 0,
       width: this.props.width,
