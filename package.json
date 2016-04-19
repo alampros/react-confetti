@@ -1,0 +1,40 @@
+{
+  "name": "react-confetti",
+  "version": "0.0.1",
+  "description": "React component to draw confetti for your party.",
+  "main": "lib/react-confetti.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:alampros/react-confetti.git"
+  },
+  "keywords": [
+    "react",
+    "confetti"
+  ],
+  "author": "Aaron Lampros <alampros@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alampros/react-confetti/issues"
+  },
+  "homepage": "https://github.com/alampros/react-confetti#readme",
+  "files": [
+    "README.md",
+    "LICENSE.md",
+    "lib/"
+  ],
+  "scripts": {
+    "build": "BUILD_DEV=1 webpack --progress && webpack -p --output-filename react-confetti.min.js --progress"
+  },
+  "peerDependencies": {
+    "react": "^15.0.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.7.5",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.6.0",
+    "babel-preset-react": "^6.5.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "webpack": "^1.13.0",
+    "webpack-dev-server": "^1.14.1"
+  }
+}

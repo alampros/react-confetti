@@ -1,0 +1,17 @@
+{
+  "parser": "babel-eslint",
+  "extends": "eslint-config-airbnb",
+  "ecmaFeatures": {
+    "classes": true,
+    "jsx": true
+  },
+  "plugins": [
+    "react"
+  ],
+  "optional": {
+    "es7": {
+      "classProperties": [1]
+    }
+  }
+}
+
