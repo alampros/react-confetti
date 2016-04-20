@@ -1,6 +1,6 @@
 {
   "name": "react-confetti",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React component to draw confetti for your party.",
   "main": "lib/react-confetti.js",
   "repository": {
@@ -27,10 +27,11 @@
   "scripts": {
     "build": "BUILD_DEV=1 webpack --progress && webpack -p --output-filename react-confetti.min.js --progress",
     "dev": "webpack --watch --progress --colors --port 3000",
-    "lint": "eslint --ext .js,.jsx --ignore-pattern lib src"
+    "lint": "eslint --ext .js,.jsx --ignore-pattern lib src",
+    "gh-pages": "./scripts/gh-pages.sh"
   },
   "peerDependencies": {
-    "react": "0.14.x || ^15.0.0"
+    "react": "0.14.x || ^15.0.1"
   },
   "devDependencies": {
     "babel-cli": "^6.7.5",
@@ -45,6 +46,8 @@
     "eslint-plugin-import": "^1.5.0",
     "eslint-plugin-jsx-a11y": "^0.6.2",
     "eslint-plugin-react": "^4.3.0",
+    "react": "^15.0.1",
+    "react-dom": "^15.0.1",
     "webpack": "^1.13.0",
     "webpack-dev-server": "^1.14.1"
   }
