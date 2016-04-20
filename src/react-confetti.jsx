@@ -36,6 +36,9 @@ export default class Confetti extends React.Component {
       left: 0,
       width: this.props.width,
       height: this.props.height,
+      pointerEvents: 'none',
+      WebkitPointerEvents: 'none',
+      MozPointerEvents: 'none',
     }, this.props.style);
     return (
       <canvas

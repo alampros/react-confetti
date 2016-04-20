@@ -50,6 +50,8 @@ module.exports = {
     extensions: ['', '.js', '.jsx']
   },
   plugins: [
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.DedupePlugin(),
     new webpack.DefinePlugin({
       // If BUILD_DEV is in process environment, return true. Otherwise,
       // return (void 0). BUILD_DEV=1 before webpack command will do the job.
