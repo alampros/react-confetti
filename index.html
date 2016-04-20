@@ -9,12 +9,27 @@
     <script src="node_modules/react-dom/dist/react-dom.js"></script>
     <!-- React Confetti component -->
     <script src="lib/react-confetti.js"></script>
+    <style>
+      html, body {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        padding: 100px;
+        font-family: Helvetica, Verdana, sans-serif;
+        color: #666;
+      }
+    </style>
   </head>
   <body>
+    <h1>react-confetti demo</h1>
+    <p>
+      <a href="http://github.com/alampros/react-confetti">http://github.com/alampros/react-confetti</a>
+    </p>
     <div id="app"></div>
 
     <script type="text/javascript">
-      var Confetti = ReactConfetti;
+      var Confetti = ReactConfetti.default;
       var App = React.createClass({
         render: function () {
           return React.createElement(Confetti);
