@@ -8,7 +8,7 @@ git clone -b gh-pages https://github.com/alampros/react-confetti.git dist
 # Checkout changes from master
 # Using git without having to change directory (-C dist)
 # http://stackoverflow.com/questions/5083224/git-pull-while-not-in-a-git-directory
-git -C dist checkout origin/master -- :/index.html :/lib
+git -C dist checkout origin/master -- :/index.html :/lib :/assets
 
 # Sync dependencies keeping full path (-R)
 rsync -avR node_modules/react/dist dist
