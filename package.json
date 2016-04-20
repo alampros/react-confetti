@@ -1,6 +1,6 @@
 {
   "name": "react-confetti",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "React component to draw confetti for your party.",
   "main": "lib/react-confetti.js",
   "repository": {
@@ -28,7 +28,7 @@
     "lint": "eslint --ext .js,.jsx --ignore-pattern lib src"
   },
   "peerDependencies": {
-    "react": "^15.0.1"
+    "react": "0.14.x || ^15.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.7.5",
