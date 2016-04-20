@@ -23,7 +23,8 @@
     "lib/"
   ],
   "scripts": {
-    "build": "BUILD_DEV=1 webpack --progress && webpack -p --output-filename react-confetti.min.js --progress"
+    "build": "BUILD_DEV=1 webpack --progress && webpack -p --output-filename react-confetti.min.js --progress",
+    "dev": "webpack --watch --progress --colors --port 3000"
   },
   "peerDependencies": {
     "react": "^15.0.1"

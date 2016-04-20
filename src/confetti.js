@@ -1,5 +1,9 @@
 import * as utils from './utils'
 
+/**
+ * Most of this was coppied directly from the pen at http://codepen.io/Gthibaud/pen/BoaBZK
+ * and halfheartedly converted to es6.
+ */
 export default function confetti(canvas, numberOfPieces = 20, friction = 0.99, wind = 0, gravity = 0.1) {
 
   var context = canvas.getContext('2d');
@@ -14,21 +18,6 @@ export default function confetti(canvas, numberOfPieces = 20, friction = 0.99, w
   ];
 
   let generator1 = new particleGenerator(0, 0, W, 0, numberOfPieces);
-
-  function loadImage(url) {
-    var img = document.createElement("img");
-    img.src = url;
-    return img;
-  }
-
-  var mouse = {
-    x: 0,
-    y: 0
-  };
-  canvas.addEventListener('mousemove', function(e) {
-    mouse.x = e.pageX - this.offsetLeft;
-    mouse.y = e.pageY - this.offsetTop;
-  }, false);
 
   function particle(x, y) {
     this.radius = utils.randomRange(.1, 1);
