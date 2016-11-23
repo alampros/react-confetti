@@ -13,8 +13,8 @@ export default function confetti(
 ) {
   const canvas = canvasObj;
   const context = canvas.getContext('2d');
-  const W = window.innerWidth;
-  const H = window.innerHeight;
+  const W = window.innerWidth || Math.max(document.documentElement.clientWidth, document.body.clientWidth);
+  const H = window.innerHeight || Math.max(document.documentElement.clientHeight, document.body.clientHeight);
   canvas.width = W;
   canvas.height = H;
 
