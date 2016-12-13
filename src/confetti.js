@@ -9,7 +9,8 @@ export default function confetti(
   numberOfPieces = 20,
   friction = 0.99,
   wind = 0,
-  gravity = 0.1
+  gravity = 0.1,
+  colors
 ) {
   const canvas = canvasObj;
   const context = canvas.getContext('2d');
@@ -17,13 +18,6 @@ export default function confetti(
   const H = window.innerHeight || Math.max(document.documentElement.clientHeight, document.body.clientHeight);
   canvas.width = W;
   canvas.height = H;
-
-  const colors = [
-    '#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5',
-    '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4CAF50',
-    '#8BC34A', '#CDDC39', '#FFEB3B', '#FFC107', '#FF9800',
-    '#FF5722', '#795548',
-  ];
 
   function Particle(x, y) {
     this.radius = utils.randomRange(0.1, 1);
@@ -166,4 +160,3 @@ export default function confetti(
   toggleEngine();
   update();
 }
-
