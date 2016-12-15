@@ -43,4 +43,5 @@ Property         | Type                 | Default  | Description
 `friction`       | `Number`             | 0.99     |
 `wind`           | `Number`             | 0        |
 `gravity`        | `Number`             | 0.1      |
-`colors`         | `Array` of `String`  | `[ '#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4CAF50', '#8BC34A', '#CDDC39', '#FFEB3B', '#FFC107', '#FF9800', '#FF5722', '#795548' ]`     | All available Colors for the confetti pieces
+`colors`         | `Array` of `String`  | `['#f44336'`</br>`'#e91e63'`</br>`'#9c27b0'`</br>`'#673ab7'`</br>`'#3f51b5'`</br>`'#2196f3'`</br>`'#03a9f4'`</br>`'#00bcd4'`</br>`'#009688'`</br>`'#4CAF50'`</br>`'#8BC34A'`</br>`'#CDDC39'`</br>`'#FFEB3B'`</br>`'#FFC107'`</br>`'#FF9800'`</br>`'#FF5722'`</br>`'#795548']`</br> | All available Colors for the confetti pieces
+
