@@ -4,11 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>React Confetti</title>
-    <!-- React -->
-    <script src="node_modules/react/dist/react.js"></script>
-    <script src="node_modules/react-dom/dist/react-dom.js"></script>
-    <!-- React Confetti component -->
-    <script src="lib/react-confetti.js"></script>
     <style>
       html, body {
         padding: 0;
@@ -27,15 +22,6 @@
       <a href="http://github.com/alampros/react-confetti">http://github.com/alampros/react-confetti</a>
     </p>
     <div id="app"></div>
-
-    <script type="text/javascript">
-      var Confetti = ReactConfetti.default;
-      var App = React.createClass({
-        render: function () {
-          return React.createElement(Confetti);
-        }
-      });
-      ReactDOM.render(React.createElement(App), document.getElementById('app'));
-    </script>
+    <script src="bundle.js"></script>
   </body>
 </html>
