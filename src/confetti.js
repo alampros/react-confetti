@@ -14,7 +14,8 @@ const confetti = function(canvasObj) {
         '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4CAF50',
         '#8BC34A', '#CDDC39', '#FFEB3B', '#FFC107', '#FF9800',
         '#FF5722', '#795548',
-      ];
+      ],
+      opacity = 1.0;
 
   function self() {
     const canvas = canvasObj;
@@ -68,6 +69,7 @@ const confetti = function(canvasObj) {
       context.beginPath();
       context.fillStyle = this.color;
       context.strokeStyle = this.color;
+      context.globalAlpha = opacity;
       context.lineCap = 'round';
       context.lineWidth = 2;
       if (this.type === 0) {
@@ -197,6 +199,12 @@ const confetti = function(canvasObj) {
   self.colors = (...args) => {
     if (!args.length) {return colors;}
     colors = args[0];
+    return self;
+  };
+
+  self.opacity = (...args) => {
+    if (!args.length) {return opacity;}
+    opacity = args[0];
     return self;
   };
 

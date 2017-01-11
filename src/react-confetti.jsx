@@ -11,6 +11,7 @@ export default class Confetti extends React.Component {
     wind: React.PropTypes.number,
     gravity: React.PropTypes.number,
     colors: React.PropTypes.arrayOf(React.PropTypes.string),
+    opacity: React.PropTypes.number,
   };
 
   static defaultProps = {
@@ -26,6 +27,7 @@ export default class Confetti extends React.Component {
       '#8BC34A', '#CDDC39', '#FFEB3B', '#FFC107', '#FF9800',
       '#FF5722', '#795548',
     ],
+    opacity: 1.0
   }
 
   componentDidMount() {
@@ -34,7 +36,8 @@ export default class Confetti extends React.Component {
                       .friction(this.props.friction)
                       .wind(this.props.wind)
                       .gravity(this.props.gravity)
-                      .colors(this.props.colors);
+                      .colors(this.props.colors)
+                      .opacity(this.props.opacity)();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -43,7 +46,8 @@ export default class Confetti extends React.Component {
       .friction(nextProps.friction)
       .wind(nextProps.wind)
       .gravity(nextProps.gravity)
-      .colors(nextProps.colors);
+      .colors(nextProps.colors)
+      .opacity(nextProps.opacity);
   }
 
   render() {
