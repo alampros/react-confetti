@@ -1,5 +1,5 @@
-import React from 'react';
-import confetti from './confetti';
+import React from 'react'
+import confetti from './confetti'
 
 export default class Confetti extends React.Component {
   static propTypes = {
@@ -31,13 +31,13 @@ export default class Confetti extends React.Component {
   }
 
   componentDidMount() {
-    this.confetti = confetti(this.refs.confetti)
-                      .numberOfPieces(this.props.numberOfPieces)
-                      .friction(this.props.friction)
-                      .wind(this.props.wind)
-                      .gravity(this.props.gravity)
-                      .colors(this.props.colors)
-                      .opacity(this.props.opacity)();
+    this.confetti = confetti(this.confetti)
+      .numberOfPieces(this.props.numberOfPieces)
+      .friction(this.props.friction)
+      .wind(this.props.wind)
+      .gravity(this.props.gravity)
+      .colors(this.props.colors)
+      .opacity(this.props.opacity)()
   }
 
   componentWillReceiveProps(nextProps) {
@@ -47,11 +47,11 @@ export default class Confetti extends React.Component {
       .wind(nextProps.wind)
       .gravity(nextProps.gravity)
       .colors(nextProps.colors)
-      .opacity(nextProps.opacity);
+      .opacity(nextProps.opacity)
   }
 
   render() {
-    let canvasStyles = Object.assign({}, {
+    const canvasStyles = Object.assign({}, {
       zIndex: 2,
       position: 'absolute',
       top: 0,
@@ -61,15 +61,15 @@ export default class Confetti extends React.Component {
       pointerEvents: 'none',
       WebkitPointerEvents: 'none',
       MozPointerEvents: 'none',
-    }, this.props.style);
+    }, this.props.style)
 
     return (
       <canvas
         width={this.props.width}
         height={this.props.height}
-        ref="confetti"
+        ref={c => (this.confetti = c)}
         style={canvasStyles}
       />
-    );
+    )
   }
 }

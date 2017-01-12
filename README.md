@@ -6,7 +6,7 @@ Based on a pen by @Gthibaud: http://codepen.io/Gthibaud/pen/BoaBZK
 [![demogif][2]][1]
 
 [1]: http://alampros.github.com/react-confetti
-[2]: http://alampros.github.io/react-confetti/assets/confetti-demo.gif (demo gif)
+[2]: http://alampros.github.io/react-confetti/confetti-demo.gif (demo gif)
 
 ## Install
 

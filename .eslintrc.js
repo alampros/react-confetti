@@ -1,10 +1,10 @@
-/* eslint quotes: 0, quote-props: 0 */
 module.exports = {
   extends: 'airbnb',
   parser: 'babel-eslint',
   env: {
     browser: true,
     es6: true,
+    jest: true,
   },
   parserOptions: {
     ecmaFeatures: {
@@ -20,7 +20,6 @@ module.exports = {
   ],
   globals: {
     React: true,
-    Modernizr: true,
   },
   rules: {
     "arrow-parens":             0,
@@ -66,9 +65,42 @@ module.exports = {
     "react/no-multi-comp":               0,
     "react/no-unused-prop-types":        0,
     "react/prop-types":                  [2, { ignore: ["children", "className", "style"] }],
+    "react/no-array-index-key":          1,
     "react/react-in-jsx-scope":          0,
+    "react/require-default-props":       0,
     "react/require-extension":           0,
-    "react/sort-comp":                   1,
+    "react/sort-comp":                   [1, {
+      order: [
+        'type-annotations',
+        'lifecycle',
+        'everything-else',
+        'render',
+      ],
+      groups: {
+        lifecycle: [
+          'displayName',
+          'propTypes',
+          'defaultProps',
+          'contextTypes',
+          'childContextTypes',
+          'messages',
+          'mixins',
+          'statics',
+          'constructor',
+          'getDefaultProps',
+          'getInitialState',
+          'state',
+          'getChildContext',
+          'componentWillMount',
+          'componentDidMount',
+          'componentWillReceiveProps',
+          'shouldComponentUpdate',
+          'componentWillUpdate',
+          'componentDidUpdate',
+          'componentWillUnmount'
+        ]
+      }
+    }],
     "semi":                              ["warn", "never"],
     "spaced-comment":                    0,
     "keyword-spacing":      ["error", {
