@@ -31,7 +31,7 @@ export default class Confetti extends React.Component {
   }
 
   componentDidMount() {
-    this.confetti = confetti(this.confetti)
+    this.confetti = confetti(this.canvas)
       .numberOfPieces(this.props.numberOfPieces)
       .friction(this.props.friction)
       .wind(this.props.wind)
@@ -41,9 +41,6 @@ export default class Confetti extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if(!this.confetti) {
-      return
-    }
     this.confetti
       .numberOfPieces(nextProps.numberOfPieces)
       .friction(nextProps.friction)
@@ -75,7 +72,7 @@ export default class Confetti extends React.Component {
       <canvas
         width={width}
         height={height}
-        ref={c => (this.confetti = c)}
+        ref={c => (this.canvas = c)}
         style={canvasStyles}
       />
     )
