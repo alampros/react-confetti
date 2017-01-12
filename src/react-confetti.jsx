@@ -12,7 +12,7 @@ export default class Confetti extends React.Component {
     gravity: React.PropTypes.number,
     colors: React.PropTypes.arrayOf(React.PropTypes.string),
     opacity: React.PropTypes.number,
-  };
+  }
 
   static defaultProps = {
     width: '100%',
@@ -41,6 +41,9 @@ export default class Confetti extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    if(!this.confetti) {
+      return
+    }
     this.confetti
       .numberOfPieces(nextProps.numberOfPieces)
       .friction(nextProps.friction)
@@ -51,22 +54,27 @@ export default class Confetti extends React.Component {
   }
 
   render() {
+    const {
+      width,
+      height,
+      style,
+    } = this.props
     const canvasStyles = Object.assign({}, {
       zIndex: 2,
       position: 'absolute',
       top: 0,
       left: 0,
-      width: this.props.width,
-      height: this.props.height,
+      width,
+      height,
       pointerEvents: 'none',
       WebkitPointerEvents: 'none',
       MozPointerEvents: 'none',
-    }, this.props.style)
+    }, style)
 
     return (
       <canvas
-        width={this.props.width}
-        height={this.props.height}
+        width={width}
+        height={height}
         ref={c => (this.confetti = c)}
         style={canvasStyles}
       />
