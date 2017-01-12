@@ -27,7 +27,8 @@
   "scripts": {
     "build": "webpack",
     "clean": "rm -rf lib/* docs/bundle.js",
-    "lint": "eslint src/ --ext .js --ext .jsx || true"
+    "lint": "eslint src/ --ext .js --ext .jsx || true",
+    "prepublish": "npm run clean && npm run lint && npm run build"
   },
   "peerDependencies": {
     "react": "0.14.x || ^15.0.1"
