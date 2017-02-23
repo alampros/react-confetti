@@ -32,9 +32,9 @@ export default class MyComponent extends React.Component {
 }
 ```
 
-### On mobile and containers of varying sizes
+### Dimensions and Aspect Ratio
 
-In order to maintain the aspect ratio of the confetti particles, you need to send in the dimensions of the container. [react-dimensions](https://github.com/digidem/react-dimensions) is a library to help you do this. Here is an example:
+In order to maintain the aspect ratio of the canvas, you need to update the `width` and `height` props of the component when the window resizes. [react-dimensions](https://github.com/digidem/react-dimensions) is a library to help you do this. See the [source for the docs](https://github.com/alampros/react-confetti/blob/develop/src/docs.jsx) for an example or implement like so:
 
 ```jsx
 import React from 'react'

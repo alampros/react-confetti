@@ -62,13 +62,14 @@ module.exports = {
     "prefer-template":                   0,
     "quotes":                            ["error", "single"],
     "react/forbid-prop-types":           0,
+    "react/no-array-index-key":          1,
     "react/no-multi-comp":               0,
     "react/no-unused-prop-types":        0,
     "react/prop-types":                  [2, { ignore: ["children", "className", "style"] }],
-    "react/no-array-index-key":          1,
     "react/react-in-jsx-scope":          0,
     "react/require-default-props":       0,
     "react/require-extension":           0,
+    'react/prefer-stateless-function':   0,
     "react/sort-comp":                   [1, {
       order: [
         'type-annotations',
