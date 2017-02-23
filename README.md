@@ -32,6 +32,26 @@ export default class MyComponent extends React.Component {
 }
 ```
 
+### Dimensions and Aspect Ratio
+
+In order to maintain the aspect ratio of the canvas, you need to update the `width` and `height` props of the component when the window resizes. [react-dimensions](https://github.com/digidem/react-dimensions) is a library to help you do this. See the [source for the docs](https://github.com/alampros/react-confetti/blob/develop/src/docs.jsx) for an example or implement like so:
+
+```jsx
+import React from 'react'
+import Confetti from 'react-confetti'
+import Dimensions from 'react-dimensions'
+
+export default Dimensions()(class MyComponent extends React.PureComponent {
+  render() {
+    return (
+      <Confetti
+        width={this.props.containerWidth}
+        height={this.props.containerHeight}
+      />
+    )
+  }
+})
+```
 
 ## Props
 
