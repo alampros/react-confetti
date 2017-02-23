@@ -32,6 +32,26 @@ export default class MyComponent extends React.Component {
 }
 ```
 
+### On mobile and containers of varying sizes
+
+In order to maintain the aspect ratio of the confetti particles, you need to send in the dimensions of the container. [react-dimensions](https://github.com/digidem/react-dimensions) is a library to help you do this. Here is an example:
+
+```jsx
+import React from 'react'
+import Confetti from 'react-confetti'
+import Dimensions from 'react-dimensions'
+
+export default Dimensions()(class MyComponent extends React.PureComponent {
+  render() {
+    return (
+      <Confetti
+        width={this.props.containerWidth}
+        height={this.props.containerHeight}
+      />
+    )
+  }
+})
+```
 
 ## Props
 
