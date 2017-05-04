@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import dimensions from 'react-dimensions'
@@ -5,8 +6,8 @@ import Confetti from './react-confetti'
 
 const DimensionedExample = dimensions()(class Example extends React.Component {
   static propTypes = {
-    containerWidth: React.PropTypes.number,
-    containerHeight: React.PropTypes.number,
+    containerWidth: PropTypes.number,
+    containerHeight: PropTypes.number,
   }
   render() {
     const {
