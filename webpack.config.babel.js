@@ -1,3 +1,4 @@
+import path from 'path'
 import webpack from 'webpack'
 import pkg from './package.json'
 
@@ -11,7 +12,7 @@ const configDev = {
     'react-confetti': './src/react-confetti.jsx'
   },
   output: {
-    path: './lib',
+    path: path.resolve('./lib'),
     filename: '[name].js',
     library: 'ReactConfetti',
     libraryTarget: 'umd',
@@ -70,7 +71,7 @@ const configDocs = {
     bundle: './src/docs.jsx'
   },
   output: {
-    path: './docs',
+    path: path.resolve('./docs'),
     filename: '[name].js',
     publicPath: '/docs',
   },
