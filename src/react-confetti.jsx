@@ -1,17 +1,18 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 import confetti from './confetti'
 
 export default class Confetti extends React.Component {
   static propTypes = {
-    style: React.PropTypes.object,
-    width: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string]),
-    height: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string]),
-    numberOfPieces: React.PropTypes.number,
-    friction: React.PropTypes.number,
-    wind: React.PropTypes.number,
-    gravity: React.PropTypes.number,
-    colors: React.PropTypes.arrayOf(React.PropTypes.string),
-    opacity: React.PropTypes.number,
+    style: PropTypes.object,
+    width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    numberOfPieces: PropTypes.number,
+    friction: PropTypes.number,
+    wind: PropTypes.number,
+    gravity: PropTypes.number,
+    colors: PropTypes.arrayOf(PropTypes.string),
+    opacity: PropTypes.number,
   }
 
   static defaultProps = {
