@@ -31,7 +31,8 @@
     "prepublish": "npm run clean && npm run lint && npm run build"
   },
   "peerDependencies": {
-    "react": "0.14.x || ^15.0.1"
+    "react": "0.14.x || ^15.0.1",
+    "prop-types": "^15.5.0"
   },
   "devDependencies": {
     "babel-cli": "^6.7.5",
@@ -50,6 +51,7 @@
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.8.0",
     "eslint-plugin-sorting": "^0.3.0",
+    "prop-types": "^15.5.0",
     "react": "^15.0.1",
     "react-dimensions": "^2.0.0-alpha1",
     "react-dom": "^15.0.1",
