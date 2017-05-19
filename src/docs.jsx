@@ -1,22 +1,26 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import dimensions from 'react-dimensions'
+import sizeMe from 'react-sizeme'
 import Confetti from './react-confetti'
 
-const DimensionedExample = dimensions()(class Example extends React.Component {
+const DimensionedExample = sizeMe({
+  monitorHeight: true,
+  monitorWidth: true,
+})(class Example extends React.PureComponent {
   static propTypes = {
-    containerWidth: PropTypes.number,
-    containerHeight: PropTypes.number,
+    size: PropTypes.shape({
+      width: PropTypes.number,
+      height: PropTypes.number,
+    }),
   }
   render() {
-    const {
-      containerWidth,
-      containerHeight,
-    } = this.props
-    return <Confetti width={containerWidth} height={containerHeight} />
+    return (
+      <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
+        <Confetti {...this.props.size} />
+      </div>
+    )
   }
 })
 
 ReactDOM.render(<DimensionedExample />, document.getElementById('app'))
-

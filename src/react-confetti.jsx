@@ -2,11 +2,11 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import confetti from './confetti'
 
-export default class Confetti extends React.Component {
+export default class Confetti extends React.PureComponent {
   static propTypes = {
     style: PropTypes.object,
-    width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    width: PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired,
     numberOfPieces: PropTypes.number,
     friction: PropTypes.number,
     wind: PropTypes.number,
@@ -16,8 +16,6 @@ export default class Confetti extends React.Component {
   }
 
   static defaultProps = {
-    width: '100%',
-    height: '100%',
     numberOfPieces: 200,
     friction: 0.99,
     wind: 0,
@@ -69,10 +67,8 @@ export default class Confetti extends React.Component {
     const canvasStyles = Object.assign({}, {
       zIndex: 2,
       position: 'absolute',
-      top: 0,
+      top: -1,
       left: 0,
-      width,
-      height,
       pointerEvents: 'none',
       WebkitPointerEvents: 'none',
       MozPointerEvents: 'none',
