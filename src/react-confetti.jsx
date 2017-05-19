@@ -56,6 +56,15 @@ export default class Confetti extends React.Component {
       width,
       height,
       style,
+      /* eslint-disable no-unused-vars */
+      numberOfPieces,
+      friction,
+      wind,
+      gravity,
+      colors,
+      opacity,
+      /* eslint-enable no-unused-vars */
+      ...passedProps,
     } = this.props
     const canvasStyles = Object.assign({}, {
       zIndex: 2,
@@ -75,6 +84,7 @@ export default class Confetti extends React.Component {
         height={height}
         ref={c => (this.canvas = c)}
         style={canvasStyles}
+        {...passedProps}
       />
     )
   }
