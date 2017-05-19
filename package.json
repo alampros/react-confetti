@@ -53,8 +53,8 @@
     "eslint-plugin-sorting": "^0.3.0",
     "prop-types": "^15.5.0",
     "react": "^15.0.1",
-    "react-dimensions": "^2.0.0-alpha1",
     "react-dom": "^15.0.1",
+    "react-sizeme": "^2.3.2",
     "webpack": "^2.2.0-rc.4",
     "webpack-dev-server": "^2.2.0-rc.0"
   },

@@ -20,12 +20,6 @@ function confetti(canvasObj) {
   function self() {
     const canvas = canvasObj
     const context = canvas.getContext('2d')
-    const W = window.innerWidth
-      || Math.max(document.documentElement.clientWidth, document.body.clientWidth)
-    const H = window.innerHeight
-      || Math.max(document.documentElement.clientHeight, document.body.clientHeight)
-    canvas.width = W
-    canvas.height = H
 
     function Particle(x, y) {
       this.radius = utils.randomRange(0.1, 1)
@@ -113,8 +107,8 @@ function confetti(canvasObj) {
       context.closePath()
       if(this.particles.length < this.number) {
         const newParticleX = utils.clamp(
-          utils.randomRange(this.x, this.w + this.x),
-          this.x, this.w + this.x)
+          utils.randomRange(this.x, canvas.width + this.x),
+          this.x, canvas.width + this.x)
         const newParticleY = utils.clamp(
           utils.randomRange(this.y, this.h + this.y),
           this.y, this.h + this.y)
@@ -128,11 +122,11 @@ function confetti(canvasObj) {
       for(let i = 0; i < this.particles.length; i++) {
         const p = this.particles[i]
         p.update()
-        if((p.y > H || p.y < -100 || p.x > W + 100 || p.x < -100) && this.recycle) {
+        if((p.y > canvas.height || p.y < -100 || p.x > canvas.width + 100 || p.x < -100) && this.recycle) {
           // a brand new particle replacing the dead one
           const newParticleX = utils.clamp(
-            utils.randomRange(this.x, this.w + this.x),
-            this.x, this.w + this.x)
+            utils.randomRange(this.x, canvas.width + this.x),
+            this.x, canvas.width + this.x)
           const newParticleY = utils.clamp(
             utils.randomRange(this.y, this.h + this.y),
             this.y, this.h + this.y)
@@ -141,18 +135,18 @@ function confetti(canvasObj) {
       }
     }
 
-    const generator1 = new ParticleGenerator(0, 0, W, 0, numberOfPieces)
+    const generator1 = new ParticleGenerator(0, 0, canvas.width, 0, numberOfPieces)
 
     function toggleEngine() {
       if(generator1.type === 0) {
         generator1.type = 1
-        generator1.x = W / 2
-        generator1.y = H / 2
+        generator1.x = canvas.width / 2
+        generator1.y = canvas.height / 2
         generator1.w = 0
       } else {
         generator1.type = 0
         generator1.x = 1
-        generator1.w = W
+        generator1.w = canvas.width
         generator1.y = 0
       }
     }
@@ -161,7 +155,7 @@ function confetti(canvasObj) {
       generator1.number = numberOfPieces
       // context.globalAlpha=.5;
       context.fillStyle = 'white'
-      context.clearRect(0, 0, W, H)
+      context.clearRect(0, 0, canvas.width, canvas.height)
       generator1.animate()
       requestAnimationFrame(update)
     }
