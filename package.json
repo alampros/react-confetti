@@ -75,7 +75,8 @@
     "env": {
       "production": {
         "plugins": [
-          "transform-react-remove-prop-types"
+          "transform-react-remove-prop-types",
+          "transform-object-rest-spread"
         ]
       }
     }
