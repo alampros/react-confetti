@@ -78,7 +78,7 @@ export default class Confetti extends React.PureComponent {
       <canvas
         width={width}
         height={height}
-        ref={c => (this.canvas = c)}
+        ref={c => { this.canvas = c }}
         style={canvasStyles}
         {...passedProps}
       />
