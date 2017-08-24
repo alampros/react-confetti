@@ -99,12 +99,6 @@ function confetti(canvasObj) {
       this.type = 1
     }
     ParticleGenerator.prototype.animate = function animateParticle() {
-      context.fillStyle = 'grey'
-      context.beginPath()
-      context.strokeRect(this.x, this.y, this.w, this.h)
-      context.font = '13px arial'
-      context.textAlign = 'center'
-      context.closePath()
       if(this.particles.length < this.number) {
         const newParticleX = utils.clamp(
           utils.randomRange(this.x, canvas.width + this.x),
