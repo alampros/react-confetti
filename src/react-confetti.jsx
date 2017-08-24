@@ -67,7 +67,7 @@ export default class Confetti extends React.PureComponent {
     const canvasStyles = Object.assign({}, {
       zIndex: 2,
       position: 'absolute',
-      top: -1,
+      top: 0,
       left: 0,
       pointerEvents: 'none',
       WebkitPointerEvents: 'none',
