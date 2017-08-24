@@ -16,6 +16,7 @@ function confetti(canvasObj) {
     '#FF5722', '#795548',
   ]
   let opacity = 1.0
+  let recycle = true
 
   function self() {
     const canvas = canvasObj
@@ -95,7 +96,7 @@ function confetti(canvasObj) {
       this.number = number
       this.particles = []
       this.text = text
-      this.recycle = true
+      this.recycle = recycle
       this.type = 1
     }
     ParticleGenerator.prototype.animate = function animateParticle() {
@@ -193,6 +194,12 @@ function confetti(canvasObj) {
   self.opacity = (...args) => {
     if(!args.length) { return opacity }
     opacity = args[0]
+    return self
+  }
+
+  self.recycle = (...args) => {
+    if(!args.length) { return recycle }
+    recycle = args[0]
     return self
   }
 
