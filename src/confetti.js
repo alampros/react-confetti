@@ -4,8 +4,14 @@ import * as utils from './utils'
  * Most of this was coppied directly from the pen at http://codepen.io/Gthibaud/pen/BoaBZK
  * and halfheartedly converted to es6.
  */
-function confetti(canvasObj) {
+function confetti(canvas) {
   let numberOfPieces = 200
+  let confettiSource = {
+    x: 0,
+    y: 0,
+    w: canvas.width,
+    h: 0,
+  }
   let friction = 0.99
   let wind = 0
   let gravity = 0.1
@@ -19,7 +25,6 @@ function confetti(canvasObj) {
   let recycle = true
 
   function self() {
-    const canvas = canvasObj
     const context = canvas.getContext('2d')
 
     function Particle(x, y) {
@@ -87,27 +92,22 @@ function confetti(canvasObj) {
       context.restore()
     }
 
-    function ParticleGenerator(x, y, w, h, number, text) {
+    function ParticleGenerator(source, number, text) {
       // particle will spawn in this aera
-      this.x = x
-      this.y = y
-      this.w = w
-      this.h = h
+      this.x = source.x
+      this.y = source.y
+      this.w = source.w
+      this.h = source.h
       this.number = number
       this.particles = []
       this.particlesGenerated = 0
       this.text = text
       this.recycle = recycle
-      this.type = 1
     }
     ParticleGenerator.prototype.animate = function animateParticle() {
       if(this.particlesGenerated < this.number) {
-        const newParticleX = utils.clamp(
-          utils.randomRange(this.x, canvas.width + this.x),
-          this.x, canvas.width + this.x)
-        const newParticleY = utils.clamp(
-          utils.randomRange(this.y, this.h + this.y),
-          this.y, this.h + this.y)
+        const newParticleX = utils.randomRange(this.x, this.w + this.x)
+        const newParticleY = utils.randomRange(this.y, this.h + this.y)
         this.particles.push(new Particle(newParticleX, newParticleY, this.text))
         this.particlesGenerated += 1
       }
@@ -118,12 +118,8 @@ function confetti(canvasObj) {
         if(p.y > canvas.height || p.y < -100 || p.x > canvas.width + 100 || p.x < -100) {
           if(this.recycle) {
             // a brand new particle replacing the dead one
-            const newParticleX = utils.clamp(
-              utils.randomRange(this.x, canvas.width + this.x),
-              this.x, canvas.width + this.x)
-            const newParticleY = utils.clamp(
-              utils.randomRange(this.y, this.h + this.y),
-              this.y, this.h + this.y)
+            const newParticleX = utils.randomRange(this.x, this.w + this.x)
+            const newParticleY = utils.randomRange(this.y, this.h + this.y)
             this.particles[i] = new Particle(newParticleX, newParticleY, this.text)
           } else {
             this.particles.splice(i, 1)
@@ -133,21 +129,7 @@ function confetti(canvasObj) {
       return this.particles.length > 0 || this.particlesGenerated < this.number
     }
 
-    const generator1 = new ParticleGenerator(0, 0, canvas.width, 0, numberOfPieces)
-
-    function toggleEngine() {
-      if(generator1.type === 0) {
-        generator1.type = 1
-        generator1.x = canvas.width / 2
-        generator1.y = canvas.height / 2
-        generator1.w = 0
-      } else {
-        generator1.type = 0
-        generator1.x = 1
-        generator1.w = canvas.width
-        generator1.y = 0
-      }
-    }
+    const generator1 = new ParticleGenerator(confettiSource, numberOfPieces)
 
     function update() {
       generator1.number = numberOfPieces
@@ -159,7 +141,6 @@ function confetti(canvasObj) {
       }
     }
 
-    toggleEngine()
     update()
 
     return self
@@ -204,6 +185,12 @@ function confetti(canvasObj) {
   self.recycle = (...args) => {
     if(!args.length) { return recycle }
     recycle = args[0]
+    return self
+  }
+
+  self.confettiSource = (...args) => {
+    if(!args.length) { return confettiSource }
+    confettiSource = Object.assign(confettiSource, args[0])
     return self
   }
 
