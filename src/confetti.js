@@ -16,6 +16,7 @@ function confetti(canvasObj) {
     '#FF5722', '#795548',
   ]
   let opacity = 1.0
+  let recycle = true
 
   function self() {
     const canvas = canvasObj
@@ -94,12 +95,13 @@ function confetti(canvasObj) {
       this.h = h
       this.number = number
       this.particles = []
+      this.particlesGenerated = 0
       this.text = text
-      this.recycle = true
+      this.recycle = recycle
       this.type = 1
     }
     ParticleGenerator.prototype.animate = function animateParticle() {
-      if(this.particles.length < this.number) {
+      if(this.particlesGenerated < this.number) {
         const newParticleX = utils.clamp(
           utils.randomRange(this.x, canvas.width + this.x),
           this.x, canvas.width + this.x)
@@ -107,26 +109,28 @@ function confetti(canvasObj) {
           utils.randomRange(this.y, this.h + this.y),
           this.y, this.h + this.y)
         this.particles.push(new Particle(newParticleX, newParticleY, this.text))
-      }
-
-      if(this.particles.length > this.number) {
-        this.particles.length = this.number
+        this.particlesGenerated += 1
       }
 
       for(let i = 0; i < this.particles.length; i++) {
         const p = this.particles[i]
         p.update()
-        if((p.y > canvas.height || p.y < -100 || p.x > canvas.width + 100 || p.x < -100) && this.recycle) {
-          // a brand new particle replacing the dead one
-          const newParticleX = utils.clamp(
-            utils.randomRange(this.x, canvas.width + this.x),
-            this.x, canvas.width + this.x)
-          const newParticleY = utils.clamp(
-            utils.randomRange(this.y, this.h + this.y),
-            this.y, this.h + this.y)
-          this.particles[i] = new Particle(newParticleX, newParticleY, this.text)
+        if(p.y > canvas.height || p.y < -100 || p.x > canvas.width + 100 || p.x < -100) {
+          if(this.recycle) {
+            // a brand new particle replacing the dead one
+            const newParticleX = utils.clamp(
+              utils.randomRange(this.x, canvas.width + this.x),
+              this.x, canvas.width + this.x)
+            const newParticleY = utils.clamp(
+              utils.randomRange(this.y, this.h + this.y),
+              this.y, this.h + this.y)
+            this.particles[i] = new Particle(newParticleX, newParticleY, this.text)
+          } else {
+            this.particles.splice(i, 1)
+          }
         }
       }
+      return this.particles.length > 0 || this.particlesGenerated < this.number
     }
 
     const generator1 = new ParticleGenerator(0, 0, canvas.width, 0, numberOfPieces)
@@ -150,8 +154,9 @@ function confetti(canvasObj) {
       // context.globalAlpha=.5;
       context.fillStyle = 'white'
       context.clearRect(0, 0, canvas.width, canvas.height)
-      generator1.animate()
-      requestAnimationFrame(update)
+      if(generator1.animate()) {
+        requestAnimationFrame(update)
+      }
     }
 
     toggleEngine()
@@ -193,6 +198,12 @@ function confetti(canvasObj) {
   self.opacity = (...args) => {
     if(!args.length) { return opacity }
     opacity = args[0]
+    return self
+  }
+
+  self.recycle = (...args) => {
+    if(!args.length) { return recycle }
+    recycle = args[0]
     return self
   }
 
