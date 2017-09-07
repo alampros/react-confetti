@@ -1,6 +1,6 @@
 {
   "name": "react-confetti",
-  "version": "2.0.0-beta1",
+  "version": "2.0.0-beta2",
   "description": "React component to draw confetti for your party.",
   "main": "lib/react-confetti.js",
   "repository": {
@@ -45,17 +45,17 @@
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-1": "^6.16.0",
     "babel-register": "^6.18.0",
-    "eslint": "^3.12.2",
+    "eslint": "^4.6.1",
     "eslint-config-airbnb": "^15.0.1",
     "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^5.0.3",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.0.1",
     "eslint-plugin-sorting": "^0.3.0",
     "prop-types": "^15.5.0",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
     "react-sizeme": "^2.3.2",
-    "webpack": "^2.2.0-rc.4",
+    "webpack": "^3.5.6",
     "webpack-dev-server": "^2.2.0-rc.0"
   },
   "babel": {

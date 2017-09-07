@@ -20,6 +20,7 @@ export default class Confetti extends React.PureComponent {
     colors: PropTypes.arrayOf(PropTypes.string),
     opacity: PropTypes.number,
     recycle: PropTypes.bool,
+    run: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -36,6 +37,7 @@ export default class Confetti extends React.PureComponent {
     ],
     opacity: 1.0,
     recycle: true,
+    run: true,
   }
 
   componentDidMount() {
@@ -47,7 +49,8 @@ export default class Confetti extends React.PureComponent {
       .gravity(this.props.gravity)
       .colors(this.props.colors)
       .opacity(this.props.opacity)
-      .recycle(this.props.recycle)()
+      .recycle(this.props.recycle)
+      .run(this.props.run)()
   }
 
   componentWillReceiveProps(nextProps) {
@@ -60,6 +63,7 @@ export default class Confetti extends React.PureComponent {
       .colors(nextProps.colors)
       .opacity(nextProps.opacity)
       .recycle(nextProps.recycle)
+      .run(nextProps.run)
   }
 
   render() {
@@ -75,6 +79,8 @@ export default class Confetti extends React.PureComponent {
       colors,
       opacity,
       recycle,
+      confettiSource,
+      run,
       /* eslint-enable no-unused-vars */
       ...passedProps,
     } = this.props

@@ -14,10 +14,29 @@ const DimensionedExample = sizeMe({
       height: PropTypes.number,
     }),
   }
+  state = {
+    run: true,
+  }
+  toggleRun = () => {
+    this.setState({ run: !this.state.run })
+  }
+  handleRunChange = () => {
+    this.toggleRun()
+  }
   render() {
+    const { run } = this.state
     return (
       <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
-        <Confetti {...this.props.size} />
+        <label>
+          Run:
+          <input
+            name="runConfetti"
+            type="checkbox"
+            checked={run}
+            onChange={this.handleRunChange}
+          />
+        </label>
+        <Confetti {...this.state} {...this.props.size} />
       </div>
     )
   }

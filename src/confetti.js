@@ -23,6 +23,7 @@ function confetti(canvas) {
   ]
   let opacity = 1.0
   let recycle = true
+  let run = true
 
   function self() {
     const context = canvas.getContext('2d')
@@ -131,17 +132,20 @@ function confetti(canvas) {
 
     const generator1 = new ParticleGenerator(confettiSource, numberOfPieces)
 
-    function update() {
+    self.update = () => {
+      if(!run) {
+        return
+      }
       generator1.number = numberOfPieces
       // context.globalAlpha=.5;
       context.fillStyle = 'white'
       context.clearRect(0, 0, canvas.width, canvas.height)
       if(generator1.animate()) {
-        requestAnimationFrame(update)
+        requestAnimationFrame(self.update)
       }
     }
 
-    update()
+    self.update()
 
     return self
   }
@@ -191,6 +195,16 @@ function confetti(canvas) {
   self.confettiSource = (...args) => {
     if(!args.length) { return confettiSource }
     confettiSource = Object.assign(confettiSource, args[0])
+    return self
+  }
+
+  self.run = (...args) => {
+    if(!args.length) { return run }
+    const wasRunning = run
+    run = args[0]
+    if(!wasRunning && run) {
+      self.update()
+    }
     return self
   }
 
