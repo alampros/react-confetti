@@ -8,6 +8,12 @@ export default class Confetti extends React.PureComponent {
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired,
     numberOfPieces: PropTypes.number,
+    confettiSource: PropTypes.shape({
+      x: PropTypes.number,
+      y: PropTypes.number,
+      w: PropTypes.number,
+      h: PropTypes.number,
+    }),
     friction: PropTypes.number,
     wind: PropTypes.number,
     gravity: PropTypes.number,
@@ -18,6 +24,7 @@ export default class Confetti extends React.PureComponent {
 
   static defaultProps = {
     numberOfPieces: 200,
+    confettiSource: {},
     friction: 0.99,
     wind: 0,
     gravity: 0.1,
@@ -34,6 +41,7 @@ export default class Confetti extends React.PureComponent {
   componentDidMount() {
     this.confetti = confetti(this.canvas)
       .numberOfPieces(this.props.numberOfPieces)
+      .confettiSource(this.props.confettiSource)
       .friction(this.props.friction)
       .wind(this.props.wind)
       .gravity(this.props.gravity)
@@ -45,6 +53,7 @@ export default class Confetti extends React.PureComponent {
   componentWillReceiveProps(nextProps) {
     this.confetti
       .numberOfPieces(nextProps.numberOfPieces)
+      .confettiSource(nextProps.confettiSource)
       .friction(nextProps.friction)
       .wind(nextProps.wind)
       .gravity(nextProps.gravity)
