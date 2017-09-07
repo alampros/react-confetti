@@ -4,8 +4,14 @@ import * as utils from './utils'
  * Most of this was coppied directly from the pen at http://codepen.io/Gthibaud/pen/BoaBZK
  * and halfheartedly converted to es6.
  */
-function confetti(canvasObj) {
+function confetti(canvas) {
   let numberOfPieces = 200
+  let confettiSource = {
+    x: 0,
+    y: 0,
+    w: canvas.width,
+    h: 0,
+  }
   let friction = 0.99
   let wind = 0
   let gravity = 0.1
@@ -16,9 +22,10 @@ function confetti(canvasObj) {
     '#FF5722', '#795548',
   ]
   let opacity = 1.0
+  let recycle = true
+  let run = true
 
   function self() {
-    const canvas = canvasObj
     const context = canvas.getContext('2d')
 
     function Particle(x, y) {
@@ -86,82 +93,68 @@ function confetti(canvasObj) {
       context.restore()
     }
 
-    function ParticleGenerator(x, y, w, h, number, text) {
+    function ParticleGenerator(source, number, text) {
       // particle will spawn in this aera
-      this.x = x
-      this.y = y
-      this.w = w
-      this.h = h
+      this.x = source.x
+      this.y = source.y
+      this.w = source.w
+      this.h = source.h
       this.number = number
       this.particles = []
+      this.particlesGenerated = 0
       this.text = text
-      this.recycle = true
-      this.type = 1
+      this.recycle = recycle
+    }
+    ParticleGenerator.prototype.removeParticleAt = function removeParticleAt(i) {
+      this.particles.splice(i, 1)
+    }
+    ParticleGenerator.prototype.getParticle = function addParticle() {
+      const newParticleX = utils.randomRange(this.x, this.w + this.x)
+      const newParticleY = utils.randomRange(this.y, this.h + this.y)
+      return new Particle(newParticleX, newParticleY, this.text)
     }
     ParticleGenerator.prototype.animate = function animateParticle() {
-      context.fillStyle = 'grey'
-      context.beginPath()
-      context.strokeRect(this.x, this.y, this.w, this.h)
-      context.font = '13px arial'
-      context.textAlign = 'center'
-      context.closePath()
-      if(this.particles.length < this.number) {
-        const newParticleX = utils.clamp(
-          utils.randomRange(this.x, canvas.width + this.x),
-          this.x, canvas.width + this.x)
-        const newParticleY = utils.clamp(
-          utils.randomRange(this.y, this.h + this.y),
-          this.y, this.h + this.y)
-        this.particles.push(new Particle(newParticleX, newParticleY, this.text))
+      if(!run) {
+        return false
+      }
+      const nP = this.particles.length
+      const limit = this.recycle ? nP : this.particlesGenerated
+      if(limit < this.number) {
+        this.particles.push(this.getParticle())
+        this.particlesGenerated += 1
       }
 
-      if(this.particles.length > this.number) {
-        this.particles.length = this.number
-      }
-
-      for(let i = 0; i < this.particles.length; i++) {
-        const p = this.particles[i]
+      this.particles.forEach((p, i) => {
         p.update()
-        if((p.y > canvas.height || p.y < -100 || p.x > canvas.width + 100 || p.x < -100) && this.recycle) {
-          // a brand new particle replacing the dead one
-          const newParticleX = utils.clamp(
-            utils.randomRange(this.x, canvas.width + this.x),
-            this.x, canvas.width + this.x)
-          const newParticleY = utils.clamp(
-            utils.randomRange(this.y, this.h + this.y),
-            this.y, this.h + this.y)
-          this.particles[i] = new Particle(newParticleX, newParticleY, this.text)
+        if(p.y > canvas.height || p.y < -100 || p.x > canvas.width + 100 || p.x < -100) {
+          if(limit <= this.number) {
+            // a brand new particle replacing the dead one
+            this.particles[i] = this.getParticle()
+          } else {
+            this.removeParticleAt(i)
+          }
         }
-      }
+      })
+      return nP > 0 || limit < this.number
     }
 
-    const generator1 = new ParticleGenerator(0, 0, canvas.width, 0, numberOfPieces)
+    self.particleGenerator = new ParticleGenerator(confettiSource, numberOfPieces)
 
-    function toggleEngine() {
-      if(generator1.type === 0) {
-        generator1.type = 1
-        generator1.x = canvas.width / 2
-        generator1.y = canvas.height / 2
-        generator1.w = 0
+    self.update = () => {
+      if(run) {
+        self.particleGenerator.number = numberOfPieces
+        // context.globalAlpha=.5;
+        context.fillStyle = 'white'
+        context.clearRect(0, 0, canvas.width, canvas.height)
+      }
+      if(self.particleGenerator.animate()) {
+        requestAnimationFrame(self.update)
       } else {
-        generator1.type = 0
-        generator1.x = 1
-        generator1.w = canvas.width
-        generator1.y = 0
+        run = false
       }
     }
 
-    function update() {
-      generator1.number = numberOfPieces
-      // context.globalAlpha=.5;
-      context.fillStyle = 'white'
-      context.clearRect(0, 0, canvas.width, canvas.height)
-      generator1.animate()
-      requestAnimationFrame(update)
-    }
-
-    toggleEngine()
-    update()
+    self.update()
 
     return self
   }
@@ -169,6 +162,9 @@ function confetti(canvasObj) {
   self.numberOfPieces = (...args) => {
     if(!args.length) { return numberOfPieces }
     numberOfPieces = args[0]
+    if(self.particleGenerator) {
+      self.particleGenerator.number = numberOfPieces
+    }
     return self
   }
 
@@ -199,6 +195,31 @@ function confetti(canvasObj) {
   self.opacity = (...args) => {
     if(!args.length) { return opacity }
     opacity = args[0]
+    return self
+  }
+
+  self.recycle = (...args) => {
+    if(!args.length) { return recycle }
+    recycle = args[0]
+    if(self.particleGenerator) {
+      self.particleGenerator.recycle = recycle
+    }
+    return self
+  }
+
+  self.confettiSource = (...args) => {
+    if(!args.length) { return confettiSource }
+    confettiSource = Object.assign(confettiSource, args[0])
+    return self
+  }
+
+  self.run = (...args) => {
+    if(!args.length) { return run }
+    const wasRunning = run
+    run = args[0]
+    if(!wasRunning && run) {
+      self.update()
+    }
     return self
   }
 
