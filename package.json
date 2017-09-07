@@ -26,7 +26,7 @@
   ],
   "scripts": {
     "build": "webpack",
-    "clean": "rm -rf lib/* docs/bundle.js",
+    "clean": "rm -rf lib/* docs/docs.js",
     "lint": "eslint src/ --ext .js --ext .jsx",
     "prepublish": "npm run clean && npm run lint && npm run build"
   },
