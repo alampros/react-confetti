@@ -1,5 +1,6 @@
 import path from 'path'
 import webpack from 'webpack'
+import autoprefixer from 'autoprefixer'
 import pkg from './package.json'
 
 const banner = pkg.name + ' - ' + pkg.version + ' | ' +
@@ -24,6 +25,22 @@ const configDev = {
           path.resolve(__dirname, 'src')
         ],
         loader: 'babel-loader'
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          { loader: 'style-loader' },
+          { loader: 'css-loader' },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: () => [
+                autoprefixer(),
+              ],
+            }
+          },
+          { loader: 'sass-loader' },
+        ]
       },
     ],
   },

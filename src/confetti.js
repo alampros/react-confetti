@@ -105,43 +105,52 @@ function confetti(canvas) {
       this.text = text
       this.recycle = recycle
     }
+    ParticleGenerator.prototype.removeParticleAt = function removeParticleAt(i) {
+      this.particles.splice(i, 1)
+    }
+    ParticleGenerator.prototype.getParticle = function addParticle() {
+      const newParticleX = utils.randomRange(this.x, this.w + this.x)
+      const newParticleY = utils.randomRange(this.y, this.h + this.y)
+      return new Particle(newParticleX, newParticleY, this.text)
+    }
     ParticleGenerator.prototype.animate = function animateParticle() {
-      if(this.particlesGenerated < this.number) {
-        const newParticleX = utils.randomRange(this.x, this.w + this.x)
-        const newParticleY = utils.randomRange(this.y, this.h + this.y)
-        this.particles.push(new Particle(newParticleX, newParticleY, this.text))
+      if(!run) {
+        return false
+      }
+      const nP = this.particles.length
+      const limit = this.recycle ? nP : this.particlesGenerated
+      if(limit < this.number) {
+        this.particles.push(this.getParticle())
         this.particlesGenerated += 1
       }
 
-      for(let i = 0; i < this.particles.length; i++) {
-        const p = this.particles[i]
+      this.particles.forEach((p, i) => {
         p.update()
         if(p.y > canvas.height || p.y < -100 || p.x > canvas.width + 100 || p.x < -100) {
-          if(this.recycle) {
+          if(limit <= this.number) {
             // a brand new particle replacing the dead one
-            const newParticleX = utils.randomRange(this.x, this.w + this.x)
-            const newParticleY = utils.randomRange(this.y, this.h + this.y)
-            this.particles[i] = new Particle(newParticleX, newParticleY, this.text)
+            this.particles[i] = this.getParticle()
           } else {
-            this.particles.splice(i, 1)
+            this.removeParticleAt(i)
           }
         }
-      }
-      return this.particles.length > 0 || this.particlesGenerated < this.number
+      })
+      return nP > 0 || limit < this.number
     }
 
-    const generator1 = new ParticleGenerator(confettiSource, numberOfPieces)
+    self.particleGenerator = new ParticleGenerator(confettiSource, numberOfPieces)
 
     self.update = () => {
-      if(!run) {
-        return
+      if(run) {
+        self.particleGenerator.number = numberOfPieces
+        // context.globalAlpha=.5;
+        context.fillStyle = 'white'
+        context.clearRect(0, 0, canvas.width, canvas.height)
       }
-      generator1.number = numberOfPieces
-      // context.globalAlpha=.5;
-      context.fillStyle = 'white'
-      context.clearRect(0, 0, canvas.width, canvas.height)
-      if(generator1.animate()) {
+      if(self.particleGenerator.animate()) {
         requestAnimationFrame(self.update)
+      } else {
+        run = false
       }
     }
 
@@ -153,6 +162,9 @@ function confetti(canvas) {
   self.numberOfPieces = (...args) => {
     if(!args.length) { return numberOfPieces }
     numberOfPieces = args[0]
+    if(self.particleGenerator) {
+      self.particleGenerator.number = numberOfPieces
+    }
     return self
   }
 
@@ -189,6 +201,9 @@ function confetti(canvas) {
   self.recycle = (...args) => {
     if(!args.length) { return recycle }
     recycle = args[0]
+    if(self.particleGenerator) {
+      self.particleGenerator.recycle = recycle
+    }
     return self
   }
 
