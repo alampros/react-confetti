@@ -127,7 +127,7 @@ function confetti(canvas) {
       this.particles.forEach((p, i) => {
         p.update()
         if(p.y > canvas.height || p.y < -100 || p.x > canvas.width + 100 || p.x < -100) {
-          if(limit <= this.number) {
+          if(recycle && limit <= this.number) {
             // a brand new particle replacing the dead one
             this.particles[i] = this.getParticle()
           } else {
