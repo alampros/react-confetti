@@ -1,6 +1,6 @@
 {
   "name": "react-confetti",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "React component to draw confetti for your party.",
   "main": "lib/react-confetti.js",
   "repository": {
