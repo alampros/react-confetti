@@ -17,14 +17,15 @@ const DimensionedExample = sizeMe({
     }),
   }
   state = {
+    recycle: true,
     run: true,
     numberOfPieces: 200,
   }
   toggleRun = () => {
     this.setState({ run: !this.state.run })
   }
-  handleRunChange = () => {
-    this.toggleRun()
+  toggleRecycle = () => {
+    this.setState({ recycle: !this.state.recycle })
   }
   handleNumOfPiecesChange = (e) => {
     const numberOfPieces = parseInt(e.target.value, 10)
@@ -38,6 +39,7 @@ const DimensionedExample = sizeMe({
   }
   render() {
     const {
+      recycle,
       run,
       numberOfPieces,
     } = this.state
@@ -50,7 +52,16 @@ const DimensionedExample = sizeMe({
               name="runConfetti"
               type="checkbox"
               checked={run}
-              onChange={this.handleRunChange}
+              onChange={this.toggleRun}
+            />
+          </label>
+          <label className="form-group">
+            <span>Recycle</span>
+            <input
+              name="recycleConfetti"
+              type="checkbox"
+              checked={recycle}
+              onChange={this.toggleRecycle}
             />
           </label>
           <div className="form-group">
