@@ -31,8 +31,8 @@
     "prepublish": "npm run clean && npm run lint && npm run build"
   },
   "peerDependencies": {
-    "prop-types": "^15.5.0",
-    "react": "0.14.x || ^15.0.1"
+    "prop-types": "^15.6.0",
+    "react": "0.14.x || ^15.0.1 || ^16.2.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.4",
@@ -55,10 +55,10 @@
     "eslint-plugin-sorting": "^0.3.0",
     "node-sass": "^4.5.3",
     "postcss-loader": "^2.0.6",
-    "prop-types": "^15.5.0",
-    "react": "^15.0.1",
-    "react-dom": "^15.0.1",
-    "react-sizeme": "^2.3.2",
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-sizeme": "^2.3.6",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
     "webpack": "^3.5.6",
