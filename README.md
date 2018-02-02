@@ -1,7 +1,7 @@
 # react-confetti
 Confetti without the cleanup. [Demo](http://alampros.github.io/react-confetti/)
 
-Based on a pen by @Gthibaud: http://codepen.io/Gthibaud/pen/BoaBZK
+Based on a pen by @Gthibaud: https://codepen.io/Gthibaud/pen/ENzXbp
 
 [![demogif][2]][1]
 
