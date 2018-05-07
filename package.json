@@ -31,7 +31,8 @@
     "lint": "eslint src/ www/src/ --ext .js",
     "prepare": "npm run clean && npm run lint && npm run build",
     "semantic-release": "semantic-release",
-    "travis-deploy-once": "travis-deploy-once"
+    "travis-deploy-once": "travis-deploy-once",
+    "commit": "git-cz"
   },
   "peerDependencies": {
     "prop-types": "^15.6.0",
@@ -86,5 +87,10 @@
       "transform-react-remove-prop-types",
       "transform-object-rest-spread"
     ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
   }
 }
