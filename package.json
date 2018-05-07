@@ -26,10 +26,11 @@
   ],
   "scripts": {
     "build": "rollup -c",
+    "test": "yarn run lint",
     "clean": "git clean -xfd dist/",
     "cleanall": "git clean -xfd .",
     "lint": "eslint src/ www/src/ --ext .js",
-    "prepare": "npm run clean && npm run lint && npm run build",
+    "prepare": "yarn run clean && yarn run lint && yarn run build",
     "semantic-release": "semantic-release",
     "travis-deploy-once": "travis-deploy-once",
     "commit": "git-cz"

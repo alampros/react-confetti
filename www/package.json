@@ -9,7 +9,7 @@
     "preserve": "npm run build",
     "clean": "git clean -xfd public/ .cache",
     "deploy": "gh-pages -d public",
-    "predeploy": "npm run build"
+    "predeploy": "yarn run build"
   },
   "author": "Aaron Lampros <alampros@gmail.com>",
   "private": true,
