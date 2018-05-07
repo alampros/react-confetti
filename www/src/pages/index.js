@@ -7,7 +7,7 @@ export default class Index extends React.PureComponent {
     return (
       <div className="app-container">
         <div className="pad-container">
-          <h1>react-confetti demo</h1>
+          <h1>react-confetti</h1>
           <p>
             <a href="http://github.com/alampros/react-confetti">http://github.com/alampros/react-confetti</a>
           </p>
