@@ -15,6 +15,7 @@ const configDev = {
     filename: 'react-confetti.js',
     library: 'ReactConfetti',
     libraryTarget: 'umd',
+    umdNamedDefine: true,
     publicPath: '/dist'
   },
   module: {
@@ -30,13 +31,17 @@ const configDev = {
   },
   externals: {
     react: {
-      root: 'React',
-      commonjs2: 'react',
       commonjs: 'react',
-      amd: 'react',
+      commonjs2: 'react',
+      amd: 'React',
+      root: 'React'
     },
-    'prop-types': 'prop-types',
-    fbjs: 'fbjs',
+    'react-dom': {
+      commonjs: 'react-dom',
+      commonjs2: 'react-dom',
+      amd: 'ReactDOM',
+      root: 'ReactDOM'
+    }
   },
   plugins: [
     new webpack.BannerPlugin(banner),
