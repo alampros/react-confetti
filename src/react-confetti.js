@@ -1,8 +1,7 @@
-import PropTypes from 'prop-types'
 import React from 'react'
 import confetti from './confetti'
 
-export default class Confetti extends React.PureComponent {
+export default class ReactConfetti extends React.PureComponent {
   static propTypes = {
     style: PropTypes.object,
     width: PropTypes.number.isRequired,
@@ -82,7 +81,7 @@ export default class Confetti extends React.PureComponent {
       confettiSource,
       run,
       /* eslint-enable no-unused-vars */
-      ...passedProps,
+      ...passedProps
     } = this.props
     const canvasStyles = Object.assign({}, {
       zIndex: 2,

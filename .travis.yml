@@ -1,0 +1,23 @@
+language: node_js
+cache: yarn
+branches:
+  except:
+    - /^v\d+\.\d+\.\d+$/
+notifications:
+  email: false
+node_js:
+  - '10'
+  - '9'
+  - '8'
+after_success:
+  - yarn run travis-deploy-once "yarn run semantic-release"
+before_deploy:
+  - cd www; yarn && yarn run build
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  keep-history: true
+  local-dir: www/public
+  on:
+    branch: master

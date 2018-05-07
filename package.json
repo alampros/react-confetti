@@ -1,11 +1,11 @@
 {
   "name": "react-confetti",
-  "version": "2.0.2",
+  "version": "2.1.0-development",
   "description": "React component to draw confetti for your party.",
   "main": "lib/react-confetti.js",
   "repository": {
     "type": "git",
-    "url": "git@github.com:alampros/react-confetti.git"
+    "url": "https://github.com/alampros/react-confetti.git"
   },
   "keywords": [
     "react",
@@ -22,69 +22,76 @@
   "files": [
     "README.md",
     "LICENSE.md",
-    "lib/"
+    "dist/"
   ],
   "scripts": {
-    "build": "webpack",
-    "clean": "rm -rf lib/* docs/docs.js",
-    "lint": "eslint src/ --ext .js --ext .jsx",
-    "prepare": "npm run clean && npm run lint && npm run build"
+    "build": "rollup -c",
+    "test": "yarn run lint",
+    "clean": "git clean -xfd dist/",
+    "cleanall": "git clean -xfd .",
+    "lint": "eslint src/ www/src/ --ext .js",
+    "prepare": "yarn run clean && yarn run lint && yarn run build",
+    "semantic-release": "semantic-release",
+    "travis-deploy-once": "travis-deploy-once",
+    "commit": "git-cz"
   },
   "peerDependencies": {
     "prop-types": "^15.6.0",
     "react": "0.14.x || ^15.0.1 || ^16.2.0"
   },
   "devDependencies": {
-    "autoprefixer": "^7.1.4",
     "babel-cli": "^6.7.5",
     "babel-core": "^6.21.0",
-    "babel-eslint": "^7.1.1",
-    "babel-loader": "^7.0.0",
+    "babel-eslint": "^8.2.3",
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.4",
-    "babel-polyfill": "^6.20.0",
-    "babel-preset-es2015": "^6.6.0",
-    "babel-preset-react": "^6.16.0",
-    "babel-preset-stage-1": "^6.16.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
     "babel-register": "^6.18.0",
-    "css-loader": "^0.28.7",
-    "eslint": "^4.6.1",
-    "eslint-config-airbnb": "^15.0.1",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^6.0.2",
-    "eslint-plugin-react": "^7.0.1",
+    "commitizen": "^2.9.6",
+    "cz-conventional-changelog": "^2.1.0",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-vectron": "^1.0.1",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
     "eslint-plugin-sorting": "^0.3.0",
-    "node-sass": "^4.5.3",
-    "postcss-loader": "^2.0.6",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-sizeme": "^2.3.6",
-    "sass-loader": "^6.0.6",
-    "style-loader": "^0.18.2",
-    "webpack": "^3.5.6",
-    "webpack-dev-server": "^2.2.0-rc.0"
+    "rollup": "^0.58.2",
+    "rollup-plugin-babel": "^3.0.4",
+    "rollup-plugin-uglify": "^3.0.0",
+    "semantic-release": "^15.1.7",
+    "travis-deploy-once": "^5.0.0"
+  },
+  "eslintConfig": {
+    "root": true,
+    "parser": "babel-eslint",
+    "extends": "vectron"
   },
   "babel": {
     "presets": [
       [
-        "es2015",
+        "env",
         {
           "modules": false
         }
       ],
-      "stage-1",
-      "react"
+      "react",
+      "stage-0"
     ],
     "plugins": [
-      "transform-es2015-modules-commonjs"
-    ],
-    "env": {
-      "production": {
-        "plugins": [
-          "transform-react-remove-prop-types",
-          "transform-object-rest-spread"
-        ]
-      }
+      "transform-class-properties",
+      "transform-react-remove-prop-types",
+      "transform-object-rest-spread"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
     }
   }
 }
