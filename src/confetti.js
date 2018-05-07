@@ -161,7 +161,7 @@ function confetti(canvas) {
 
   self.numberOfPieces = (...args) => {
     if(!args.length) { return numberOfPieces }
-    numberOfPieces = args[0]
+    [numberOfPieces] = args
     if(self.particleGenerator) {
       self.particleGenerator.number = numberOfPieces
     }
@@ -170,37 +170,37 @@ function confetti(canvas) {
 
   self.friction = (...args) => {
     if(!args.length) { return friction }
-    friction = args[0]
+    [friction] = args
     return self
   }
 
   self.wind = (...args) => {
     if(!args.length) { return wind }
-    wind = args[0]
+    [wind] = args
     return self
   }
 
   self.gravity = (...args) => {
     if(!args.length) { return gravity }
-    gravity = args[0]
+    [gravity] = args
     return self
   }
 
   self.colors = (...args) => {
     if(!args.length) { return colors }
-    colors = args[0]
+    [colors] = args
     return self
   }
 
   self.opacity = (...args) => {
     if(!args.length) { return opacity }
-    opacity = args[0]
+    [opacity] = args
     return self
   }
 
   self.recycle = (...args) => {
     if(!args.length) { return recycle }
-    recycle = args[0]
+    [recycle] = args
     if(self.particleGenerator) {
       self.particleGenerator.recycle = recycle
     }
@@ -216,7 +216,8 @@ function confetti(canvas) {
   self.run = (...args) => {
     if(!args.length) { return run }
     const wasRunning = run
-    run = args[0]
+    const [isRunning] = args
+    run = isRunning
     if(!wasRunning && run) {
       self.update()
     }
