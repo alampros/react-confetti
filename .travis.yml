@@ -21,3 +21,4 @@ deploy:
   local-dir: www/public
   on:
     branch: master
+    node: '10'
