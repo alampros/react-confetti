@@ -25,7 +25,7 @@
     "dist/"
   ],
   "scripts": {
-    "build": "webpack",
+    "build": "rollup -c",
     "clean": "rm -rf dist/* docs/docs.js",
     "lint": "eslint src/ www/src/ --ext .js",
     "prepare": "npm run clean && npm run lint && npm run build",
@@ -60,11 +60,11 @@
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "rollup": "^0.58.2",
+    "rollup-plugin-babel": "^3.0.4",
+    "rollup-plugin-uglify": "^3.0.0",
     "semantic-release": "^15.1.7",
-    "travis-deploy-once": "^5.0.0",
-    "webpack": "^4.6.0",
-    "webpack-cli": "^2.0.15",
-    "webpack-dev-server": "^3.1.3"
+    "travis-deploy-once": "^5.0.0"
   },
   "eslintConfig": {
     "root": true,
@@ -73,7 +73,12 @@
   },
   "babel": {
     "presets": [
-      "env",
+      [
+        "env",
+        {
+          "modules": false
+        }
+      ],
       "react",
       "stage-0"
     ],
