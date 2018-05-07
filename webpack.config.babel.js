@@ -10,12 +10,13 @@ const banner = pkg.name + ' - ' + pkg.version + ' | ' +
 
 const configDev = {
   entry: './src/react-confetti.jsx',
+  mode: 'development',
   output: {
-    path: path.resolve(__dirname, './lib'),
+    path: path.resolve(__dirname, './dist'),
     filename: 'react-confetti.js',
     library: 'ReactConfetti',
     libraryTarget: 'umd',
-    publicPath: '/lib'
+    publicPath: '/dist'
   },
   module: {
     rules: [
@@ -62,6 +63,7 @@ const configDev = {
 
 const configProd = {
   ...configDev,
+  mode: 'production',
   output: {
     ...configDev.output,
     filename: 'react-confetti.min.js',
@@ -73,29 +75,12 @@ const configProd = {
         NODE_ENV: JSON.stringify('production')
       }
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
-    }),
   ]
-}
-
-const configDocs = {
-  ...configProd,
-  externals: {},
-  entry: './src/docs.jsx',
-  output: {
-    path: path.resolve('./docs'),
-    filename: 'docs.js',
-    publicPath: '/docs',
-  },
 }
 
 const configs = [
   configDev,
   configProd,
-  configDocs,
 ]
 
 export default configs

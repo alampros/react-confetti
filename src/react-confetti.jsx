@@ -82,7 +82,7 @@ export default class Confetti extends React.PureComponent {
       confettiSource,
       run,
       /* eslint-enable no-unused-vars */
-      ...passedProps,
+      ...passedProps
     } = this.props
     const canvasStyles = Object.assign({}, {
       zIndex: 2,

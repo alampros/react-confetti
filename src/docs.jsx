@@ -28,8 +28,8 @@ const DimensionedExample = sizeMe({
     this.setState({ recycle: !this.state.recycle })
   }
   handleNumOfPiecesChange = (e) => {
-    const numberOfPieces = parseInt(e.target.value, 10)
-    if(isNaN(numberOfPieces)) {
+    const numberOfPieces = Number(e.target.value)
+    if(Number.isNaN(numberOfPieces)) {
       console.warn('Invalid number of pieces')
       return
     }
@@ -44,7 +44,10 @@ const DimensionedExample = sizeMe({
       numberOfPieces,
     } = this.state
     return (
-      <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
+      <div style={{
+        position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'
+      }}
+      >
         <div className="controls">
           <label className="form-group">
             <span>Run</span>
