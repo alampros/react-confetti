@@ -16,7 +16,7 @@ before_deploy:
 deploy:
   provider: pages
   skip-cleanup: true
-  github-token: $GITHUB_TOKEN
+  github-token: $GH_TOKEN
   keep-history: true
   local-dir: www/public
   on:
