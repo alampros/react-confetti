@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import sizeMe from 'react-sizeme'
-import Confetti from '../../../dist/react-confetti.js'
+import Confetti from 'react-confetti'
 
 export default sizeMe({
   monitorHeight: true,

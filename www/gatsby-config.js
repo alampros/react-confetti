@@ -6,6 +6,7 @@ module.exports = {
     description: 'Confetti without the cleanup',
   },
   plugins: [
+    'alias-package',
     'gatsby-plugin-sass',
     {
       resolve: 'gatsby-plugin-google-analytics',
