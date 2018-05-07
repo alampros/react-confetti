@@ -27,7 +27,7 @@
   "scripts": {
     "build": "webpack",
     "clean": "rm -rf lib/* docs/docs.js",
-    "lint": "eslint src/ www/src/ --ext .js --ext .jsx",
+    "lint": "eslint src/ www/src/ --ext .js",
     "prepare": "npm run clean && npm run lint && npm run build",
     "semantic-release": "semantic-release",
     "travis-deploy-once": "travis-deploy-once"
@@ -37,7 +37,6 @@
     "react": "0.14.x || ^15.0.1 || ^16.2.0"
   },
   "devDependencies": {
-    "autoprefixer": "^8.3.0",
     "babel-cli": "^6.7.5",
     "babel-core": "^6.21.0",
     "babel-eslint": "^8.2.3",
@@ -50,7 +49,6 @@
     "babel-preset-stage-0": "^6.24.1",
     "babel-register": "^6.18.0",
     "commitizen": "^2.9.6",
-    "css-loader": "^0.28.7",
     "cz-conventional-changelog": "^2.1.0",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
@@ -59,15 +57,10 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
     "eslint-plugin-sorting": "^0.3.0",
-    "node-sass": "^4.5.3",
-    "postcss-loader": "^2.0.6",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-sizeme": "^2.3.6",
-    "sass-loader": "^7.0.1",
     "semantic-release": "^15.1.7",
-    "style-loader": "^0.21.0",
     "travis-deploy-once": "^4.4.1",
     "webpack": "^4.6.0",
     "webpack-cli": "^2.0.15",
@@ -85,15 +78,9 @@
       "stage-0"
     ],
     "plugins": [
-      "transform-class-properties"
-    ],
-    "env": {
-      "production": {
-        "plugins": [
-          "transform-react-remove-prop-types",
-          "transform-object-rest-spread"
-        ]
-      }
-    }
+      "transform-class-properties",
+      "transform-react-remove-prop-types",
+      "transform-object-rest-spread"
+    ]
   }
 }

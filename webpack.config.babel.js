@@ -1,6 +1,5 @@
 import path from 'path'
 import webpack from 'webpack'
-import autoprefixer from 'autoprefixer'
 import pkg from './package.json'
 
 const banner = pkg.name + ' - ' + pkg.version + ' | ' +
@@ -9,7 +8,7 @@ const banner = pkg.name + ' - ' + pkg.version + ' | ' +
 
 
 const configDev = {
-  entry: './src/react-confetti.jsx',
+  entry: './src/react-confetti.js',
   mode: 'development',
   output: {
     path: path.resolve(__dirname, './dist'),
@@ -27,22 +26,6 @@ const configDev = {
         ],
         loader: 'babel-loader'
       },
-      {
-        test: /\.scss$/,
-        use: [
-          { loader: 'style-loader' },
-          { loader: 'css-loader' },
-          {
-            loader: 'postcss-loader',
-            options: {
-              plugins: () => [
-                autoprefixer(),
-              ],
-            }
-          },
-          { loader: 'sass-loader' },
-        ]
-      },
     ],
   },
   externals: {
@@ -50,11 +33,10 @@ const configDev = {
       root: 'React',
       commonjs2: 'react',
       commonjs: 'react',
-      amd: 'react'
-    }
-  },
-  resolve: {
-    extensions: ['.js', '.jsx']
+      amd: 'react',
+    },
+    'prop-types': 'prop-types',
+    fbjs: 'fbjs',
   },
   plugins: [
     new webpack.BannerPlugin(banner),
