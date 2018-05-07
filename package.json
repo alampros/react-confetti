@@ -2,7 +2,7 @@
   "name": "react-confetti",
   "version": "2.1.0-development",
   "description": "React component to draw confetti for your party.",
-  "main": "lib/react-confetti.min.js",
+  "main": "dist/react-confetti.min.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/alampros/react-confetti.git"
