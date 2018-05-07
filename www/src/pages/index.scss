@@ -21,6 +21,7 @@ body {
 }
 .pad-container {
   padding: 20px;
+  transform: translate3d(0, 0, 0);
 }
 @media screen and (min-width: 568px) {
   .pad-container {
