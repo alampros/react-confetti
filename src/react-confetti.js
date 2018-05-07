@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import confetti from './confetti'
 
-export default class Confetti extends React.PureComponent {
+export default class ReactConfetti extends React.PureComponent {
   static propTypes = {
     style: PropTypes.object,
     width: PropTypes.number.isRequired,
