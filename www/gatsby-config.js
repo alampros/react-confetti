@@ -1,4 +1,5 @@
 module.exports = {
+  pathPrefix: '/react-confetti',
   siteMetadata: {
     title: 'React Confetti',
     siteUrl: 'http://alampros.github.io/react-confetti/',

@@ -1,4 +1,7 @@
 language: node_js
+branches:
+  except:
+    - /^v\d+\.\d+\.\d+$/
 cache:
   directories:
     - ~/.npm
@@ -11,6 +14,13 @@ node_js:
   - '6'
 after_success:
   - npm run travis-deploy-once "npm run semantic-release"
-branches:
-  except:
-    - /^v\d+\.\d+\.\d+$/
+before_deploy:
+  - cd www; npm install && npm run build
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  keep-history: true
+  local-dir: www/public
+  on:
+    branch: master

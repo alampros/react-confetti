@@ -4,10 +4,12 @@
   "description": "Website for react-confetti demo",
   "scripts": {
     "develop": "gatsby develop -p 3000",
-    "build": "gatsby build",
+    "build": "gatsby build --prefix-paths",
     "serve": "gatsby serve -p 3000",
     "preserve": "npm run build",
-    "clean": "git clean -xfd public/ .cache"
+    "clean": "git clean -xfd public/ .cache",
+    "deploy": "gh-pages -d public",
+    "predeploy": "npm run build"
   },
   "author": "Aaron Lampros <alampros@gmail.com>",
   "private": true,
@@ -16,6 +18,7 @@
     "gatsby": "^1.9.254",
     "gatsby-plugin-google-analytics": "^1.0.31",
     "gatsby-plugin-sass": "^1.0.26",
+    "gh-pages": "^1.1.0",
     "react-sizeme": "^2.4.3"
   }
 }
