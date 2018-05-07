@@ -8,7 +8,7 @@ html, body {
 body {
   font-family: Helvetica, Verdana, sans-serif;
   color: #666;
-  font-size: 12px;
+  font-size: 18px;
   position: relative;
   overflow: hidden;
 }
@@ -27,7 +27,7 @@ body {
     padding: 100px;
   }
   body {
-    font-size: 14px;
+    font-size: 22px;
   }
 }
 
@@ -45,11 +45,13 @@ body {
     flex: 1;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 0.25em;
     input {
       margin-left: 1em;
     }
   }
   input[type="number"] {
     text-align: right;
+    font-size: 22px;
   }
 }

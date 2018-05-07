@@ -76,8 +76,8 @@ export default sizeMe({
               name="numberOfPieces"
               type="number"
               min={0}
-              max={10000}
-              step={100}
+              max={1000}
+              step={50}
               onChange={this.handleNumOfPiecesChange}
               value={numberOfPieces}
             />
