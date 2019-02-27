@@ -1,3 +1,6 @@
+const postcssNested = require('postcss-nested')
+const autoprefixer = require('autoprefixer')
+
 module.exports = {
   pathPrefix: '/react-confetti',
   siteMetadata: {
@@ -7,7 +10,16 @@ module.exports = {
   },
   plugins: [
     'alias-package',
-    'gatsby-plugin-sass',
+    'gatsby-plugin-react-helmet',
+    {
+      resolve: 'gatsby-plugin-postcss',
+      options: {
+        postCssPlugins: [
+          postcssNested(),
+          autoprefixer(),
+        ],
+      },
+    },
     {
       resolve: 'gatsby-plugin-google-analytics',
       options: {

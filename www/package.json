@@ -6,16 +6,22 @@
     "develop": "gatsby develop -p 3000",
     "build": "gatsby build --prefix-paths",
     "serve": "gatsby serve -p 3000",
-    "preserve": "npm run build",
+    "preserve": "yarn build",
     "clean": "git clean -xfd public/ .cache"
   },
   "author": "Aaron Lampros <alampros@gmail.com>",
   "private": true,
   "license": "MIT",
   "dependencies": {
-    "gatsby": "^1.9.254",
-    "gatsby-plugin-google-analytics": "^1.0.31",
-    "gatsby-plugin-sass": "^1.0.26",
-    "react-sizeme": "^2.4.3"
+    "autoprefixer": "^9.4.9",
+    "gatsby": "^2.1.18",
+    "gatsby-plugin-google-analytics": "^2.0.14",
+    "gatsby-plugin-postcss": "^2.0.5",
+    "gatsby-plugin-react-helmet": "^3.0.7",
+    "postcss-nested": "^4.1.2",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3",
+    "react-helmet": "^5.2.0",
+    "react-sizeme": "^2.5.2"
   }
 }

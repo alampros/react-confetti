@@ -10,7 +10,7 @@ const base = {
     sourcemap: true,
     globals: {
       react: 'React',
-      PropTypes: 'prop-types',
+      'prop-types': 'PropTypes',
     },
   },
   external: ['react', 'prop-types'],

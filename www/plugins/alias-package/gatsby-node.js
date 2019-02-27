@@ -1,10 +1,10 @@
 const path = require('path')
 
-exports.modifyWebpackConfig = ({ config, _stage }) => {
-  return config.merge({
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
     resolve: {
       alias: {
-        'react-confetti': path.resolve(config._config.context, '..'),
+        'react-confetti': path.resolve(__dirname, '../../..'),
       },
     },
   })
