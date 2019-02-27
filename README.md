@@ -17,48 +17,36 @@ Based on a pen by @Gthibaud: https://codepen.io/Gthibaud/pen/ENzXbp
 ## Install
 
 ```sh
-npm i -S react-confetti
+npm install react-confetti
 ```
 
 ## Use
 
-`width` and `height` props are required. Here, they are provided by [react-sizeme](https://github.com/ctrlplusb/react-sizeme):
+`width` and `height` props are recommended. They will default to the initial window dimensions, but will not respond to resize events. It is recommended to provide the dimensions yourself. Here is an example using [a hook](https://github.com/streamich/react-use/blob/master/docs/useWindowSize.md):
 
 ```jsx
-import PropTypes from 'prop-types'
 import React from 'react'
-import ReactDOM from 'react-dom'
-import sizeMe from 'react-sizeme'
-import Confetti from './react-confetti'
+import { useWindowSize } from 'react-use'
+import Confetti from 'react-confetti'
 
-const DimensionedExample = sizeMe({
-  monitorHeight: true,
-  monitorWidth: true,
-})(class Example extends React.PureComponent {
-  static propTypes = {
-    size: PropTypes.shape({
-      width: PropTypes.number,
-      height: PropTypes.number,
-    }),
-  }
-  render() {
-    return (
-      <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
-        <Confetti {...this.props.size} />
-      </div>
-    )
-  }
-})
+export default () => {
+  const { width, height } = useWindowSize()
+  return (
+    <Confetti
+      width={width}
+      height={height}
+    />
+  )
+}
 
-ReactDOM.render(<DimensionedExample />, document.getElementById('app'))
 ```
 
 ## Props
 
 | Property         | Type                                             | Default                                                                                                                                                                                                                                                                            | Description                                                           |
 | ---------------- | ---------------------                            | ---                                                                                                                                                                                                                                                                                | ---                                                                   |
-| `width`          | `Number`                                         | `'100%'`                                                                                                                                                                                                                                                                           | Width of the `<canvas>` element.                                      |
-| `height`         | `Number`                                         | `'100%'`                                                                                                                                                                                                                                                                           | Height of the `<canvas>` element.                                     |
+| `width`          | `Number`                                         | `window.innerWidth \|\| 300`                                                                                                                                                                                                                                                       | Width of the `<canvas>` element.                                      |
+| `height`         | `Number`                                         | `window.innerHeight \|\| 200`                                                                                                                                                                                                                                                      | Height of the `<canvas>` element.                                     |
 | `numberOfPieces` | `Number`                                         | 200                                                                                                                                                                                                                                                                                | Number of confetti pieces at one time.                                |
 | `confettiSource` | `{ x: Number, y: Number, w: Number, h: Number }` | `{x: 0, y: 0, w: canvas.width, h:0}`                                                                                                                                                                                                                                               | Rectangle where the confetti should spawn. Default is across the top. |
 | `friction`       | `Number`                                         | 0.99                                                                                                                                                                                                                                                                               |                                                                       |
