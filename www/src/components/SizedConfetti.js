@@ -15,17 +15,21 @@ export default sizeMe({
       position: PropTypes.string,
     }),
   }
+
   state = {
     recycle: true,
     run: true,
     numberOfPieces: 200,
   }
+
   toggleRun = () => {
-    this.setState({ run: !this.state.run })
+    this.setState(prev => ({ run: !prev.run }))
   }
+
   toggleRecycle = () => {
-    this.setState({ recycle: !this.state.recycle })
+    this.setState(prev => ({ recycle: !prev.recycle }))
   }
+
   handleNumOfPiecesChange = (e) => {
     const numberOfPieces = Number(e.target.value)
     if(Number.isNaN(numberOfPieces)) {
@@ -36,6 +40,7 @@ export default sizeMe({
       numberOfPieces,
     })
   }
+
   render() {
     const {
       recycle,
@@ -43,9 +48,11 @@ export default sizeMe({
       numberOfPieces,
     } = this.state
     const {
-      width,
-      height,
-    } = this.props.size
+      size: {
+        width,
+        height,
+      },
+    } = this.props
     return (
       <div style={{
         position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'
@@ -71,7 +78,7 @@ export default sizeMe({
             />
           </label>
           <div className="form-group">
-            <label># Pieces</label>
+            <label htmlFor="numberOfPieces"># Pieces</label>
             <input
               name="numberOfPieces"
               type="number"
