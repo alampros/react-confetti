@@ -5,8 +5,8 @@ import confetti from './confetti'
 export default class ReactConfetti extends React.PureComponent {
   static propTypes = {
     style: PropTypes.object,
-    width: PropTypes.number.isRequired,
-    height: PropTypes.number.isRequired,
+    width: PropTypes.number,
+    height: PropTypes.number,
     numberOfPieces: PropTypes.number,
     confettiSource: PropTypes.shape({
       x: PropTypes.number,
@@ -24,6 +24,8 @@ export default class ReactConfetti extends React.PureComponent {
   }
 
   static defaultProps = {
+    width: typeof window !== 'undefined' ? window.innerWidth : 300,
+    height: typeof window !== 'undefined' ? window.innerHeight : 200,
     numberOfPieces: 200,
     confettiSource: {},
     friction: 0.99,
