@@ -12,6 +12,7 @@ body {
   position: relative;
   overflow: hidden;
 }
+
 .app-container {
   position: absolute;
   top: 0;
@@ -19,40 +20,17 @@ body {
   bottom: 0;
   left: 0;
 }
+
 .pad-container {
   padding: 20px;
   transform: translate3d(0, 0, 0);
 }
+
 @media screen and (min-width: 568px) {
   .pad-container {
     padding: 100px;
   }
   body {
-    font-size: 22px;
-  }
-}
-
-.controls {
-  display: flex;
-  flex-flow: column;
-  position: fixed;
-  bottom: 10px;
-  left: 10px;
-  flex: 1;
-
-  .form-group {
-    display: flex;
-    flex-flow: row nowrap;
-    flex: 1;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.25em;
-    input {
-      margin-left: 1em;
-    }
-  }
-  input[type="number"] {
-    text-align: right;
     font-size: 22px;
   }
 }

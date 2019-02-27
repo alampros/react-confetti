@@ -1,101 +1,48 @@
-import PropTypes from 'prop-types'
 import React from 'react'
-import sizeMe from 'react-sizeme'
+import { useWindowSize } from 'react-use'
+import { Inspector, useBooleanKnob, useRangeKnob } from 'retoggle'
 import Confetti from 'react-confetti'
 
-export default sizeMe({
-  monitorHeight: true,
-  monitorWidth: true,
-  monitorPosition: false,
-})(class Example extends React.PureComponent {
-  static propTypes = {
-    size: PropTypes.shape({
-      width: PropTypes.number,
-      height: PropTypes.number,
-      position: PropTypes.string,
-    }),
-  }
-
-  state = {
-    recycle: true,
-    run: true,
-    numberOfPieces: 200,
-  }
-
-  toggleRun = () => {
-    this.setState(prev => ({ run: !prev.run }))
-  }
-
-  toggleRecycle = () => {
-    this.setState(prev => ({ recycle: !prev.recycle }))
-  }
-
-  handleNumOfPiecesChange = (e) => {
-    const numberOfPieces = Number(e.target.value)
-    if(Number.isNaN(numberOfPieces)) {
-      console.warn('Invalid number of pieces')
-      return
-    }
-    this.setState({
-      numberOfPieces,
-    })
-  }
-
-  render() {
-    const {
-      recycle,
-      run,
-      numberOfPieces,
-    } = this.state
-    const {
-      size: {
-        width,
-        height,
-      },
-    } = this.props
-    return (
-      <div style={{
-        position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'
-      }}
-      >
-        <div className="controls">
-          <label className="form-group">
-            <span>Run</span>
-            <input
-              name="runConfetti"
-              type="checkbox"
-              checked={run}
-              onChange={this.toggleRun}
-            />
-          </label>
-          <label className="form-group">
-            <span>Recycle</span>
-            <input
-              name="recycleConfetti"
-              type="checkbox"
-              checked={recycle}
-              onChange={this.toggleRecycle}
-            />
-          </label>
-          <div className="form-group">
-            <label htmlFor="numberOfPieces"># Pieces</label>
-            <input
-              name="numberOfPieces"
-              type="number"
-              min={0}
-              max={1000}
-              step={50}
-              onChange={this.handleNumOfPiecesChange}
-              value={numberOfPieces}
-            />
-          </div>
-        </div>
-        <Confetti
-          {...this.state}
-          width={width}
-          height={height}
-        />
-      </div>
-    )
-  }
-})
+export default () => {
+  const { width, height } = useWindowSize()
+  const [run] = useBooleanKnob('Run', true)
+  const [recycle] = useBooleanKnob('Recycle', true)
+  const [numberOfPieces] = useRangeKnob('# Pieces', {
+    initialValue: 200,
+    min: 0,
+    max: 1000,
+  })
+  const [opacity] = useRangeKnob('Opacity', {
+    initialValue: 100,
+    min: 0,
+    max: 100,
+  })
+  const [wind] = useRangeKnob('Wind', {
+    initialValue: 0,
+    min: -100,
+    max: 100,
+  })
+  const [gravity] = useRangeKnob('Gravity', {
+    initialValue: 10,
+    min: -100,
+    max: 100,
+  })
+  return (
+    <div style={{
+      position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'
+    }}
+    >
+      <Confetti
+        run={run}
+        recycle={recycle}
+        numberOfPieces={numberOfPieces}
+        opacity={opacity / 100}
+        wind={wind / 1000}
+        gravity={gravity / 100}
+        width={width}
+        height={height}
+      />
+      <Inspector />
+    </div>
+  )
+}
