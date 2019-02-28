@@ -27,6 +27,7 @@
   ],
   "scripts": {
     "build": "rollup -c",
+    "develop": "rollup -c -w",
     "test": "yarn run lint",
     "clean": "git clean -xfd dist/",
     "cleanall": "git clean -xfd .",
@@ -44,6 +45,12 @@
     "@babel/plugin-proposal-class-properties": "^7.2.3",
     "@babel/preset-env": "^7.1.6",
     "@babel/preset-react": "^7.0.0",
+    "@semantic-release/changelog": "^3.0.2",
+    "@semantic-release/commit-analyzer": "^6.1.0",
+    "@semantic-release/git": "^7.0.8",
+    "@semantic-release/github": "^5.2.10",
+    "@semantic-release/npm": "^5.1.4",
+    "@semantic-release/release-notes-generator": "^7.1.4",
     "babel-eslint": "^10.0.1",
     "commitizen": "^3.0.7",
     "cz-conventional-changelog": "^2.1.0",
@@ -71,5 +78,33 @@
     "commitizen": {
       "path": "cz-conventional-changelog"
     }
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/git",
+      [
+        "@semantic-release/github",
+        {
+          "assets": [
+            {
+              "path": "dist/react-confetti.js",
+              "label": "Dev JS"
+            },
+            {
+              "path": "dist/react-confetti.min.js",
+              "label": "Minified JS"
+            },
+            {
+              "path": "dist/react-confetti.min.js.map",
+              "label": "Source map"
+            }
+          ]
+        }
+      ]
+    ]
   }
 }

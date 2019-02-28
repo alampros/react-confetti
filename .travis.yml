@@ -13,6 +13,7 @@ jobs:
     - stage: npm release
       if: branch = master AND type = push
       node_js: "10"
+      skip_cleanup: true
       script: echo "Deploying to npm ..."
       script: yarn run semantic-release
     - stage: GitHub Pages
