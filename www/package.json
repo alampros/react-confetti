@@ -4,7 +4,7 @@
   "description": "Website for react-confetti demo",
   "scripts": {
     "develop": "gatsby develop -p 3000 -H \"0.0.0.0\"",
-    "build": "gatsby build",
+    "build": "gatsby build --prefix-paths",
     "serve": "gatsby serve -p 3000 -H \"0.0.0.0\"",
     "preserve": "yarn build",
     "clean": "git clean -xfd public/ .cache"
