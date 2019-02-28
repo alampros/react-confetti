@@ -1,5 +1,5 @@
 import babel from 'rollup-plugin-babel'
-import uglify from 'rollup-plugin-uglify'
+import { uglify } from 'rollup-plugin-uglify'
 
 const base = {
   input: './src/react-confetti.js',
@@ -9,7 +9,8 @@ const base = {
     name: 'ReactConfetti',
     sourcemap: true,
     globals: {
-      react: 'React'
+      react: 'React',
+      'prop-types': 'PropTypes',
     },
   },
   external: ['react', 'prop-types'],

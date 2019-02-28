@@ -1,0 +1,50 @@
+.root {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.nav {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  display: flex;
+  flex-flow: column nowrap;
+  font-size: 1rem;
+  background-color: rgba(222, 235, 241, 0.85);
+  padding: 1rem;
+  pointer-events: all;
+
+  > * {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    margin-top: 1rem;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .checkLabel {
+    justify-content: flex-start;
+  }
+
+  .checkLabel,
+  .rangeInputGroup {
+    > *:first-child {
+      width: 5em;
+    }
+  }
+
+  .rangeInputGroup {
+    input[type=range] {
+      margin-right: 1em;
+    }
+  }
+}

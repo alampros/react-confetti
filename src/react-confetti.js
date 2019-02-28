@@ -1,11 +1,12 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import confetti from './confetti'
 
 export default class ReactConfetti extends React.PureComponent {
   static propTypes = {
     style: PropTypes.object,
-    width: PropTypes.number.isRequired,
-    height: PropTypes.number.isRequired,
+    width: PropTypes.number,
+    height: PropTypes.number,
     numberOfPieces: PropTypes.number,
     confettiSource: PropTypes.shape({
       x: PropTypes.number,
@@ -23,6 +24,8 @@ export default class ReactConfetti extends React.PureComponent {
   }
 
   static defaultProps = {
+    width: typeof window !== 'undefined' ? window.innerWidth : 300,
+    height: typeof window !== 'undefined' ? window.innerHeight : 200,
     numberOfPieces: 200,
     confettiSource: {},
     friction: 0.99,
@@ -40,16 +43,27 @@ export default class ReactConfetti extends React.PureComponent {
   }
 
   componentDidMount() {
+    const {
+      numberOfPieces,
+      confettiSource,
+      friction,
+      wind,
+      gravity,
+      colors,
+      opacity,
+      recycle,
+      run,
+    } = this.props
     this.confetti = confetti(this.canvas)
-      .numberOfPieces(this.props.numberOfPieces)
-      .confettiSource(this.props.confettiSource)
-      .friction(this.props.friction)
-      .wind(this.props.wind)
-      .gravity(this.props.gravity)
-      .colors(this.props.colors)
-      .opacity(this.props.opacity)
-      .recycle(this.props.recycle)
-      .run(this.props.run)()
+      .numberOfPieces(numberOfPieces)
+      .confettiSource(confettiSource)
+      .friction(friction)
+      .wind(wind)
+      .gravity(gravity)
+      .colors(colors)
+      .opacity(opacity)
+      .recycle(recycle)
+      .run(run)()
   }
 
   componentWillReceiveProps(nextProps) {

@@ -1,7 +1,7 @@
 import * as utils from './utils'
 
 /**
- * Most of this was coppied directly from the pen at http://codepen.io/Gthibaud/pen/BoaBZK
+ * Most of this was copied directly from the pen at http://codepen.io/Gthibaud/pen/BoaBZK
  * and halfheartedly converted to es6.
  */
 function confetti(canvas) {
