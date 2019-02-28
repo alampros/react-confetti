@@ -33,7 +33,6 @@
     "lint": "eslint . --ext .js",
     "prepare": "yarn run clean && yarn run lint && yarn run build",
     "semantic-release": "semantic-release",
-    "travis-deploy-once": "travis-deploy-once",
     "commit": "git-cz"
   },
   "peerDependencies": {
@@ -61,8 +60,7 @@
     "rollup": "^1.3.1",
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-uglify": "^6.0.2",
-    "semantic-release": "^15.1.7",
-    "travis-deploy-once": "^5.0.0"
+    "semantic-release": "^15.1.7"
   },
   "eslintConfig": {
     "root": true,
