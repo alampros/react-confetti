@@ -1,8 +1,5 @@
 language: node_js
 cache: yarn
-branches:
-  except:
-    - /^v\d+\.\d+\.\d+$/
 notifications:
   email: false
 node_js:
@@ -14,11 +11,13 @@ node_js:
 jobs:
   include:
     - stage: npm release
+      if: branch = master AND type = push
       node_js: "10"
       script: echo "Deploying to npm ..."
       script: yarn run build
       script: yarn run semantic-release
     - stage: GitHub Pages
+      if: branch = master AND type = push
       script: cd www; yarn && yarn run build
       deploy:
         provider: pages
