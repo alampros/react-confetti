@@ -14,10 +14,10 @@ jobs:
       if: branch = master AND type = push
       node_js: "10"
       script: echo "Deploying to npm ..."
-      script: yarn run build
       script: yarn run semantic-release
     - stage: GitHub Pages
       if: branch = master AND type = push
+      node_js: "10"
       script: cd www; yarn && yarn run build
       deploy:
         provider: pages
