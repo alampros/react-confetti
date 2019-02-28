@@ -7734,11 +7734,6 @@ ret@~0.1.10:
   resolved "https://registry.yarnpkg.com/ret/-/ret-0.1.15.tgz#b8a4825d5bdb1fc3f6f53c2bc33f81388681c7bc"
   integrity sha512-TTlYpa+OL+vMMNG24xSlQGEJ3B/RzEfUlLct7b5G/ytav+wPrplCpVMFuwzXbkecJrb6IYo1iFb0S9v37754mg==
 
-retoggle@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/retoggle/-/retoggle-0.3.0.tgz#19f4322da5663b980bacd1b0f9dc68d383871fa7"
-  integrity sha512-zbpSrSpUISXRarTW3SDIwtNu8tMXURzH7siJnDaPn+KyfB9u1T3cwHFF61tpRB0z9q+0WC/OpYmiYtV487fUAQ==
-
 rgb-regex@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/rgb-regex/-/rgb-regex-1.0.1.tgz#c0e0d6882df0e23be254a475e8edd41915feaeb1"

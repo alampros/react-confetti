@@ -10,7 +10,6 @@ module.exports = {
   },
   plugins: [
     'gatsby-plugin-react-helmet',
-    'stub-bad-ssr',
     {
       resolve: 'gatsby-plugin-postcss',
       options: {
