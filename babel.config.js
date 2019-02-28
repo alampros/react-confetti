@@ -3,16 +3,10 @@ module.exports = (api) => {
   return {
     presets: [
       '@babel/preset-react',
-      ['@babel/env', {
-        loose: true,
-        // modules: 'commonjs',
-        useBuiltIns: 'usage',
-        // debug: true,
-      }]
+      '@babel/env',
     ],
     plugins: [
       '@babel/plugin-proposal-class-properties',
-      'react-hot-loader/babel',
     ],
   }
 }
