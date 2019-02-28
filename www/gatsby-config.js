@@ -9,8 +9,8 @@ module.exports = {
     description: 'Confetti without the cleanup',
   },
   plugins: [
-    'alias-package',
     'gatsby-plugin-react-helmet',
+    'stub-bad-ssr',
     {
       resolve: 'gatsby-plugin-postcss',
       options: {
