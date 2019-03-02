@@ -20,14 +20,16 @@ export default class ReactConfetti extends React.Component<Props> {
       this.confetti = new Confetti(this.canvas.current, opts)
     }
   }
+  componentWillReceiveProps(nextProps: Props) {
+    const confettiOptions = extractCanvasProps(nextProps)[0]
+    this.confetti.options = confettiOptions
+  }
 
   render() {
     const [ confettiOptions, passedProps ] = extractCanvasProps(this.props)
-    console.log('confettiOptions:', confettiOptions)
-    console.log('passedProps:', passedProps)
     const canvasStyles = {
       zIndex: 2,
-      position: 'absolute' as 'absolute' | 'fixed' | 'relative' | undefined,
+      position: 'absolute',
       top: 0,
       left: 0,
       bottom: 0,
@@ -46,8 +48,8 @@ export default class ReactConfetti extends React.Component<Props> {
   }
 }
 
-function extractCanvasProps(props: Props): [IConfettiOptions, any] {
-  const confettiOptions: IConfettiOptions = {}
+function extractCanvasProps(props: Props): [Partial<IConfettiOptions>, any] {
+  const confettiOptions: Partial<IConfettiOptions> = {}
   const rest: any = {}
   const confettiOptionKeys = [...Object.keys(confettiDefaults), 'confettiSource']
   for(const prop in props) {
