@@ -1,5 +1,5 @@
 import { randomRange, randomInt, degreesToRads } from './utils'
-import { IConfettiOptions } from './confetti'
+import { IConfettiOptions } from './Confetti'
 
 export enum ParticleShape {
   Cirlce = 0,
