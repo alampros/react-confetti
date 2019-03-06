@@ -1,43 +1,35 @@
 import { IConfettiOptions } from './Confetti'
 import { IRect } from './Rect'
 import Particle from './Particle'
-import { randomRange } from './utils';
+import { randomRange } from './utils'
 
 export interface IParticleGenerator extends IRect {
   removeParticleAt: (index: number) => void
   getParticle: () => void
-  animate: () => void
+  animate: () => boolean
   particles: Particle[]
   particlesGenerated: number
 }
 
 export default class ParticleGenerator implements IParticleGenerator {
-  constructor(canvas: HTMLCanvasElement, options: IConfettiOptions) {
+  constructor(canvas: HTMLCanvasElement, getOptions: () => IConfettiOptions) {
     this.canvas = canvas
     const ctx = this.canvas.getContext('2d')
     if(!ctx) {
-      throw new Error('Could not get canvas context');
+      throw new Error('Could not get canvas context')
     }
     this.context = ctx
-    this.options = options
+    this.getOptions = getOptions
   }
   canvas: HTMLCanvasElement
   context: CanvasRenderingContext2D
-  _options!: IConfettiOptions
+  getOptions: () => IConfettiOptions
   x: number = 0
   y: number = 0
   w: number = 0
   h: number = 0
   particles: Particle[] = []
   particlesGenerated: number = 0
-
-  get options(): IConfettiOptions {
-    return this._options
-  }
-  set options(opts: IConfettiOptions) {
-    this._options = opts
-    Object.assign(this, opts.confettiSource)
-  }
 
   removeParticleAt = (i: number) => {
     this.particles.splice(i, 1)
@@ -46,19 +38,19 @@ export default class ParticleGenerator implements IParticleGenerator {
   getParticle = () => {
     const newParticleX = randomRange(this.x, this.w + this.x)
     const newParticleY = randomRange(this.y, this.h + this.y)
-    return new Particle(this.context, this.options, newParticleX, newParticleY)
+    return new Particle(this.context, this.getOptions, newParticleX, newParticleY)
   }
 
-  animate = () => {
+  animate = (): boolean => {
     const {
       canvas,
-      options: {
-        run,
-        recycle,
-        numberOfPieces,
-      },
       particlesGenerated,
     } = this
+    const {
+      run,
+      recycle,
+      numberOfPieces,
+    } = this.getOptions()
     if(!run) {
       return false
     }

@@ -8,7 +8,7 @@ export type Props = ComponentProps & CanvasHTMLAttributes<HTMLCanvasElement>
 
 export default class ReactConfetti extends React.Component<Props> {
   static defaultProps = {
-    ...confettiDefaults
+    ...confettiDefaults,
   }
 
   canvas: React.RefObject<HTMLCanvasElement> = React.createRef()
@@ -22,7 +22,9 @@ export default class ReactConfetti extends React.Component<Props> {
   }
   componentWillReceiveProps(nextProps: Props) {
     const confettiOptions = extractCanvasProps(nextProps)[0]
-    this.confetti.options = confettiOptions
+    if(this.confetti) {
+      this.confetti.options = confettiOptions as IConfettiOptions
+    }
   }
 
   render() {
@@ -34,7 +36,7 @@ export default class ReactConfetti extends React.Component<Props> {
       left: 0,
       bottom: 0,
       right: 0,
-      ...passedProps.style
+      ...passedProps.style,
     }
     return (
       <canvas

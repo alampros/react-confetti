@@ -1,6 +1,5 @@
-import { IRect } from './Rect'
-import { randomRange, randomInt, degreesToRads } from './utils';
-import { IConfettiOptions } from './confetti';
+import { randomRange, randomInt, degreesToRads } from './utils'
+import { IConfettiOptions } from './confetti'
 
 export enum ParticleShape {
   Cirlce = 0,
@@ -9,9 +8,10 @@ export enum ParticleShape {
 }
 
 export default class Particle {
-  constructor(context: CanvasRenderingContext2D, options: IConfettiOptions, x: number, y: number) {
+  constructor(context: CanvasRenderingContext2D, getOptions: () => IConfettiOptions, x: number, y: number) {
+    this.getOptions = getOptions
+    const { colors } = this.getOptions()
     this.context = context
-    this.options = options
     this.x = x
     this.y = y
     this.w = randomRange(5, 20)
@@ -22,11 +22,10 @@ export default class Particle {
     this.shape = randomInt(0, 2)
     this.angle = degreesToRads(randomRange(0, 360))
     this.angularSpin = randomRange(-0.2, 0.2)
-    this.color = options.colors[Math.floor(Math.random() * options.colors.length)]
+    this.color = colors[Math.floor(Math.random() * colors.length)]
     this.rotateY = randomRange(0, 1)
   }
   context: CanvasRenderingContext2D
-  options: IConfettiOptions
   radius: number
   x: number
   y: number
@@ -39,6 +38,7 @@ export default class Particle {
   angularSpin: number
   color: string
   rotateY: number
+  getOptions: () => IConfettiOptions
 
   update() {
     const {
@@ -46,7 +46,7 @@ export default class Particle {
       wind,
       friction,
       opacity,
-    } = this.options
+    } = this.getOptions()
     this.x += this.vx
     this.y += this.vy
     this.vy += gravity

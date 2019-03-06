@@ -38,46 +38,62 @@ export default class Confetti {
     this.canvas = canvas
     const ctx = this.canvas.getContext('2d')
     if(!ctx) {
-      throw new Error('Could not get canvas context');
+      throw new Error('Could not get canvas context')
     }
     this.context = ctx
-    const computedConfettiDefaults = {
-      confettiSource: {
-        x: 0,
-        y: 0,
-        w: canvas.width,
-        h: 0,
-      }
-    }
-    this.options = { ...computedConfettiDefaults, ...confettiDefaults, ...opts }
-    console.log('creating new Confetti with opts:', this.options)
-    this.generator = new ParticleGenerator(this.canvas, this.options)
+
+    this.generator = new ParticleGenerator(this.canvas, () => (this.options as IConfettiOptions))
+    this.options = opts
     this.update()
   }
   canvas: HTMLCanvasElement
   context: CanvasRenderingContext2D
-  options: IConfettiOptions
+  _options!: IConfettiOptions
   generator: ParticleGenerator
+
+  get options(): Partial<IConfettiOptions> {
+    return this._options
+  }
+  set options(opts: Partial<IConfettiOptions>) {
+    const lastRunState = this._options && this._options.run
+    this.setOptionsWithDefaults(opts)
+    if(this.generator) {
+      Object.assign(this.generator, this.options.confettiSource)
+    }
+    if(typeof opts.run === 'boolean' && opts.run && lastRunState === false) {
+      this.update()
+    }
+  }
+
+  setOptionsWithDefaults = (opts: Partial<IConfettiOptions>) => {
+    const computedConfettiDefaults = {
+      confettiSource: {
+        x: 0,
+        y: 0,
+        w: this.canvas.width,
+        h: 0,
+      },
+    }
+    this._options = { ...computedConfettiDefaults, ...confettiDefaults, ...opts }
+    Object.assign(this, opts.confettiSource)
+  }
 
   update = () => {
     const {
       options: {
         run,
-        numberOfPieces,
       },
       canvas,
       context,
     } = this
     if(run) {
-      this.generator.options = this.options
       context.fillStyle = 'white'
       context.clearRect(0, 0, canvas.width, canvas.height)
     }
     if(this.generator.animate()) {
       requestAnimationFrame(this.update)
     } else {
-      this.options.run = false
+      this._options.run = false
     }
   }
-
 }
