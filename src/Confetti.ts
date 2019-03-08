@@ -1,3 +1,4 @@
+import tweens from 'tween-functions'
 import { IRect } from './Rect'
 import ParticleGenerator from './ParticleGenerator'
 
@@ -14,6 +15,8 @@ export interface IConfettiOptions {
   run: boolean
   debug: boolean
   confettiSource: IRect
+  tweenFunction: (currentTime: number, currentValue: number, targetValue: number, duration: number, s?: number) => number
+  tweenDuration: number
 }
 
 export const confettiDefaults: Pick<IConfettiOptions, Exclude<keyof IConfettiOptions, 'confettiSource'>> = {
@@ -31,6 +34,8 @@ export const confettiDefaults: Pick<IConfettiOptions, Exclude<keyof IConfettiOpt
   ],
   opacity: 1.0,
   debug: false,
+  tweenFunction: tweens.easeInOutQuad,
+  tweenDuration: 5000,
   recycle: true,
   run: true,
 }

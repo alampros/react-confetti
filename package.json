@@ -42,6 +42,9 @@
     "prop-types": "^15.6.0",
     "react": "0.14.x || ^15.0.1 || ^16.2.0"
   },
+  "dependencies": {
+    "tween-functions": "^1.2.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.1.6",
     "@babel/plugin-proposal-class-properties": "^7.3.4",
