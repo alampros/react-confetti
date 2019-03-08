@@ -3,8 +3,6 @@ import { IRect } from './Rect'
 import Particle from './Particle'
 import { randomRange } from './utils'
 
-import { number } from 'prop-types';
-
 export interface IParticleGenerator extends IRect {
   removeParticleAt: (index: number) => void
   getParticle: () => void
@@ -68,7 +66,6 @@ export default class ParticleGenerator implements IParticleGenerator {
     const activeCount = recycle ? nP : particlesGenerated
 
     const now = Date.now()
-
 
     // Initial population
     if(activeCount < numberOfPieces) {
