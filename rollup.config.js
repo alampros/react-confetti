@@ -1,8 +1,12 @@
 import babel from 'rollup-plugin-babel'
+import commonjs from 'rollup-plugin-commonjs'
+import resolve from 'rollup-plugin-node-resolve'
 import { uglify } from 'rollup-plugin-uglify'
 
+const extensions = ['.js', '.jsx', '.ts', '.tsx']
+
 const base = {
-  input: './src/react-confetti.js',
+  input: './src/ReactConfetti.tsx',
   output: {
     file: './dist/react-confetti.js',
     format: 'umd',
@@ -10,13 +14,14 @@ const base = {
     sourcemap: true,
     globals: {
       react: 'React',
-      'prop-types': 'PropTypes',
     },
   },
-  external: ['react', 'prop-types'],
+  external: ['react'],
   plugins: [
-    babel(),
-  ]
+    resolve({ extensions }),
+    commonjs(),
+    babel({ extensions, include: ['src/**/*'] }),
+  ],
 }
 
 export default [
@@ -28,8 +33,8 @@ export default [
       file: './dist/react-confetti.min.js',
     },
     plugins: [
-      babel(),
+      ...base.plugins,
       uglify(),
-    ]
+    ],
   }
 ]

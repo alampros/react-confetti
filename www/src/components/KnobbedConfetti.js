@@ -20,7 +20,7 @@ export default (props) => {
         recycle={recycle}
         numberOfPieces={numberOfPieces}
         opacity={opacity / 100}
-        wind={wind / 1000}
+        wind={wind / 500}
         gravity={gravity / 100}
         style={{ zIndex: -1 }}
         {...props}
@@ -78,7 +78,7 @@ export default (props) => {
             value={wind}
             onChange={e => setWind(parseInt(e.currentTarget.value, 10))}
           />
-          <span>{numberFormatter.format(wind / 1000)}</span>
+          <span>{numberFormatter.format(wind / 500)}</span>
         </div>
         <div className={styles.rangeInputGroup}>
           <label htmlFor="gravity">Gravity:</label>
