@@ -1,12 +1,13 @@
 {
   "compilerOptions": {
     "target": "esnext",
+    "module": "commonjs",
     "moduleResolution": "node",
-    "allowJs": true,
+    "declaration": true,
+    "declarationDir": "dist/types",
     "jsx": "preserve",
-    "noEmit": true,
+    "emitDeclarationOnly": true,
     "strict": true,
-    "isolatedModules": true,
     "esModuleInterop": true
   },
   "include": [
