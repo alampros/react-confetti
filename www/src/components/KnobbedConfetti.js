@@ -23,6 +23,7 @@ export default (props) => {
         wind={wind / 500}
         gravity={gravity / 100}
         style={{ zIndex: -1 }}
+        debug
         {...props}
       />
       <nav className={styles.nav}>

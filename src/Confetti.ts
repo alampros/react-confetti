@@ -12,6 +12,7 @@ export interface IConfettiOptions {
   opacity: number
   recycle: boolean
   run: boolean
+  debug: boolean
   confettiSource: IRect
 }
 
@@ -29,6 +30,7 @@ export const confettiDefaults: Pick<IConfettiOptions, Exclude<keyof IConfettiOpt
     '#FF5722', '#795548',
   ],
   opacity: 1.0,
+  debug: false,
   recycle: true,
   run: true,
 }
