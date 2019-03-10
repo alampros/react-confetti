@@ -17,6 +17,7 @@ export interface IConfettiOptions {
   confettiSource: IRect
   tweenFunction: (currentTime: number, currentValue: number, targetValue: number, duration: number, s?: number) => number
   tweenDuration: number
+  drawShape?: (context: CanvasRenderingContext2D) => void
 }
 
 export const confettiDefaults: Pick<IConfettiOptions, Exclude<keyof IConfettiOptions, 'confettiSource'>> = {
