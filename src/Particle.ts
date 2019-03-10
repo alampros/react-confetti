@@ -4,7 +4,7 @@ import { IConfettiOptions } from './Confetti'
 export enum ParticleShape {
   Cirlce = 0,
   Square,
-  Spiral,
+  Strip,
 }
 
 export default class Particle {
@@ -46,6 +46,7 @@ export default class Particle {
       wind,
       friction,
       opacity,
+      drawShape,
     } = this.getOptions()
     this.x += this.vx
     this.y += this.vy
@@ -70,27 +71,24 @@ export default class Particle {
     this.context.globalAlpha = opacity
     this.context.lineCap = 'round'
     this.context.lineWidth = 2
-    switch(this.shape) {
-      case ParticleShape.Cirlce: {
-        this.context.beginPath()
-        this.context.arc(0, 0, this.radius, 0, 2 * Math.PI)
-        this.context.fill()
-        break
-      }
-      case ParticleShape.Square: {
-        this.context.fillRect(-this.w / 2, -this.h / 2, this.w, this.h)
-        break
-      }
-      case ParticleShape.Spiral: {
-        this.context.beginPath()
-        for(let i = 0; i < 22; i++) {
-          const angle = 0.35 * i
-          const x = (0.2 + (1.5 * angle)) * Math.cos(angle)
-          const y = (0.2 + (1.5 * angle)) * Math.sin(angle)
-          this.context.lineTo(x, y)
+    if(drawShape && typeof drawShape === 'function') {
+      drawShape.call(this, this.context)
+    } else {
+      switch(this.shape) {
+        case ParticleShape.Cirlce: {
+          this.context.beginPath()
+          this.context.arc(0, 0, this.radius, 0, 2 * Math.PI)
+          this.context.fill()
+          break
         }
-        this.context.stroke()
-        break
+        case ParticleShape.Square: {
+          this.context.fillRect(-this.w / 2, -this.h / 2, this.w, this.h)
+          break
+        }
+        case ParticleShape.Strip: {
+          this.context.fillRect(-this.w / 6, -this.h / 2, this.w / 3, this.h)
+          break
+        }
       }
     }
     this.context.closePath()

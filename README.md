@@ -52,10 +52,34 @@ export default () => {
 | `friction`       | `Number`                                                                                                   | 0.99                                                                                                                                                                                                                                                                               |                                                                       |
 | `wind`           | `Number`                                                                                                   | 0                                                                                                                                                                                                                                                                                  |                                                                       |
 | `gravity`        | `Number`                                                                                                   | 0.1                                                                                                                                                                                                                                                                                |                                                                       |
-| `colors`         | `String[]`                                                                                        | `['#f44336'`</br>`'#e91e63'`</br>`'#9c27b0'`</br>`'#673ab7'`</br>`'#3f51b5'`</br>`'#2196f3'`</br>`'#03a9f4'`</br>`'#00bcd4'`</br>`'#009688'`</br>`'#4CAF50'`</br>`'#8BC34A'`</br>`'#CDDC39'`</br>`'#FFEB3B'`</br>`'#FFC107'`</br>`'#FF9800'`</br>`'#FF5722'`</br>`'#795548']`</br> | All available Colors for the confetti pieces.                         |
+| `colors`         | `String[]`                                                                                                 | `['#f44336'`</br>`'#e91e63'`</br>`'#9c27b0'`</br>`'#673ab7'`</br>`'#3f51b5'`</br>`'#2196f3'`</br>`'#03a9f4'`</br>`'#00bcd4'`</br>`'#009688'`</br>`'#4CAF50'`</br>`'#8BC34A'`</br>`'#CDDC39'`</br>`'#FFEB3B'`</br>`'#FFC107'`</br>`'#FF9800'`</br>`'#FF5722'`</br>`'#795548']`</br> | All available Colors for the confetti pieces.                         |
 | `opacity`        | `Number`                                                                                                   | 1.0                                                                                                                                                                                                                                                                                |                                                                       |
 | `recycle`        | `Bool`                                                                                                     | true                                                                                                                                                                                                                                                                               | Keep spawning confetti after `numberOfPieces` pieces have been shown. |
 | `run`            | `Bool`                                                                                                     | true                                                                                                                                                                                                                                                                               | Run the animation loop                                                |
 | `tweenDuration`  | `Number`                                                                                                   | 5000                                                                                                                                                                                                                                                                               | How fast the confetti is added                                        |
 | `tweenFunction`  | `(currentTime: number, currentValue: number, targetValue: number, duration: number, s?: number) => number` | easeInOutQuad                                                                                                                                                                                                                                                                      | See [tween-functions](https://github.com/chenglou/tween-functions)    |
+| `drawShape`      | `(context: CanvasRenderingContext2D) => void`                                                              | `undefined`                                                                                                                                                                                                                                                                        | See below
 
+
+
+# `drawShape()`
+
+Draw a custom shape for a particle. If not provided, defaults to a random selection of a square, circle or strip confetto. The function is called with the canvas context as a parameter and the [Particle](src/Particle.ts) as the `this` context.
+
+For example, to draw all spirals:
+
+```jsx
+<Confetti
+  drawShape={ctx => {
+    ctx.beginPath()
+    for(let i = 0; i < 22; i++) {
+      const angle = 0.35 * i
+      const x = (0.2 + (1.5 * angle)) * Math.cos(angle)
+      const y = (0.2 + (1.5 * angle)) * Math.sin(angle)
+      ctx.lineTo(x, y)
+    }
+    ctx.stroke()
+    ctx.closePath()
+  }}
+/>
+```
