@@ -1,3 +1,10 @@
+# [2.6.0](https://github.com/alampros/react-confetti/compare/v2.5.0...v2.6.0) (2019-03-10)
+
+
+### Features
+
+* Add prop to draw custom confetti ([992376b](https://github.com/alampros/react-confetti/commit/992376b))
+
 # [2.5.0](https://github.com/alampros/react-confetti/compare/v2.4.1...v2.5.0) (2019-03-08)
 
 
