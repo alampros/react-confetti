@@ -27,7 +27,7 @@
     "index.js"
   ],
   "scripts": {
-    "build": "tsc && rollup -c",
+    "build": "babel src --out-dir dist --extensions \".ts\" && tsc && rollup -c",
     "prebuild": "yarn clean",
     "develop": "rollup -c -w",
     "test": "tsc; yarn run lint",
@@ -46,6 +46,7 @@
     "tween-functions": "^1.2.0"
   },
   "devDependencies": {
+    "@babel/cli": "7.2.3",
     "@babel/core": "^7.1.6",
     "@babel/plugin-proposal-class-properties": "^7.3.4",
     "@babel/plugin-proposal-object-rest-spread": "^7.3.4",
