@@ -7,6 +7,11 @@ export enum ParticleShape {
   Strip,
 }
 
+enum RotationDirection {
+  Positive,
+  Negative,
+}
+
 export default class Particle {
   constructor(context: CanvasRenderingContext2D, getOptions: () => IConfettiOptions, x: number, y: number) {
     this.getOptions = getOptions
@@ -24,7 +29,7 @@ export default class Particle {
     this.angularSpin = randomRange(-0.2, 0.2)
     this.color = colors[Math.floor(Math.random() * colors.length)]
     this.rotateY = randomRange(0, 1)
-    this.rotateDirection = 1
+    this.rotationDirection = RotationDirection.Positive
   }
   context: CanvasRenderingContext2D
   radius: number
@@ -39,6 +44,7 @@ export default class Particle {
   angularSpin: number
   color: string
   rotateY: number
+  rotationDirection: RotationDirection
   getOptions: () => IConfettiOptions
 
   update() {
@@ -55,13 +61,13 @@ export default class Particle {
     this.vx += wind
     this.vx *= friction
     this.vy *= friction
-    if(this.rotateY >= 1 && this.rotateDirection === 1) {
-      this.rotateDirection = -1
-    } else if(this.rotateY <= -1 && this.rotateDirection === -1) {
-      this.rotateDirection = 1
+    if(this.rotateY >= 1 && this.rotationDirection === RotationDirection.Positive) {
+      this.rotationDirection = RotationDirection.Negative
+    } else if(this.rotateY <= -1 && this.rotationDirection === RotationDirection.Negative) {
+      this.rotationDirection = RotationDirection.Positive
     }
 
-    const rotateDelta = 0.1 * this.rotateDirection
+    const rotateDelta = 0.1 * this.rotationDirection
 
     this.rotateY += rotateDelta
     this.angle += this.angularSpin
