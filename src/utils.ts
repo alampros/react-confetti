@@ -58,7 +58,7 @@ export function rectIntersect(r0: IRect, r1: IRect) {
 }
 
 export function degreesToRads(degrees: number) {
-  return degrees / (180 * Math.PI)
+  return degrees * Math.PI / 180
 }
 
 export function radsToDegrees(radians: number) {
