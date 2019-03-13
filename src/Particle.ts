@@ -2,9 +2,14 @@ import { randomRange, randomInt, degreesToRads } from './utils'
 import { IConfettiOptions } from './Confetti'
 
 export enum ParticleShape {
-  Cirlce = 0,
+  Circle = 0,
   Square,
   Strip,
+}
+
+enum RotationDirection {
+  Positive = 1,
+  Negative = -1,
 }
 
 export default class Particle {
@@ -24,6 +29,7 @@ export default class Particle {
     this.angularSpin = randomRange(-0.2, 0.2)
     this.color = colors[Math.floor(Math.random() * colors.length)]
     this.rotateY = randomRange(0, 1)
+    this.rotationDirection = randomRange(0, 1) ? RotationDirection.Positive : RotationDirection.Negative
   }
   context: CanvasRenderingContext2D
   radius: number
@@ -37,7 +43,9 @@ export default class Particle {
   angle: number
   angularSpin: number
   color: string
+  // Actually used as scaleY to simulate rotation cheaply
   rotateY: number
+  rotationDirection: RotationDirection
   getOptions: () => IConfettiOptions
 
   update() {
@@ -54,11 +62,15 @@ export default class Particle {
     this.vx += wind
     this.vx *= friction
     this.vy *= friction
-    if(this.rotateY < 1) {
-      this.rotateY += 0.1
-    } else {
-      this.rotateY = -1
+    if(this.rotateY >= 1 && this.rotationDirection === RotationDirection.Positive) {
+      this.rotationDirection = RotationDirection.Negative
+    } else if(this.rotateY <= -1 && this.rotationDirection === RotationDirection.Negative) {
+      this.rotationDirection = RotationDirection.Positive
     }
+
+    const rotateDelta = 0.1 * this.rotationDirection
+
+    this.rotateY += rotateDelta
     this.angle += this.angularSpin
     this.context.save()
     this.context.translate(this.x, this.y)
@@ -75,7 +87,7 @@ export default class Particle {
       drawShape.call(this, this.context)
     } else {
       switch(this.shape) {
-        case ParticleShape.Cirlce: {
+        case ParticleShape.Circle: {
           this.context.beginPath()
           this.context.arc(0, 0, this.radius, 0, 2 * Math.PI)
           this.context.fill()
