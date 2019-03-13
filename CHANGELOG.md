@@ -1,3 +1,10 @@
+## [2.6.1](https://github.com/alampros/react-confetti/compare/v2.6.0...v2.6.1) (2019-03-13)
+
+
+### Bug Fixes
+
+* add rotation direction to fix jump visible when rendering asymetrical shapes ([ca2b22b](https://github.com/alampros/react-confetti/commit/ca2b22b))
+
 # [2.6.0](https://github.com/alampros/react-confetti/compare/v2.5.0...v2.6.0) (2019-03-10)
 
 
