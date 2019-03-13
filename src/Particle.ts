@@ -24,7 +24,7 @@ export default class Particle {
     this.angularSpin = randomRange(-0.2, 0.2)
     this.color = colors[Math.floor(Math.random() * colors.length)]
     this.rotateY = randomRange(0, 1)
-    this.rotateDirection = 1;
+    this.rotateDirection = 1
   }
   context: CanvasRenderingContext2D
   radius: number
