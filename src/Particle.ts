@@ -8,8 +8,8 @@ export enum ParticleShape {
 }
 
 enum RotationDirection {
-  Positive,
-  Negative,
+  Positive = 1,
+  Negative = -1,
 }
 
 export default class Particle {
@@ -29,7 +29,7 @@ export default class Particle {
     this.angularSpin = randomRange(-0.2, 0.2)
     this.color = colors[Math.floor(Math.random() * colors.length)]
     this.rotateY = randomRange(0, 1)
-    this.rotationDirection = RotationDirection.Positive
+    this.rotationDirection = randomRange(0, 1) ? RotationDirection.Positive : RotationDirection.Negative
   }
   context: CanvasRenderingContext2D
   radius: number
@@ -43,6 +43,7 @@ export default class Particle {
   angle: number
   angularSpin: number
   color: string
+  // Actually used as scaleY to simulate rotation cheaply
   rotateY: number
   rotationDirection: RotationDirection
   getOptions: () => IConfettiOptions
