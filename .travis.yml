@@ -19,13 +19,13 @@ jobs:
     - stage: GitHub Pages
       if: branch = master AND type = push
       node_js: "10"
-      script: cd www; yarn && yarn run build
+      script: yarn run build-storybook
       deploy:
         provider: pages
         skip-cleanup: true
         github-token: $GH_TOKEN
         keep-history: true
-        local-dir: www/public
+        local-dir: storybook-static
         on:
           branch: master
           node: '10'
