@@ -2,6 +2,7 @@ import React from 'react'
 import { useWindowSize } from 'react-use'
 import { withKnobs, boolean, number } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
+import { withInfo } from '@storybook/addon-info'
 
 import ReactConfetti from '../src/ReactConfetti'
 
@@ -33,7 +34,7 @@ const PointConfetti = (passedProps) => {
   )
 }
 
-storiesOf('Confetti', module)
+storiesOf('With Size Hook', module)
   .addDecorator(withKnobs)
   .add('Props', () => (
     <SizedConfetti
@@ -67,6 +68,7 @@ storiesOf('Confetti', module)
   ))
   .add('Custom Source', () => (
     <PointConfetti
+      friction={1}
       run={boolean('Run', true)}
       recycle={boolean('Recycle', true)}
       numberOfPieces={number('# Pieces', 200, {
@@ -95,4 +97,7 @@ storiesOf('Confetti', module)
       }) / 100}
     />
   ))
+
+storiesOf('Default')
+  .addDecorator(withInfo)
   .add('Default', () => <ReactConfetti />)

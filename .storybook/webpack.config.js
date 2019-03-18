@@ -1,7 +1,10 @@
 module.exports = ({ config, mode }) => {
   config.module.rules.push({
     test: /\.tsx?$/,
-    use: ['babel-loader'],
+    use: [
+      'babel-loader',
+      'react-docgen-typescript-loader'
+    ],
   })
   config.module.rules.push({
     test: /.stories.jsx?$/,

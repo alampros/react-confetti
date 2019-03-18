@@ -1,13 +1,10 @@
-import React, { CanvasHTMLAttributes } from 'react'
+import React, { Component, CanvasHTMLAttributes } from 'react'
 import Confetti, { IConfettiOptions, confettiDefaults } from './Confetti'
 
-interface ComponentProps extends IConfettiOptions {
-  [key: string]: any
-}
-export type Props = ComponentProps & CanvasHTMLAttributes<HTMLCanvasElement>
+export type Props = Partial<IConfettiOptions> & CanvasHTMLAttributes<HTMLCanvasElement>
 
-export default class ReactConfetti extends React.Component<Props> {
-  static defaultProps = {
+export class ReactConfetti extends Component<Props> {
+  static readonly defaultProps = {
     ...confettiDefaults,
   }
 
@@ -31,7 +28,7 @@ export default class ReactConfetti extends React.Component<Props> {
     const [ confettiOptions, passedProps ] = extractCanvasProps(this.props)
     const canvasStyles = {
       zIndex: 2,
-      position: 'absolute',
+      position: 'absolute' as 'absolute',
       top: 0,
       left: 0,
       bottom: 0,
@@ -50,7 +47,7 @@ export default class ReactConfetti extends React.Component<Props> {
   }
 }
 
-function extractCanvasProps(props: Props): [Partial<IConfettiOptions>, any] {
+function extractCanvasProps(props: Partial<IConfettiOptions> | any): [Partial<IConfettiOptions>, Partial<CanvasHTMLAttributes<HTMLCanvasElement>>] {
   const confettiOptions: Partial<IConfettiOptions> = {}
   const rest: any = {}
   const confettiOptionKeys = [...Object.keys(confettiDefaults), 'confettiSource', 'drawShape']
@@ -64,3 +61,5 @@ function extractCanvasProps(props: Props): [Partial<IConfettiOptions>, any] {
   }
   return [confettiOptions, rest]
 }
+
+export default ReactConfetti
