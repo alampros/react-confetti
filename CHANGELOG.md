@@ -1,3 +1,15 @@
+# [2.7.0](https://github.com/alampros/react-confetti/compare/v2.6.1...v2.7.0) (2019-03-18)
+
+
+### Bug Fixes
+
+* point to entire types dir ([3c3184c](https://github.com/alampros/react-confetti/commit/3c3184c))
+
+
+### Features
+
+* **build:** storybook ([462f682](https://github.com/alampros/react-confetti/commit/462f682))
+
 ## [2.6.1](https://github.com/alampros/react-confetti/compare/v2.6.0...v2.6.1) (2019-03-13)
 
 
