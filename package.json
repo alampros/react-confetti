@@ -31,7 +31,7 @@
     "build-types": "tsc",
     "build-transpile": "babel src --out-dir dist --extensions \".ts\"",
     "build-bundle": "webpack",
-    "build-storybook": "build-storybook",
+    "build-storybook": "build-storybook -s ./.storybook/public",
     "prebuild": "yarn clean",
     "watch": "webpack --watch",
     "test": "tsc; yarn run lint",
