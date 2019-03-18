@@ -12,7 +12,7 @@ Based on a pen by @Gthibaud: https://codepen.io/Gthibaud/pen/ENzXbp
 [![demogif][2]][1]
 
 [1]: http://alampros.github.com/react-confetti
-[2]: http://alampros.github.io/react-confetti/confetti-demo.gif (demo gif)
+[2]: http://alampros.github.io/react-confetti/confetti-demo-anim.gif (demo gif)
 
 ## Install
 
