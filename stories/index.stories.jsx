@@ -36,7 +36,7 @@ const PointConfetti = (passedProps) => {
 
 storiesOf('With Size Hook', module)
   .addDecorator(withKnobs)
-  .add('Props', () => (
+  .add('Knobs', () => (
     <SizedConfetti
       run={boolean('Run', true)}
       recycle={boolean('Recycle', true)}
@@ -98,6 +98,6 @@ storiesOf('With Size Hook', module)
     />
   ))
 
-storiesOf('Default')
+storiesOf('Default', module)
   .addDecorator(withInfo)
   .add('Default', () => <ReactConfetti />)
