@@ -1,4 +1,4 @@
 dist/*
 node_modules/
-www/public/
+storybook-static/
 !.storybook/
