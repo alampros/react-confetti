@@ -1,3 +1,10 @@
+## [2.7.2](https://github.com/alampros/react-confetti/compare/v2.7.1...v2.7.2) (2019-04-02)
+
+
+### Bug Fixes
+
+* Destroy confetti instance on unmount ([6965e37](https://github.com/alampros/react-confetti/commit/6965e37)), closes [#47](https://github.com/alampros/react-confetti/issues/47)
+
 ## [2.7.1](https://github.com/alampros/react-confetti/compare/v2.7.0...v2.7.1) (2019-04-02)
 
 
