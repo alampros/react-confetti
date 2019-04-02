@@ -23,6 +23,9 @@ export class ReactConfetti extends Component<Props> {
       this.confetti.options = confettiOptions as IConfettiOptions
     }
   }
+  componentWillUnmount() {
+    this.confetti = undefined
+  }
 
   render() {
     const [ confettiOptions, passedProps ] = extractCanvasProps(this.props)
