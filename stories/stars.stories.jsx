@@ -1,20 +1,7 @@
 import React from 'react'
-import { useWindowSize } from 'react-use'
 import { storiesOf } from '@storybook/react'
 import { randomInt } from '../src/utils'
-
-import ReactConfetti from '../src/ReactConfetti'
-
-const SizedConfetti = (passedProps) => {
-  const { width, height } = useWindowSize()
-  return (
-    <ReactConfetti
-      width={width}
-      height={height}
-      {...passedProps}
-    />
-  )
-}
+import SizedConfetti from './SizedConfetti'
 
 function drawStar(ctx) {
   const numPoints = this.numPoints || randomInt(4, 6)

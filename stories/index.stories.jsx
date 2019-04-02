@@ -1,26 +1,16 @@
 import React from 'react'
-import { useWindowSize } from 'react-use'
+import useWindowSize from 'react-use/lib/useWindowSize'
+import SizedConfetti from './SizedConfetti'
 import { withKnobs, boolean, number } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
 import { withInfo } from '@storybook/addon-info'
 
 import ReactConfetti from '../src/ReactConfetti'
 
-const SizedConfetti = (passedProps) => {
-  const { width, height } = useWindowSize()
-  return (
-    <ReactConfetti
-      width={width}
-      height={height}
-      {...passedProps}
-    />
-  )
-}
-
 const PointConfetti = (passedProps) => {
   const { width, height } = useWindowSize()
   return (
-    <ReactConfetti
+    <SizedConfetti
       width={width}
       height={height}
       confettiSource={{

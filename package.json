@@ -92,7 +92,7 @@
     "react": "^16.2.0",
     "react-docgen-typescript-loader": "^3.0.1",
     "react-dom": "^16.2.0",
-    "react-use": "^5.5.6",
+    "react-use": "^7.3.1",
     "semantic-release": "^15.1.7",
     "typescript": "^3.3.3333",
     "webpack": "^4.29.6",
