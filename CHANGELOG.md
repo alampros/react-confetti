@@ -1,3 +1,10 @@
+## [2.7.1](https://github.com/alampros/react-confetti/compare/v2.7.0...v2.7.1) (2019-04-02)
+
+
+### Bug Fixes
+
+* trigger release to fix typescript typings ([817b7c0](https://github.com/alampros/react-confetti/commit/817b7c0)), closes [#45](https://github.com/alampros/react-confetti/issues/45)
+
 # [2.7.0](https://github.com/alampros/react-confetti/compare/v2.6.1...v2.7.0) (2019-03-18)
 
 
