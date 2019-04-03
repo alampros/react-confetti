@@ -121,6 +121,7 @@ export class Confetti {
   context: CanvasRenderingContext2D
   _options!: IConfettiOptions
   generator: ParticleGenerator
+  rafId?: number
 
   get options(): Partial<IConfettiOptions> {
     return this._options
@@ -162,9 +163,17 @@ export class Confetti {
       context.clearRect(0, 0, canvas.width, canvas.height)
     }
     if(this.generator.animate()) {
-      requestAnimationFrame(this.update)
+      this.rafId = requestAnimationFrame(this.update)
     } else {
       this._options.run = false
+    }
+  }
+
+  stop = () => {
+    this.options = { run: false }
+    if(this.rafId) {
+      cancelAnimationFrame(this.rafId)
+      this.rafId = undefined
     }
   }
 }
