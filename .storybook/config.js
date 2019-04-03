@@ -12,7 +12,14 @@ addParameters({
 
 const req = require.context('../stories', true, /\.stor(y|ies)\.jsx?$/)
 function loadStories() {
-  req.keys().forEach(filename => req(filename))
+  req.keys()
+    .sort((a, b) => {
+      if(a.includes('test.') && b.includes('test.')) return 0
+      if(a.includes('test.') && !b.includes('test.')) return 1
+      if(!a.includes('test.') && b.includes('test.')) return -1
+      return a.localeCompare(b)
+    })
+    .forEach(filename => req(filename))
 }
 
 configure(loadStories, module)
