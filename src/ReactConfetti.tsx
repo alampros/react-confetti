@@ -24,6 +24,9 @@ export class ReactConfetti extends Component<Props> {
     }
   }
   componentWillUnmount() {
+    if(this.confetti) {
+      this.confetti.stop()
+    }
     this.confetti = undefined
   }
 
