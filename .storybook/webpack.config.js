@@ -7,7 +7,7 @@ module.exports = ({ config, mode }) => {
     ],
   })
   config.module.rules.push({
-    test: /.stories.jsx?$/,
+    test: /\.stor(y|ies)\.jsx?$/,
     use: [require.resolve('@storybook/addon-storysource/loader')],
     enforce: 'pre',
   })

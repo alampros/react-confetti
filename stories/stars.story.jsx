@@ -21,7 +21,7 @@ function drawStar(ctx) {
   ctx.closePath()
 }
 
-storiesOf('With Size Hook', module)
+storiesOf('Props|Demos', module)
   .add('Stars', () => (
     <SizedConfetti
       drawShape={drawStar}

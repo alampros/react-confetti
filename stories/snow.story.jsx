@@ -23,7 +23,7 @@ function drawSnowflake(ctx) {
   ctx.closePath()
 }
 
-storiesOf('With Size Hook', module)
+storiesOf('Props|Demos', module)
   .add('Snow', () => (
     <SizedConfetti
       drawShape={drawSnowflake}

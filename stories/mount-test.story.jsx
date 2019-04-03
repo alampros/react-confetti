@@ -23,9 +23,11 @@ const Toggler = ({ children }) => {
   )
 }
 
-storiesOf('Tests', module)
+storiesOf('Tests|Lifecycle', module)
   .add('Cleanup on mount', () => (
-    <Toggler>
-      <ReactConfetti style={{ zIndex: 0 }} />
-    </Toggler>
+    <div>
+      <Toggler>
+        <ReactConfetti style={{ zIndex: 0 }} />
+      </Toggler>
+    </div>
   ))

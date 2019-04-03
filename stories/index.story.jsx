@@ -24,7 +24,7 @@ const PointConfetti = (passedProps) => {
   )
 }
 
-storiesOf('With Size Hook', module)
+storiesOf('Props|Demos', module)
   .addDecorator(withKnobs)
   .add('Knobs', () => (
     <SizedConfetti
@@ -88,6 +88,6 @@ storiesOf('With Size Hook', module)
     />
   ))
 
-storiesOf('Default', module)
+storiesOf('Props|Default', module)
   .addDecorator(withInfo)
   .add('Default', () => <ReactConfetti />)
