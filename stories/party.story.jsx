@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { storiesOf } from '@storybook/react'
-import ReactConfetti from '../src/ReactConfetti'
+import SizedConfetti from './SizedConfetti'
 import './party.css'
 
 const PartyMode = ({ children }) => {
@@ -10,7 +10,7 @@ const PartyMode = ({ children }) => {
   }
   return (
     <div className={'root' + (party ? ' party' : '')}>
-      <ReactConfetti
+      <SizedConfetti
         style={{ pointerEvents: 'none' }}
         numberOfPieces={party ? 500 : 0}
       />
