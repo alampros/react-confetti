@@ -1,3 +1,10 @@
+## [2.7.3](https://github.com/alampros/react-confetti/compare/v2.7.2...v2.7.3) (2019-04-03)
+
+
+### Bug Fixes
+
+* **Performance:** stop raf loop before unmounting ([fc2b48f](https://github.com/alampros/react-confetti/commit/fc2b48f)), closes [#47](https://github.com/alampros/react-confetti/issues/47)
+
 ## [2.7.2](https://github.com/alampros/react-confetti/compare/v2.7.1...v2.7.2) (2019-04-02)
 
 
