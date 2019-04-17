@@ -1,21 +1,31 @@
 import React, { useState } from 'react'
 import { storiesOf } from '@storybook/react'
+import { action } from '@storybook/addon-actions'
 import SizedConfetti from './SizedConfetti'
 import './party.css'
 
-const PartyMode = ({ children }) => {
+const confettiCompleteAction = action('Confetti Complete')
+
+const PartyMode = () => {
   const [party, setParty] = useState(false)
-  const handleClick = () => {
-    setParty(!party)
-  }
   return (
     <div className={'root' + (party ? ' party' : '')}>
       <SizedConfetti
         style={{ pointerEvents: 'none' }}
         numberOfPieces={party ? 500 : 0}
+        recycle={false}
+        onConfettiComplete={confetti => {
+          confettiCompleteAction()
+          setParty(false)
+          confetti.reset()
+        }}
       />
       <div className="party-container">
-        <button onClick={handleClick} className="party-button">
+        <button
+          onClick={() => setParty(!party)}
+          className="party-button"
+          autoFocus
+        >
           Party
         </button>
       </div>
@@ -23,7 +33,7 @@ const PartyMode = ({ children }) => {
   )
 }
 
-storiesOf('Props Demos', module)
+storiesOf('Props|Demos', module)
   .add('Party', () => (
     <PartyMode />
   ))

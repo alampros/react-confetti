@@ -56,7 +56,7 @@ export class ReactConfetti extends Component<Props> {
 function extractCanvasProps(props: Partial<IConfettiOptions> | any): [Partial<IConfettiOptions>, Partial<CanvasHTMLAttributes<HTMLCanvasElement>>] {
   const confettiOptions: Partial<IConfettiOptions> = {}
   const rest: any = {}
-  const confettiOptionKeys = [...Object.keys(confettiDefaults), 'confettiSource', 'drawShape']
+  const confettiOptionKeys = [...Object.keys(confettiDefaults), 'confettiSource', 'drawShape', 'onConfettiComplete']
   for(const prop in props) {
     const val = props[prop as string]
     if(confettiOptionKeys.includes(prop)) {

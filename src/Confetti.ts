@@ -81,6 +81,10 @@ export interface IConfettiOptions {
    * Function to draw your own confetti shapes.
    */
   drawShape?: (context: CanvasRenderingContext2D) => void
+  /**
+   * Function called when all confetti has fallen off-canvas.
+   */
+  onConfettiComplete?: (confettiInstance?: Confetti) => void
 }
 
 export const confettiDefaults: Pick<IConfettiOptions, Exclude<keyof IConfettiOptions, 'confettiSource'>> = {
@@ -128,9 +132,13 @@ export class Confetti {
   }
   set options(opts: Partial<IConfettiOptions>) {
     const lastRunState = this._options && this._options.run
+    const lastRecycleState = this._options && this._options.recycle
     this.setOptionsWithDefaults(opts)
     if(this.generator) {
       Object.assign(this.generator, this.options.confettiSource)
+      if(typeof opts.recycle === 'boolean' && opts.recycle && lastRecycleState === false) {
+        this.generator.lastNumberOfPieces = this.generator.particles.length
+      }
     }
     if(typeof opts.run === 'boolean' && opts.run && lastRunState === false) {
       this.update()
@@ -154,6 +162,7 @@ export class Confetti {
     const {
       options: {
         run,
+        onConfettiComplete,
       },
       canvas,
       context,
@@ -165,7 +174,18 @@ export class Confetti {
     if(this.generator.animate()) {
       this.rafId = requestAnimationFrame(this.update)
     } else {
+      if(onConfettiComplete && typeof onConfettiComplete === 'function' && this.generator.particlesGenerated > 0) {
+        onConfettiComplete.call(this, this)
+      }
       this._options.run = false
+    }
+  }
+
+  reset = () => {
+    if(this.generator && this.generator.particlesGenerated > 0) {
+      this.generator.particlesGenerated = 0
+      this.generator.particles = []
+      this.generator.lastNumberOfPieces = 0
     }
   }
 

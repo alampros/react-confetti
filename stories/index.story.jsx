@@ -4,6 +4,7 @@ import SizedConfetti from './SizedConfetti'
 import { withKnobs, boolean, number } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
 import { withInfo } from '@storybook/addon-info'
+import { action } from '@storybook/addon-actions'
 
 import ReactConfetti from '../src/ReactConfetti'
 
@@ -54,6 +55,7 @@ storiesOf('Props|Demos', module)
         max: 100,
         step: 1,
       }) / 100}
+      onConfettiComplete={action('Confetti Complete')}
     />
   ))
   .add('Custom Source', () => (

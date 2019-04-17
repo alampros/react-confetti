@@ -2,6 +2,7 @@ import { addParameters, configure } from '@storybook/react'
 import { create } from '@storybook/theming'
 addParameters({
   options: {
+    sortStoriesByKind: true,
     theme: create({
       base: 'light',
       brandTitle: 'React Confetti',
