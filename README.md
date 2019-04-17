@@ -1,10 +1,10 @@
 # react-confetti
+Confetti without the cleanup. [Demo](http://alampros.github.io/react-confetti/)
 
+![npm type definitions](https://img.shields.io/npm/types/react-confetti.svg)
 [![Build Status](https://travis-ci.org/alampros/react-confetti.svg?branch=master)](https://travis-ci.org/alampros/react-confetti)
 [![npm](https://img.shields.io/npm/v/react-confetti.svg)](https://www.npmjs.com/package/react-confetti)
 [![npm bundle size](https://img.shields.io/bundlephobia/min/react-confetti.svg)](https://bundlephobia.com/result?p=react-confetti)
-
-Confetti without the cleanup. [Demo](http://alampros.github.io/react-confetti/)
 
 
 Based on a pen by @Gthibaud: https://codepen.io/Gthibaud/pen/ENzXbp
