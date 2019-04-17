@@ -36,4 +36,6 @@ const PartyMode = () => {
 storiesOf('Props|Demos', module)
   .add('Party', () => (
     <PartyMode />
-  ))
+  ), {
+    notes: 'Illustrates how manipulating the `numberOfPieces` can be used with a boolean state variable, as well as the `onConfettiComplete` event to reset the particle generator when `recycle` is false.',
+  })

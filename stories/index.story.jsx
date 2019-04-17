@@ -57,7 +57,9 @@ storiesOf('Props|Demos', module)
       }) / 100}
       onConfettiComplete={action('Confetti Complete')}
     />
-  ))
+  ), {
+    notes: 'Illustrates common props usage.',
+  })
   .add('Custom Source', () => (
     <PointConfetti
       friction={1}
@@ -88,8 +90,12 @@ storiesOf('Props|Demos', module)
         step: 1,
       }) / 100}
     />
-  ))
+  ), {
+    notes: 'Uses a custom `confettiSource` option to emit confetti from a small source in the center of the canvas.',
+  })
 
 storiesOf('Props|Default', module)
   .addDecorator(withInfo)
-  .add('Default', () => <ReactConfetti />)
+  .add('Default', () => <ReactConfetti />, {
+    notes: 'Bare bones basic usage with no resizing.',
+  })
