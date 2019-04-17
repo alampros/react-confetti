@@ -1,3 +1,10 @@
+# [2.8.0](https://github.com/alampros/react-confetti/compare/v2.7.3...v2.8.0) (2019-04-17)
+
+
+### Features
+
+* Add onConfettiComplete param ([8af89f2](https://github.com/alampros/react-confetti/commit/8af89f2))
+
 ## [2.7.3](https://github.com/alampros/react-confetti/compare/v2.7.2...v2.7.3) (2019-04-03)
 
 
