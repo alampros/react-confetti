@@ -110,25 +110,7 @@
       "@semantic-release/changelog",
       "@semantic-release/npm",
       "@semantic-release/git",
-      [
-        "@semantic-release/github",
-        {
-          "assets": [
-            {
-              "path": "dist/react-confetti.js",
-              "label": "Dev JS"
-            },
-            {
-              "path": "dist/react-confetti.min.js",
-              "label": "Minified JS"
-            },
-            {
-              "path": "dist/react-confetti.min.js.map",
-              "label": "Source map"
-            }
-          ]
-        }
-      ]
+      "@semantic-release/github"
     ]
   }
 }
