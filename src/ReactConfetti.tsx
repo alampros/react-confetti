@@ -1,11 +1,20 @@
 import React, { Component, CanvasHTMLAttributes } from 'react'
 import Confetti, { IConfettiOptions, confettiDefaults } from './Confetti'
 
-export type Props = Partial<IConfettiOptions> & CanvasHTMLAttributes<HTMLCanvasElement>
+export type Ref = HTMLCanvasElement
+
+export type Props = Partial<IConfettiOptions> & CanvasHTMLAttributes<HTMLCanvasElement> & {
+  canvasRef: React.RefObject<HTMLCanvasElement>
+}
 
 export class ReactConfetti extends Component<Props> {
   static readonly defaultProps = {
     ...confettiDefaults,
+  }
+
+  constructor(props: Props, ...rest: any[]) {
+    super(props, ...rest)
+    this.canvas = props.canvasRef || React.createRef<HTMLCanvasElement>()
   }
 
   canvas: React.RefObject<HTMLCanvasElement> = React.createRef()
@@ -53,19 +62,28 @@ export class ReactConfetti extends Component<Props> {
   }
 }
 
-function extractCanvasProps(props: Partial<IConfettiOptions> | any): [Partial<IConfettiOptions>, Partial<CanvasHTMLAttributes<HTMLCanvasElement>>] {
+interface Refs {
+  [key: string]: React.Ref<HTMLElement>
+}
+function extractCanvasProps(props: Partial<IConfettiOptions> | any): [Partial<IConfettiOptions>, Partial<CanvasHTMLAttributes<HTMLCanvasElement>>, Refs] {
   const confettiOptions: Partial<IConfettiOptions> = {}
+  const refs: Refs = {}
   const rest: any = {}
   const confettiOptionKeys = [...Object.keys(confettiDefaults), 'confettiSource', 'drawShape', 'onConfettiComplete']
+  const refProps = ['canvasRef']
   for(const prop in props) {
     const val = props[prop as string]
     if(confettiOptionKeys.includes(prop)) {
       confettiOptions[prop as keyof IConfettiOptions] = val
+    } else if(refProps.includes(prop)) {
+      refProps[prop as any] = val
     } else {
       rest[prop] = val
     }
   }
-  return [confettiOptions, rest]
+  return [confettiOptions, rest, refs]
 }
 
-export default ReactConfetti
+export default React.forwardRef<Ref, Props>((props, ref) => (
+  <ReactConfetti canvasRef={ref} {...props} />
+))
