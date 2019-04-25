@@ -1,3 +1,10 @@
+# [3.1.0](https://github.com/alampros/react-confetti/compare/v3.0.0...v3.1.0) (2019-04-25)
+
+
+### Features
+
+* add `initialVelocityX` and `initialVelocityY` props ([bfc2ff5](https://github.com/alampros/react-confetti/commit/bfc2ff5))
+
 # [3.0.0](https://github.com/alampros/react-confetti/compare/v2.8.0...v3.0.0) (2019-04-25)
 
 
