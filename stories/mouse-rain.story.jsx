@@ -22,6 +22,8 @@ const MouseRain = () => {
       <SizedConfetti
         style={{ pointerEvents: 'none' }}
         numberOfPieces={100}
+        initialVelocityX={2}
+        initialVelocityY={5}
         ref={ref}
         gravity={0.5}
         {...activeProps}

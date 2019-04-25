@@ -15,15 +15,19 @@ enum RotationDirection {
 export default class Particle {
   constructor(context: CanvasRenderingContext2D, getOptions: () => IConfettiOptions, x: number, y: number) {
     this.getOptions = getOptions
-    const { colors } = this.getOptions()
+    const {
+      colors,
+      initialVelocityX,
+      initialVelocityY,
+    } = this.getOptions()
     this.context = context
     this.x = x
     this.y = y
     this.w = randomRange(5, 20)
     this.h = randomRange(5, 20)
     this.radius = randomRange(5, 10)
-    this.vx = randomRange(-4, 4)
-    this.vy = randomRange(-10, -0)
+    this.vx = randomRange(-initialVelocityX, initialVelocityX)
+    this.vy = randomRange(-initialVelocityY, 0)
     this.shape = randomInt(0, 2)
     this.angle = degreesToRads(randomRange(0, 360))
     this.angularSpin = randomRange(-0.2, 0.2)

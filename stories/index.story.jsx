@@ -49,6 +49,18 @@ storiesOf('Props|Demos', module)
         max: 1,
         step: 0.01,
       })}
+      initialVelocityX={number('Initial X', 4, {
+        range: true,
+        min: 0,
+        max: 10,
+        step: 0.1,
+      })}
+      initialVelocityY={number('Initial Y', 10, {
+        range: true,
+        min: 0,
+        max: 20,
+        step: 0.1,
+      })}
       opacity={number('Opacity', 100, {
         range: true,
         min: 0,
@@ -82,6 +94,18 @@ storiesOf('Props|Demos', module)
         min: -1,
         max: 1,
         step: 0.01,
+      })}
+      initialVelocityX={number('Initial X', 2, {
+        range: true,
+        min: 0,
+        max: 10,
+        step: 0.1,
+      })}
+      initialVelocityY={number('Initial Y', 5, {
+        range: true,
+        min: 0,
+        max: 20,
+        step: 0.1,
       })}
       opacity={number('Opacity', 100, {
         range: true,

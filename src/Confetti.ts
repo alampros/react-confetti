@@ -34,6 +34,16 @@ export interface IConfettiOptions {
    */
   gravity: number
   /**
+   * How fast the confetti is emitted horizontally
+   * @default 4
+   */
+  initialVelocityX: number
+  /**
+   * How fast the confetti is emitted vertically
+   * @default 10
+   */
+  initialVelocityY: number
+  /**
    * Array of colors to choose from.
    */
   colors: string[]
@@ -94,6 +104,8 @@ export const confettiDefaults: Pick<IConfettiOptions, Exclude<keyof IConfettiOpt
   friction: 0.99,
   wind: 0,
   gravity: 0.1,
+  initialVelocityX: 4,
+  initialVelocityY: 10,
   colors: [
     '#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5',
     '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4CAF50',
