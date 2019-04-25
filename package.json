@@ -1,6 +1,6 @@
 {
   "name": "react-confetti",
-  "version": "2.8.0",
+  "version": "3.0.0",
   "description": "React component to draw confetti for your party.",
   "main": "dist/react-confetti.min.js",
   "types": "dist/types/ReactConfetti.d.ts",

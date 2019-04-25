@@ -1,3 +1,15 @@
+# [3.0.0](https://github.com/alampros/react-confetti/compare/v2.8.0...v3.0.0) (2019-04-25)
+
+
+### Features
+
+* forward ref to inner canvas ([091b055](https://github.com/alampros/react-confetti/commit/091b055))
+
+
+### BREAKING CHANGES
+
+* wrap default export in forwardRef
+
 # [2.8.0](https://github.com/alampros/react-confetti/compare/v2.7.3...v2.8.0) (2019-04-17)
 
 
