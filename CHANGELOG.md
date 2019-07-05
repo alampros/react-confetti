@@ -1,3 +1,10 @@
+## [3.1.1](https://github.com/alampros/react-confetti/compare/v3.1.0...v3.1.1) (2019-07-05)
+
+
+### Bug Fixes
+
+* **deps:** upgrade deps ([34385dc](https://github.com/alampros/react-confetti/commit/34385dc))
+
 # [3.1.0](https://github.com/alampros/react-confetti/compare/v3.0.0...v3.1.0) (2019-04-25)
 
 
