@@ -21,16 +21,27 @@ export default class ParticleGenerator implements IParticleGenerator {
     this.context = ctx
     this.getOptions = getOptions
   }
+
   canvas: HTMLCanvasElement
+
   context: CanvasRenderingContext2D
+
   getOptions: () => IConfettiOptions
+
   x: number = 0
+
   y: number = 0
+
   w: number = 0
+
   h: number = 0
+
   lastNumberOfPieces: number = 0
+
   tweenInitTime: number = Date.now()
+
   particles: Particle[] = []
+
   particlesGenerated: number = 0
 
   removeParticleAt = (i: number) => {
