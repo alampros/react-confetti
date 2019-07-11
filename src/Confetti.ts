@@ -133,15 +133,21 @@ export class Confetti {
     this.options = opts
     this.update()
   }
+
   canvas: HTMLCanvasElement
+
   context: CanvasRenderingContext2D
+
   _options!: IConfettiOptions
+
   generator: ParticleGenerator
+
   rafId?: number
 
   get options(): Partial<IConfettiOptions> {
     return this._options
   }
+
   set options(opts: Partial<IConfettiOptions>) {
     const lastRunState = this._options && this._options.run
     const lastRecycleState = this._options && this._options.recycle

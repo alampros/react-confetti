@@ -35,21 +35,36 @@ export default class Particle {
     this.rotateY = randomRange(0, 1)
     this.rotationDirection = randomRange(0, 1) ? RotationDirection.Positive : RotationDirection.Negative
   }
+
   context: CanvasRenderingContext2D
+
   radius: number
+
   x: number
+
   y: number
+
   w: number
+
   h: number
+
   vx: number
+
   vy: number
+
   shape: ParticleShape
+
   angle: number
+
   angularSpin: number
+
   color: string
+
   // Actually used as scaleY to simulate rotation cheaply
   rotateY: number
+
   rotationDirection: RotationDirection
+
   getOptions: () => IConfettiOptions
 
   update() {

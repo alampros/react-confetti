@@ -18,6 +18,7 @@ export class ReactConfetti extends Component<Props> {
   }
 
   canvas: React.RefObject<HTMLCanvasElement> = React.createRef()
+
   confetti?: Confetti
 
   componentDidMount() {
@@ -26,12 +27,14 @@ export class ReactConfetti extends Component<Props> {
       this.confetti = new Confetti(this.canvas.current, opts)
     }
   }
+
   componentWillReceiveProps(nextProps: Props) {
     const confettiOptions = extractCanvasProps(nextProps)[0]
     if(this.confetti) {
       this.confetti.options = confettiOptions as IConfettiOptions
     }
   }
+
   componentWillUnmount() {
     if(this.confetti) {
       this.confetti.stop()
@@ -40,7 +43,7 @@ export class ReactConfetti extends Component<Props> {
   }
 
   render() {
-    const [ confettiOptions, passedProps ] = extractCanvasProps(this.props)
+    const [confettiOptions, passedProps] = extractCanvasProps(this.props)
     const canvasStyles = {
       zIndex: 2,
       position: 'absolute' as 'absolute',

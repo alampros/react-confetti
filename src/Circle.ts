@@ -10,7 +10,10 @@ export default class Circle implements ICircle {
     this.y = init.y
     this.radius = init.radius
   }
+
   x: number
+
   y: number
+
   radius: number
 }

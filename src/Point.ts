@@ -8,6 +8,8 @@ export default class Point implements IPoint {
     this.x = init.x
     this.y = init.y
   }
+
   x: number
+
   y: number
 }
