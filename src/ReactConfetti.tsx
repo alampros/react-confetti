@@ -4,7 +4,7 @@ import Confetti, { IConfettiOptions, confettiDefaults } from './Confetti'
 export type Ref = HTMLCanvasElement
 
 export type Props = Partial<IConfettiOptions> & CanvasHTMLAttributes<HTMLCanvasElement> & {
-  canvasRef: React.RefObject<HTMLCanvasElement>
+  canvasRef?: React.RefObject<HTMLCanvasElement>
 }
 
 export class ReactConfetti extends Component<Props> {
