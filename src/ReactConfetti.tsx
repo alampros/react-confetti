@@ -47,6 +47,7 @@ export class ReactConfetti extends Component<Props> {
     const canvasStyles = {
       zIndex: 2,
       position: 'absolute' as 'absolute',
+      pointerEvents: 'none' as 'none',
       top: 0,
       left: 0,
       bottom: 0,
