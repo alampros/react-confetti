@@ -1,3 +1,16 @@
+# [4.0.0](https://github.com/alampros/react-confetti/compare/v3.1.2...v4.0.0) (2019-08-06)
+
+
+### Bug Fixes
+
+* disable pointer events again ([a28a426](https://github.com/alampros/react-confetti/commit/a28a426)), closes [#63](https://github.com/alampros/react-confetti/issues/63)
+* Export the same class as the default export ([385f981](https://github.com/alampros/react-confetti/commit/385f981))
+
+
+### BREAKING CHANGES
+
+* changes module exports
+
 ## [3.1.2](https://github.com/alampros/react-confetti/compare/v3.1.1...v3.1.2) (2019-07-11)
 
 
