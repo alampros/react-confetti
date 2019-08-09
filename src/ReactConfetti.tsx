@@ -1,9 +1,9 @@
-import React, { Component, CanvasHTMLAttributes, NamedExoticComponent } from 'react'
+import React, { Component, CanvasHTMLAttributes } from 'react'
 import Confetti, { IConfettiOptions, confettiDefaults } from './Confetti'
 
 export type Ref = HTMLCanvasElement
 
-export type Props = Partial<IConfettiOptions> & NamedExoticComponent & CanvasHTMLAttributes<HTMLCanvasElement> & {
+export type Props = Partial<IConfettiOptions> & CanvasHTMLAttributes<HTMLCanvasElement> & {
   canvasRef: React.RefObject<HTMLCanvasElement>
 }
 
