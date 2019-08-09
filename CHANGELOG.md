@@ -1,3 +1,10 @@
+## [4.0.1](https://github.com/alampros/react-confetti/compare/v4.0.0...v4.0.1) (2019-08-09)
+
+
+### Bug Fixes
+
+* **types:** remove NamedExoticComponent ([b6dec94](https://github.com/alampros/react-confetti/commit/b6dec94)), closes [#65](https://github.com/alampros/react-confetti/issues/65)
+
 # [4.0.0](https://github.com/alampros/react-confetti/compare/v3.1.2...v4.0.0) (2019-08-06)
 
 
