@@ -30,8 +30,8 @@ class ReactConfettiInternal extends Component<Props> {
     }
   }
 
-  componentWillReceiveProps(nextProps: Props) {
-    const confettiOptions = extractCanvasProps(nextProps)[0]
+  getSnapshotBeforeUpdate() {
+    const confettiOptions = extractCanvasProps(this.props)[0]
     if(this.confetti) {
       this.confetti.options = confettiOptions as IConfettiOptions
     }
