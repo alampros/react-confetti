@@ -44,7 +44,7 @@
     "develop": "start-storybook -p 3000"
   },
   "peerDependencies": {
-    "react": "0.14.x || ^15.0.1 || ^16.2.0"
+    "react": "^16.3.0"
   },
   "dependencies": {
     "tween-functions": "^1.2.0"
@@ -88,9 +88,9 @@
     "eslint-plugin-react-hooks": "^1.0.1",
     "eslint-plugin-standard": "^4.0.0",
     "nodemon": "^1.18.10",
-    "react": "^16.2.0",
+    "react": "^16.3.0",
     "react-docgen-typescript-loader": "^3.0.1",
-    "react-dom": "^16.2.0",
+    "react-dom": "^16.3.0",
     "react-fps-stats": "^0.1.2",
     "react-use": "^10.5.0",
     "semantic-release": "^15.13.19",
