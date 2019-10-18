@@ -1,3 +1,11 @@
+## [5.0.1](https://github.com/alampros/react-confetti/compare/v5.0.0...v5.0.1) (2019-10-18)
+
+
+### Bug Fixes
+
+* use componentDidUpdate instead ([1ad95f9](https://github.com/alampros/react-confetti/commit/1ad95f9c36de70d3149caf11ca8c90cd8491aacc)), closes [#73](https://github.com/alampros/react-confetti/issues/73)
+* **types:** make canvasRef optional ([607068a](https://github.com/alampros/react-confetti/commit/607068a1845f4713ef6d5d13e24b8344df11985d)), closes [#72](https://github.com/alampros/react-confetti/issues/72)
+
 # [5.0.0](https://github.com/alampros/react-confetti/compare/v4.0.1...v5.0.0) (2019-10-18)
 
 
