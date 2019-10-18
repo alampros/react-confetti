@@ -1,3 +1,18 @@
+# [5.0.0](https://github.com/alampros/react-confetti/compare/v4.0.1...v5.0.0) (2019-10-18)
+
+
+* Merge pull request #70 from wheeler/mw-r169 ([8e7ec50](https://github.com/alampros/react-confetti/commit/8e7ec50520c2fab4df3d7d5bd5f24d86e5b2f159)), closes [#70](https://github.com/alampros/react-confetti/issues/70)
+
+
+### Bug Fixes
+
+* **deps:** upgrade deps ([902da73](https://github.com/alampros/react-confetti/commit/902da739e496a2d16fb42f5596674a255d4c8de1))
+
+
+### BREAKING CHANGES
+
+* Requires at least React version 16.3 - that version adds the new lifecycle method used to replace the unsafe one.
+
 ## [4.0.1](https://github.com/alampros/react-confetti/compare/v4.0.0...v4.0.1) (2019-08-09)
 
 
