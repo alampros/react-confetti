@@ -1,5 +1,20 @@
 const path = require('path')
 
+/**
+ * Webpack emits sourcemap paths that have an invalid `webpack://` prefix,
+ * and which don't match the paths where source files will be installed by
+ * npm or yarn. This short function replaces all bogus sourcemap paths
+ * with valid relative paths relative to the folder where the source files
+ * will be installed when the library is installed.
+ * */
+function devtoolModuleFilenameTemplate(info) {
+  const resource = info.resource
+    .replace('webpack://ReactConfetti/', '') // remove bogus webpath prefixes
+    .replace(/^\.\/node_modules\//, '../../') // at runtime, deps are uncle not sibling to dist
+    .replace(/^\.\/src\//, '../src/') // source folder is a sibling of dist, not child
+  return resource
+}
+
 const base = {
   mode: 'development',
   devtool: 'source-map',
@@ -9,6 +24,7 @@ const base = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].js',
+    devtoolModuleFilenameTemplate,
     library: 'ReactConfetti',
     libraryTarget: 'umd',
     libraryExport: 'default',

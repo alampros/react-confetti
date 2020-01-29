@@ -24,6 +24,7 @@
     "README.md",
     "LICENSE.md",
     "dist/",
+    "src/",
     "index.js"
   ],
   "scripts": {
