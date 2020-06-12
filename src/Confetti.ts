@@ -1,5 +1,6 @@
 import tweens from 'tween-functions'
 import { IRect } from './Rect'
+import { IParallelogram } from './Parallelogram'
 import ParticleGenerator from './ParticleGenerator'
 
 export interface IConfettiOptions {
@@ -76,7 +77,7 @@ export interface IConfettiOptions {
    *   h: 0
    * }
    */
-  confettiSource: IRect
+  confettiSource: IRect | IParallelogram
   /**
    * Controls the rate at which confetti is spawned.
    * @default easeInOutQuad
@@ -153,7 +154,7 @@ export class Confetti {
     const lastRecycleState = this._options && this._options.recycle
     this.setOptionsWithDefaults(opts)
     if(this.generator) {
-      Object.assign(this.generator, this.options.confettiSource)
+      if(this.options.confettiSource) this.generator.shape = this.options.confettiSource
       if(typeof opts.recycle === 'boolean' && opts.recycle && lastRecycleState === false) {
         this.generator.lastNumberOfPieces = this.generator.particles.length
       }

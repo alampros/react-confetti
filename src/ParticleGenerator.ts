@@ -1,12 +1,14 @@
 import { IConfettiOptions } from './Confetti'
-import { IRect } from './Rect'
+import { IParallelogram } from './Parallelogram'
+import { isRect, IRect } from './Rect'
 import Particle from './Particle'
 import { randomRange } from './utils'
 
-export interface IParticleGenerator extends IRect {
+export interface IParticleGenerator {
   removeParticleAt: (index: number) => void
   getParticle: () => void
   animate: () => boolean
+  shape: IRect | IParallelogram
   particles: Particle[]
   particlesGenerated: number
 }
@@ -28,13 +30,7 @@ export default class ParticleGenerator implements IParticleGenerator {
 
   getOptions: () => IConfettiOptions
 
-  x: number = 0
-
-  y: number = 0
-
-  w: number = 0
-
-  h: number = 0
+  shape: IRect | IParallelogram = { x: 0, y: 0, w: 0, h: 0 }
 
   lastNumberOfPieces: number = 0
 
@@ -49,9 +45,27 @@ export default class ParticleGenerator implements IParticleGenerator {
   }
 
   getParticle = () => {
-    const newParticleX = randomRange(this.x, this.w + this.x)
-    const newParticleY = randomRange(this.y, this.h + this.y)
-    return new Particle(this.context, this.getOptions, newParticleX, newParticleY)
+    if(isRect(this.shape)) {
+      const { x, y, w, h } = this.shape
+      const newParticleX = randomRange(x, w + x)
+      const newParticleY = randomRange(y, h + y)
+      return new Particle(this.context, this.getOptions, newParticleX, newParticleY)
+    }
+    const { pointA: A, pointB: B, pointC: C } = this.shape
+    // For a parallelogram with points ABCD, s.t. AB, BC, CD, and DA are sides...
+    // ...given random u, v, in [0, 1]...
+    const u = randomRange(0, 1)
+    const v = randomRange(0, 1)
+    // ... p = B + (u * AB) + (v * CB) will be a random point inside.
+    // Alternatively: p = B + (u * (A - B)) + (v * (C - B))
+    const newParticleX = B.x + u * (A.x - B.x) + v * (C.x - B.x)
+    const newParticleY = B.y + u * (A.y - B.y) + v * (C.y - B.y)
+    return new Particle(
+      this.context,
+      this.getOptions,
+      newParticleX,
+      newParticleY
+    )
   }
 
   animate = (): boolean => {

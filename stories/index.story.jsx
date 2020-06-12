@@ -72,7 +72,7 @@ storiesOf('Props|Demos', module)
   ), {
     notes: 'Illustrates common props usage.',
   })
-  .add('Custom Source', () => (
+  .add('Point Source', () => (
     <PointConfetti
       friction={1}
       run={boolean('Run', true)}
