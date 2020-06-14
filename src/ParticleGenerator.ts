@@ -51,15 +51,14 @@ export default class ParticleGenerator implements IParticleGenerator {
       const newParticleY = randomRange(y, h + y)
       return new Particle(this.context, this.getOptions, newParticleX, newParticleY)
     }
-    const { pointA: A, pointB: B, pointC: C } = this.shape
+    const { x, y, side1, side2 } = this.shape
     // For a parallelogram with points ABCD, s.t. AB, BC, CD, and DA are sides...
     // ...given random u, v, in [0, 1]...
     const u = randomRange(0, 1)
     const v = randomRange(0, 1)
     // ... p = B + (u * AB) + (v * CB) will be a random point inside.
-    // Alternatively: p = B + (u * (A - B)) + (v * (C - B))
-    const newParticleX = B.x + u * (A.x - B.x) + v * (C.x - B.x)
-    const newParticleY = B.y + u * (A.y - B.y) + v * (C.y - B.y)
+    const newParticleX = x + u * side1.x + v * side2.x
+    const newParticleY = y + u * side1.y + v * side2.y
     return new Particle(
       this.context,
       this.getOptions,

@@ -5,7 +5,7 @@ import { withKnobs, boolean, number, select } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
 import SizedConfetti from './SizedConfetti'
 
-const CustomSourceConfetti = ({ shape, x, y, w, h, pointAX, pointAY, pointBX, pointBY, pointCX, pointCY, ...passedProps }) => {
+const CustomSourceConfetti = ({ shape, x, y, w, h, side1X, side1Y, side2X, side2Y, ...passedProps }) => {
   const { width, height } = useWindowSize()
   return (
     <SizedConfetti
@@ -17,9 +17,10 @@ const CustomSourceConfetti = ({ shape, x, y, w, h, pointAX, pointAY, pointBX, po
         x: x / 100 * width,
         y: y / 100 * height,
       } : {
-        pointA: { x: pointAX / 100 * width, y: pointAY / 100 * height },
-        pointB: { x: pointBX / 100 * width, y: pointBY / 100 * height },
-        pointC: { x: pointCX / 100 * width, y: pointCY / 100 * height },
+        x: x / 100 * width,
+        y: y / 100 * height,
+        side1: { x: side1X / 100 * width, y: side1Y / 100 * height },
+        side2: { x: side2X / 100 * width, y: side2Y / 100 * height },
       }}
       {...passedProps}
     />
@@ -32,12 +33,10 @@ CustomSourceConfetti.propTypes = {
   y: PropTypes.number.isRequired,
   w: PropTypes.number.isRequired,
   h: PropTypes.number.isRequired,
-  pointAX: PropTypes.number.isRequired,
-  pointAY: PropTypes.number.isRequired,
-  pointBX: PropTypes.number.isRequired,
-  pointBY: PropTypes.number.isRequired,
-  pointCX: PropTypes.number.isRequired,
-  pointCY: PropTypes.number.isRequired,
+  side1X: PropTypes.number.isRequired,
+  side1Y: PropTypes.number.isRequired,
+  side2X: PropTypes.number.isRequired,
+  side2Y: PropTypes.number.isRequired,
 }
 
 storiesOf('Props|Demos', module)
@@ -45,17 +44,15 @@ storiesOf('Props|Demos', module)
   .add('Custom Source', () => (
     <CustomSourceConfetti
       run={boolean('Run', true)}
-      shape={select('Shape', { Parallelogram: 'parallelogram', Rectangle: 'rectangle' }, 'rectangle')}
-      x={number('x (as % of screen width)', 50, { range: true, min: 0, max: 100, step: 1 }, 'rectangle')}
-      y={number('y (as % of screen height)', 50, { range: true, min: 0, max: 100, step: 1 }, 'rectangle')}
+      shape={select('Shape', { Parallelogram: 'parallelogram', Rectangle: 'rectangle' })}
+      x={number('x (as % of screen width)', 50, { range: true, min: 0, max: 100, step: 1 })}
+      y={number('y (as % of screen height)', 50, { range: true, min: 0, max: 100, step: 1 })}
       w={number('width (as % of screen width)', 0, { range: true, min: -100, max: 100, step: 1 }, 'rectangle')}
       h={number('height (as % of screen height)', 0, { range: true, min: -100, max: 100, step: 1 }, 'rectangle')}
-      pointAX={number('x-coordinate of pointA (as % of screen width)', 50, { range: true, min: 0, max: 100, step: 1 }, 'parallelogram')}
-      pointAY={number('y-coordinate of pointA (as % of screen width)', 50, { range: true, min: 0, max: 100, step: 1 }, 'parallelogram')}
-      pointBX={number('x-coordinate of pointB (as % of screen width)', 50, { range: true, min: 0, max: 100, step: 1 }, 'parallelogram')}
-      pointBY={number('y-coordinate of pointB (as % of screen width)', 50, { range: true, min: 0, max: 100, step: 1 }, 'parallelogram')}
-      pointCX={number('x-coordinate of pointC (as % of screen width)', 50, { range: true, min: 0, max: 100, step: 1 }, 'parallelogram')}
-      pointCY={number('y-coordinate of pointC (as % of screen width)', 50, { range: true, min: 0, max: 100, step: 1 }, 'parallelogram')}
+      side1X={number('x-offset of side1 (as % of screen width)', 10, { range: true, min: -100, max: 100, step: 1 }, 'parallelogram')}
+      side1Y={number('y-offset of side1 (as % of screen width)', 10, { range: true, min: -100, max: 100, step: 1 }, 'parallelogram')}
+      side2X={number('x-offset of side2 (as % of screen width)', 10, { range: true, min: -100, max: 100, step: 1 }, 'parallelogram')}
+      side2Y={number('y-offset of side2 (as % of screen width)', 10, { range: true, min: -100, max: 100, step: 1 }, 'parallelogram')}
       recycle={boolean('Recycle', true)}
       numberOfPieces={number('# Pieces', 200, {
         range: true,
