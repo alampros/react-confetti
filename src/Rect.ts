@@ -8,5 +8,5 @@ export interface IRect {
 }
 
 export function isRect(shape: IParallelogram | IRect): shape is IRect {
-  return 'x' in shape
+  return 'w' in shape
 }
