@@ -1,3 +1,10 @@
+# [5.1.0](https://github.com/alampros/react-confetti/compare/v5.0.1...v5.1.0) (2020-06-17)
+
+
+### Features
+
+* initial velocity range options\ ([929bc50](https://github.com/alampros/react-confetti/commit/929bc50a323703f7178e787e4297f04433510412))
+
 ## [5.0.1](https://github.com/alampros/react-confetti/compare/v5.0.0...v5.0.1) (2019-10-18)
 
 
