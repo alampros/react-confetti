@@ -1,14 +1,13 @@
 import { IConfettiOptions } from './Confetti'
-import { IParallelogram } from './Parallelogram'
-import { isRect, IRect } from './Rect'
+import { EmitterShape } from './EmitterShape'
+import { Rect } from './Rect'
 import Particle from './Particle'
-import { randomRange } from './utils'
 
 export interface IParticleGenerator {
   removeParticleAt: (index: number) => void
   getParticle: () => void
   animate: () => boolean
-  shape: IRect | IParallelogram
+  shape: EmitterShape
   particles: Particle[]
   particlesGenerated: number
 }
@@ -30,7 +29,7 @@ export default class ParticleGenerator implements IParticleGenerator {
 
   getOptions: () => IConfettiOptions
 
-  shape: IRect | IParallelogram = { x: 0, y: 0, w: 0, h: 0 }
+  shape: EmitterShape = new Rect({ x: 0, y: 0 }, 0, 0)
 
   lastNumberOfPieces: number = 0
 
@@ -45,26 +44,8 @@ export default class ParticleGenerator implements IParticleGenerator {
   }
 
   getParticle = () => {
-    if(isRect(this.shape)) {
-      const { x, y, w, h } = this.shape
-      const newParticleX = randomRange(x, w + x)
-      const newParticleY = randomRange(y, h + y)
-      return new Particle(this.context, this.getOptions, newParticleX, newParticleY)
-    }
-    const { x, y, side1, side2 } = this.shape
-    // For a parallelogram with points ABCD, s.t. AB, BC, CD, and DA are sides...
-    // ...given random u, v, in [0, 1]...
-    const u = randomRange(0, 1)
-    const v = randomRange(0, 1)
-    // ... p = B + (u * AB) + (v * CB) will be a random point inside.
-    const newParticleX = x + u * side1.x + v * side2.x
-    const newParticleY = y + u * side1.y + v * side2.y
-    return new Particle(
-      this.context,
-      this.getOptions,
-      newParticleX,
-      newParticleY
-    )
+    const { x, y } = this.shape.getPoint()
+    return new Particle(this.context, this.getOptions, x, y)
   }
 
   animate = (): boolean => {

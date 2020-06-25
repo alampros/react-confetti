@@ -4,6 +4,7 @@ import useWindowSize from 'react-use/lib/useWindowSize'
 import { withKnobs, boolean, number, select } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
 import SizedConfetti from './SizedConfetti'
+import { Parallelogram } from '../src/Parallelogram'
 
 const CustomSourceConfetti = ({ shape, x, y, w, h, side1X, side1Y, side2X, side2Y, ...passedProps }) => {
   const { width, height } = useWindowSize()
@@ -16,12 +17,17 @@ const CustomSourceConfetti = ({ shape, x, y, w, h, side1X, side1Y, side2X, side2
         h: h / 100 * height,
         x: x / 100 * width,
         y: y / 100 * height,
-      } : {
-        x: x / 100 * width,
-        y: y / 100 * height,
-        side1: { x: side1X / 100 * width, y: side1Y / 100 * height },
-        side2: { x: side2X / 100 * width, y: side2Y / 100 * height },
-      }}
+      } : new Parallelogram(
+        {
+          x: x / 100 * width,
+          y: y / 100 * height,
+        }, {
+          x: side1X / 100 * width,
+          y: side1Y / 100 * height,
+        }, {
+          x: side2X / 100 * width,
+          y: side2Y / 100 * height,
+        })}
       {...passedProps}
     />
   )
@@ -44,15 +50,15 @@ storiesOf('Props|Demos', module)
   .add('Custom Source', () => (
     <CustomSourceConfetti
       run={boolean('Run', true)}
-      shape={select('Shape', { Parallelogram: 'parallelogram', Rectangle: 'rectangle' })}
+      shape={select('Shape', { Parallelogram: 'parallelogram', Rectangle: 'rectangle' }, 'rectangle')}
       x={number('x (as % of screen width)', 50, { range: true, min: 0, max: 100, step: 1 })}
       y={number('y (as % of screen height)', 50, { range: true, min: 0, max: 100, step: 1 })}
-      w={number('width (as % of screen width)', 0, { range: true, min: -100, max: 100, step: 1 }, 'rectangle')}
-      h={number('height (as % of screen height)', 0, { range: true, min: -100, max: 100, step: 1 }, 'rectangle')}
-      side1X={number('x-offset of side1 (as % of screen width)', 10, { range: true, min: -100, max: 100, step: 1 }, 'parallelogram')}
-      side1Y={number('y-offset of side1 (as % of screen width)', 10, { range: true, min: -100, max: 100, step: 1 }, 'parallelogram')}
-      side2X={number('x-offset of side2 (as % of screen width)', 10, { range: true, min: -100, max: 100, step: 1 }, 'parallelogram')}
-      side2Y={number('y-offset of side2 (as % of screen width)', 10, { range: true, min: -100, max: 100, step: 1 }, 'parallelogram')}
+      w={number('width (as % of screen width)', 0, { range: true, min: -100, max: 100, step: 1 })}
+      h={number('height (as % of screen height)', 0, { range: true, min: -100, max: 100, step: 1 })}
+      side1X={number('x-offset of side1 (as % of screen width)', 0, { range: true, min: -100, max: 100, step: 1 })}
+      side1Y={number('y-offset of side1 (as % of screen width)', 0, { range: true, min: -100, max: 100, step: 1 })}
+      side2X={number('x-offset of side2 (as % of screen width)', 0, { range: true, min: -100, max: 100, step: 1 })}
+      side2Y={number('y-offset of side2 (as % of screen width)', 0, { range: true, min: -100, max: 100, step: 1 })}
       recycle={boolean('Recycle', true)}
       numberOfPieces={number('# Pieces', 200, {
         range: true,
