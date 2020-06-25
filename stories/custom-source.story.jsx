@@ -8,6 +8,7 @@ import { Circle } from '../src/Shapes/Circle'
 import { Parallelogram } from '../src/Shapes/Parallelogram'
 import { Triangle } from '../src/Shapes/Triangle'
 import { Sector } from '../src/Shapes/Sector'
+import { degreesToRads } from "../src/utils";
 
 const RectangleConfetti = ({ x, y, w, h, ...passedProps }) => {
   const { width, height } = useWindowSize()
@@ -130,8 +131,8 @@ const SectorConfetti = ({ x, y, radius, angle1, angle2, ...passedProps }) => {
           y: y / 100 * height,
         },
         radius / 100 * width,
-        angle1 / 360 * 2 * Math.PI,
-        angle2 / 360 * 2 * Math.PI
+        degreesToRads(angle1),
+        degreesToRads(angle2)
       )}
       {...passedProps}
     />
