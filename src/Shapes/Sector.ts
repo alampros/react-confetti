@@ -21,7 +21,6 @@ export class Sector extends EmitterShape {
 
   constructor(position: IPoint, radius: number, angle1: number, angle2: number) {
     super()
-    console.log('here')
     this.position = position
     this.radius = radius
     const smallerAngle = Math.min(angle1, angle2)
@@ -29,8 +28,6 @@ export class Sector extends EmitterShape {
     // If the two angles are more than tau apart,
     // we're covering the whole circle, so we'll just
     // set angle1 to 0 and angle2 to tau
-    console.log('smallerAngle', smallerAngle)
-    console.log('largerAngle', largerAngle)
     if(largerAngle - smallerAngle > tau) {
       this.angle1 = 0
       this.angle2 = tau
