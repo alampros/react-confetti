@@ -38,12 +38,12 @@ export interface IConfettiOptions {
    * How fast the confetti is emitted horizontally
    * @default 4
    */
-  initialVelocityX: number
+  initialVelocityX: {min: number, max: number} | number
   /**
    * How fast the confetti is emitted vertically
    * @default 10
    */
-  initialVelocityY: number
+  initialVelocityY: {min: number, max: number} | number
   /**
    * Array of colors to choose from.
    */
