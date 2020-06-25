@@ -1,6 +1,6 @@
 import tweens from 'tween-functions'
 import { IRect, isIRect, Rect } from './Shapes/Rect'
-import { EmitterShape } from './Shapes/EmitterShape'
+import { IEmitterShape } from './Shapes/EmitterShape'
 import ParticleGenerator from './ParticleGenerator'
 
 export interface IConfettiOptions {
@@ -77,7 +77,7 @@ export interface IConfettiOptions {
    *   h: 0
    * }
    */
-  confettiSource: IRect | EmitterShape
+  confettiSource: IRect | IEmitterShape
   /**
    * Controls the rate at which confetti is spawned.
    * @default easeInOutQuad

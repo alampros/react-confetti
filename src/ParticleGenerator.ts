@@ -1,5 +1,5 @@
 import { IConfettiOptions } from './Confetti'
-import { EmitterShape } from './Shapes/EmitterShape'
+import { IEmitterShape } from './Shapes/EmitterShape'
 import { Rect } from './Shapes/Rect'
 import Particle from './Particle'
 
@@ -7,7 +7,7 @@ export interface IParticleGenerator {
   removeParticleAt: (index: number) => void
   getParticle: () => void
   animate: () => boolean
-  shape: EmitterShape
+  shape: IEmitterShape
   particles: Particle[]
   particlesGenerated: number
 }
@@ -29,7 +29,7 @@ export default class ParticleGenerator implements IParticleGenerator {
 
   getOptions: () => IConfettiOptions
 
-  shape: EmitterShape = new Rect({ x: 0, y: 0 }, 0, 0)
+  shape: IEmitterShape = new Rect({ x: 0, y: 0 }, 0, 0)
 
   lastNumberOfPieces: number = 0
 
