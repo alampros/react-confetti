@@ -1,6 +1,6 @@
 import { IPoint } from './Point'
-import { IRect } from './Rect'
-import { ICircle } from './Circle'
+import { IRect } from './Shapes/Rect'
+import { ICircle } from './Shapes/Circle'
 
 export function norm(value: number, min:number, max: number) {
   return (value - min) / (max - min)

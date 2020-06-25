@@ -1,6 +1,6 @@
 import { IConfettiOptions } from './Confetti'
-import { EmitterShape } from './EmitterShape'
-import { Rect } from './Rect'
+import { EmitterShape } from './Shapes/EmitterShape'
+import { Rect } from './Shapes/Rect'
 import Particle from './Particle'
 
 export interface IParticleGenerator {

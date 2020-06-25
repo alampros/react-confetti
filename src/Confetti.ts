@@ -1,6 +1,6 @@
 import tweens from 'tween-functions'
-import { IRect, isIRect, Rect } from './Rect'
-import { EmitterShape } from './EmitterShape'
+import { IRect, isIRect, Rect } from './Shapes/Rect'
+import { EmitterShape } from './Shapes/EmitterShape'
 import ParticleGenerator from './ParticleGenerator'
 
 export interface IConfettiOptions {

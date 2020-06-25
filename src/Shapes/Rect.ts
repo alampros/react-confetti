@@ -1,6 +1,6 @@
 import { EmitterShape } from './EmitterShape'
-import { IPoint } from './Point'
-import { randomRange } from './utils'
+import { IPoint } from '../Point'
+import { randomRange } from '../utils'
 
 // Kept for backwards compatability
 export interface IRect {

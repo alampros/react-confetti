@@ -1,12 +1,12 @@
-import { IPoint } from './Point'
+import { IPoint } from '../Point'
 import { EmitterShape } from './EmitterShape'
-import { randomRange } from './utils'
+import { randomRange } from '../utils'
 
 export interface ICircle extends IPoint {
   radius: number
 }
 
-export default class Circle extends EmitterShape implements ICircle {
+export class Circle extends EmitterShape implements ICircle {
   constructor(init: ICircle) {
     super()
     this.x = init.x
@@ -46,3 +46,5 @@ export default class Circle extends EmitterShape implements ICircle {
     }
   }
 }
+
+export default Circle

@@ -1,6 +1,6 @@
-import { IPoint } from './Point'
+import { IPoint } from '../Point'
 import { EmitterShape } from './EmitterShape'
-import { randomRange } from './utils'
+import { randomRange } from '../utils'
 
 export class Triangle extends EmitterShape {
   position: IPoint
