@@ -113,5 +113,8 @@
       "@semantic-release/git",
       "@semantic-release/github"
     ]
+  },
+  "engines": {
+    "node": ">=10"
   }
 }
