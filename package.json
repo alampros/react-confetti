@@ -45,7 +45,7 @@
     "develop": "start-storybook -p 3000"
   },
   "peerDependencies": {
-    "react": "^16.3.0"
+    "react": ">=16.3.0"
   },
   "dependencies": {
     "tween-functions": "^1.2.0"
