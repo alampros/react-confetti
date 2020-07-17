@@ -1,6 +1,6 @@
 {
   "name": "react-confetti",
-  "version": "2.4.1",
+  "version": "5.1.0",
   "description": "React component to draw confetti for your party.",
   "main": "dist/react-confetti.min.js",
   "types": "dist/types/ReactConfetti.d.ts",
@@ -51,12 +51,12 @@
     "tween-functions": "^1.2.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.5.5",
-    "@babel/core": "^7.5.5",
-    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.10.5",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
     "@babel/plugin-proposal-object-rest-spread": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
-    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-react": "^7.10.4",
     "@babel/preset-typescript": "^7.3.3",
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/commit-analyzer": "^8.0.1",
@@ -82,7 +82,7 @@
     "eslint": "^7.4.0",
     "eslint-config-standard": "^14.1.1",
     "eslint-config-standard-react": "^9.2.0",
-    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-react": "^7.14.3",
