@@ -1,3 +1,15 @@
+# [6.0.0](https://github.com/alampros/react-confetti/compare/v5.1.0...v6.0.0) (2020-07-17)
+
+
+### chore
+
+* **deps:** upgrade deps ([25d75da](https://github.com/alampros/react-confetti/commit/25d75dafa9700d3e6a93db72f5b847bf601b374a))
+
+
+### BREAKING CHANGES
+
+* **deps:** Requires node >= 10.18
+
 # [5.1.0](https://github.com/alampros/react-confetti/compare/v5.0.1...v5.1.0) (2020-06-17)
 
 
