@@ -3,9 +3,9 @@ cache: yarn
 notifications:
   email: false
 node_js:
-  - '12'
-  - '11'
-  - '10'
+  - 14
+  - 12
+  - 10
 
 jobs:
   include:
