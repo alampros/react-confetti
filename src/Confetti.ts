@@ -1,5 +1,6 @@
 import tweens from 'tween-functions'
-import { IRect } from './Rect'
+import { IRect, isIRect, Rect } from './Shapes/Rect'
+import { IEmitterShape } from './Shapes/EmitterShape'
 import ParticleGenerator from './ParticleGenerator'
 
 export interface IConfettiOptions {
@@ -76,7 +77,7 @@ export interface IConfettiOptions {
    *   h: 0
    * }
    */
-  confettiSource: IRect
+  confettiSource: IRect | IEmitterShape
   /**
    * Controls the rate at which confetti is spawned.
    * @default easeInOutQuad
@@ -153,7 +154,9 @@ export class Confetti {
     const lastRecycleState = this._options && this._options.recycle
     this.setOptionsWithDefaults(opts)
     if(this.generator) {
-      Object.assign(this.generator, this.options.confettiSource)
+      if(this.options.confettiSource) {
+        this.generator.shape = isIRect(this.options.confettiSource) ? Rect.fromIRect(this.options.confettiSource) : this.options.confettiSource
+      }
       if(typeof opts.recycle === 'boolean' && opts.recycle && lastRecycleState === false) {
         this.generator.lastNumberOfPieces = this.generator.particles.length
       }

@@ -1,12 +1,13 @@
 import { IConfettiOptions } from './Confetti'
-import { IRect } from './Rect'
+import { IEmitterShape } from './Shapes/EmitterShape'
+import { Rect } from './Shapes/Rect'
 import Particle from './Particle'
-import { randomRange } from './utils'
 
-export interface IParticleGenerator extends IRect {
+export interface IParticleGenerator {
   removeParticleAt: (index: number) => void
   getParticle: () => void
   animate: () => boolean
+  shape: IEmitterShape
   particles: Particle[]
   particlesGenerated: number
 }
@@ -28,13 +29,7 @@ export default class ParticleGenerator implements IParticleGenerator {
 
   getOptions: () => IConfettiOptions
 
-  x: number = 0
-
-  y: number = 0
-
-  w: number = 0
-
-  h: number = 0
+  shape: IEmitterShape = new Rect({ x: 0, y: 0 }, 0, 0)
 
   lastNumberOfPieces: number = 0
 
@@ -49,9 +44,8 @@ export default class ParticleGenerator implements IParticleGenerator {
   }
 
   getParticle = () => {
-    const newParticleX = randomRange(this.x, this.w + this.x)
-    const newParticleY = randomRange(this.y, this.h + this.y)
-    return new Particle(this.context, this.getOptions, newParticleX, newParticleY)
+    const { x, y } = this.shape.getPoint()
+    return new Particle(this.context, this.getOptions, x, y)
   }
 
   animate = (): boolean => {

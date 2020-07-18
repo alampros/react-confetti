@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef } from 'react'
 import { storiesOf } from '@storybook/react'
 import useMouse from 'react-use/lib/useMouse'
 import SizedConfetti from './SizedConfetti'
