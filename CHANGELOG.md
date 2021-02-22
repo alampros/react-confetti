@@ -1,3 +1,10 @@
+## [6.0.1](https://github.com/alampros/react-confetti/compare/v6.0.0...v6.0.1) (2021-02-22)
+
+
+### Bug Fixes
+
+* Allow react 17 in peer dependency ([266a3dd](https://github.com/alampros/react-confetti/commit/266a3dd68c37312dc63d5597695de4491cdc1623))
+
 # [6.0.0](https://github.com/alampros/react-confetti/compare/v5.1.0...v6.0.0) (2020-07-17)
 
 
