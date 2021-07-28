@@ -60,7 +60,7 @@ class ReactConfettiInternal extends Component<Props> {
         height={confettiOptions.height}
         ref={this.canvas}
         {...passedProps}
-        style={canvasStyles}
+        style={{...canvasStyles, ...passedProps.style}}
       />
     )
   }
