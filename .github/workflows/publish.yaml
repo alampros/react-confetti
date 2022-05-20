@@ -18,6 +18,9 @@ jobs:
         cache: 'yarn'
     - run: yarn
     - run: yarn semantic-release
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     - run: yarn build-storybook
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@v4.3.3
