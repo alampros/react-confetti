@@ -1,3 +1,17 @@
+# [6.1.0](https://github.com/alampros/react-confetti/compare/v6.0.1...v6.1.0) (2022-05-20)
+
+
+### Bug Fixes
+
+* **ci:** add gh and npm tokens ([ecc2d87](https://github.com/alampros/react-confetti/commit/ecc2d87a29e01ec0a00151480619535784a35575))
+* **ci:** explicitly add npm token ([fb14930](https://github.com/alampros/react-confetti/commit/fb149307b8a172a98ec3697ae190a65d40d69622))
+* Allow react 18 in peer dependency ([6598781](https://github.com/alampros/react-confetti/commit/65987818ebc384891e60874998904ec5056f42b2))
+
+
+### Features
+
+* **ci:** travis => gh actions ([7af7f03](https://github.com/alampros/react-confetti/commit/7af7f0335d68838a62a75c9631ff58245fe8e00c))
+
 ## [6.0.1](https://github.com/alampros/react-confetti/compare/v6.0.0...v6.0.1) (2021-02-22)
 
 
