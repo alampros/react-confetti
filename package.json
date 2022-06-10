@@ -94,7 +94,7 @@
     "react-dom": "^16.3.0",
     "react-fps-stats": "^0.1.2",
     "react-use": "^15.3.2",
-    "semantic-release": "^17.1.1",
+    "semantic-release": "^19.0.3",
     "typescript": "^3.3.3333",
     "webpack": "^4.39.1",
     "webpack-cli": "^3.3.6"
