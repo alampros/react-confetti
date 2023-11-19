@@ -17,7 +17,7 @@ Based on a pen by @Gthibaud: https://codepen.io/Gthibaud/pen/ENzXbp
 ## Install
 
 ```sh
-npm install react-confetti
+npm install react-confetti react-use
 ```
 
 ## Use
