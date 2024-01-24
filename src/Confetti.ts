@@ -63,6 +63,11 @@ export interface IConfettiOptions {
    */
   run: boolean
   /**
+   * Number of milliseconds between each frame.
+   * @default undefined
+   */
+  frameRate?: number
+  /**
    * Renders some debug text on the canvas.
    * @default false
    */
@@ -143,6 +148,8 @@ export class Confetti {
   generator: ParticleGenerator
 
   rafId?: number
+  
+  lastFrameTime: number = Date.now()
 
   get options(): Partial<IConfettiOptions> {
     return this._options
@@ -164,7 +171,7 @@ export class Confetti {
   }
 
   setOptionsWithDefaults = (opts: Partial<IConfettiOptions>) => {
-    const computedConfettiDefaults = {
+  const computedConfettiDefaults = {
       confettiSource: {
         x: 0,
         y: 0,
@@ -181,10 +188,22 @@ export class Confetti {
       options: {
         run,
         onConfettiComplete,
+        frameRate,
       },
       canvas,
       context,
     } = this
+    // Throttle the frame rate if set
+    if(frameRate) {
+      const now = Date.now()
+      const elapsed = now - this.lastFrameTime
+      if(elapsed < 1000 / frameRate) {
+        this.rafId = requestAnimationFrame(this.update)
+        return
+      }
+      this.lastFrameTime = now - (elapsed % frameRate)
+    }
+
     if(run) {
       context.fillStyle = 'white'
       context.clearRect(0, 0, canvas.width, canvas.height)
