@@ -61,6 +61,12 @@ storiesOf('Props|Demos', module)
         max: 20,
         step: 0.1,
       })}
+      frameRate={number('Frame Rate', 60, {
+        range: true,
+        min: 1,
+        max: 60,
+        step: 1,
+      })}
       opacity={number('Opacity', 100, {
         range: true,
         min: 0,

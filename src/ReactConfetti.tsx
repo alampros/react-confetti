@@ -73,7 +73,7 @@ function extractCanvasProps(props: Partial<IConfettiOptions> | any): [Partial<IC
   const confettiOptions: Partial<IConfettiOptions> = {}
   const refs: Refs = {}
   const rest: any = {}
-  const confettiOptionKeys = [...Object.keys(confettiDefaults), 'confettiSource', 'drawShape', 'onConfettiComplete']
+  const confettiOptionKeys = [...Object.keys(confettiDefaults), 'confettiSource', 'drawShape', 'onConfettiComplete', 'frameRate']
   const refProps = ['canvasRef']
   for(const prop in props) {
     const val = props[prop as string]
