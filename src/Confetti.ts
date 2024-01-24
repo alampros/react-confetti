@@ -171,7 +171,7 @@ export class Confetti {
   }
 
   setOptionsWithDefaults = (opts: Partial<IConfettiOptions>) => {
-  const computedConfettiDefaults = {
+    const computedConfettiDefaults = {
       confettiSource: {
         x: 0,
         y: 0,
