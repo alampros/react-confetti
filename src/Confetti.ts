@@ -63,7 +63,7 @@ export interface IConfettiOptions {
    */
   run: boolean
   /**
-   * Number of milliseconds between each frame.
+   * The frame rate of the animation. If set, the animation will be throttled to that frame rate.
    * @default undefined
    */
   frameRate?: number
