@@ -86,7 +86,13 @@ export interface IConfettiOptions {
    * Controls the rate at which confetti is spawned.
    * @default easeInOutQuad
    */
-  tweenFunction: (currentTime: number, currentValue: number, targetValue: number, duration: number, s?: number) => number
+  tweenFunction: (
+    currentTime: number,
+    currentValue: number,
+    targetValue: number,
+    duration: number,
+    s?: number,
+  ) => number
   /**
    * Number of milliseconds it should take to spawn numberOfPieces.
    * @default 5000
@@ -102,7 +108,10 @@ export interface IConfettiOptions {
   onConfettiComplete?: (confettiInstance?: Confetti) => void
 }
 
-export const confettiDefaults: Pick<IConfettiOptions, Exclude<keyof IConfettiOptions, 'confettiSource'>> = {
+export const confettiDefaults: Pick<
+  IConfettiOptions,
+  Exclude<keyof IConfettiOptions, 'confettiSource'>
+> = {
   width: typeof window !== 'undefined' ? window.innerWidth : 300,
   height: typeof window !== 'undefined' ? window.innerHeight : 200,
   numberOfPieces: 200,
@@ -147,7 +156,10 @@ export class Confetti {
     }
     this.context = ctx
 
-    this.generator = new ParticleGenerator(this.canvas, () => this.options as IConfettiOptions)
+    this.generator = new ParticleGenerator(
+      this.canvas,
+      () => this.options as IConfettiOptions,
+    )
     this.options = opts
     this.update()
   }
@@ -174,7 +186,11 @@ export class Confetti {
     this.setOptionsWithDefaults(opts)
     if (this.generator) {
       Object.assign(this.generator, this.options.confettiSource)
-      if (typeof opts.recycle === 'boolean' && opts.recycle && lastRecycleState === false) {
+      if (
+        typeof opts.recycle === 'boolean' &&
+        opts.recycle &&
+        lastRecycleState === false
+      ) {
         this.generator.lastNumberOfPieces = this.generator.particles.length
       }
     }
@@ -192,7 +208,11 @@ export class Confetti {
         h: 0,
       },
     }
-    this._options = { ...computedConfettiDefaults, ...confettiDefaults, ...opts }
+    this._options = {
+      ...computedConfettiDefaults,
+      ...confettiDefaults,
+      ...opts,
+    }
     Object.assign(this, opts.confettiSource)
   }
 
@@ -220,7 +240,11 @@ export class Confetti {
     if (this.generator.animate()) {
       this.rafId = requestAnimationFrame(this.update)
     } else {
-      if (onConfettiComplete && typeof onConfettiComplete === 'function' && this.generator.particlesGenerated > 0) {
+      if (
+        onConfettiComplete &&
+        typeof onConfettiComplete === 'function' &&
+        this.generator.particlesGenerated > 0
+      ) {
         onConfettiComplete.call(this, this)
       }
       this._options.run = false

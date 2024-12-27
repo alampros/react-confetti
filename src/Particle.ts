@@ -13,7 +13,12 @@ enum RotationDirection {
 }
 
 export default class Particle {
-  constructor(context: CanvasRenderingContext2D, getOptions: () => IConfettiOptions, x: number, y: number) {
+  constructor(
+    context: CanvasRenderingContext2D,
+    getOptions: () => IConfettiOptions,
+    x: number,
+    y: number,
+  ) {
     this.getOptions = getOptions
     const { colors, initialVelocityX, initialVelocityY } = this.getOptions()
     this.context = context
@@ -22,14 +27,22 @@ export default class Particle {
     this.w = randomRange(5, 20)
     this.h = randomRange(5, 20)
     this.radius = randomRange(5, 10)
-    this.vx = typeof initialVelocityX === 'number' ? randomRange(-initialVelocityX, initialVelocityX) : randomRange(initialVelocityX.min, initialVelocityX.max)
-    this.vy = typeof initialVelocityY === 'number' ? randomRange(-initialVelocityY, 0) : randomRange(initialVelocityY.min, initialVelocityY.max)
+    this.vx =
+      typeof initialVelocityX === 'number'
+        ? randomRange(-initialVelocityX, initialVelocityX)
+        : randomRange(initialVelocityX.min, initialVelocityX.max)
+    this.vy =
+      typeof initialVelocityY === 'number'
+        ? randomRange(-initialVelocityY, 0)
+        : randomRange(initialVelocityY.min, initialVelocityY.max)
     this.shape = randomInt(0, 2)
     this.angle = degreesToRads(randomRange(0, 360))
     this.angularSpin = randomRange(-0.2, 0.2)
     this.color = colors[Math.floor(Math.random() * colors.length)]
     this.rotateY = randomRange(0, 1)
-    this.rotationDirection = randomRange(0, 1) ? RotationDirection.Positive : RotationDirection.Negative
+    this.rotationDirection = randomRange(0, 1)
+      ? RotationDirection.Positive
+      : RotationDirection.Negative
   }
 
   context: CanvasRenderingContext2D
@@ -71,9 +84,15 @@ export default class Particle {
     this.vx += wind
     this.vx *= friction
     this.vy *= friction
-    if (this.rotateY >= 1 && this.rotationDirection === RotationDirection.Positive) {
+    if (
+      this.rotateY >= 1 &&
+      this.rotationDirection === RotationDirection.Positive
+    ) {
       this.rotationDirection = RotationDirection.Negative
-    } else if (this.rotateY <= -1 && this.rotationDirection === RotationDirection.Negative) {
+    } else if (
+      this.rotateY <= -1 &&
+      this.rotationDirection === RotationDirection.Negative
+    ) {
       this.rotationDirection = RotationDirection.Positive
     }
 

@@ -25,6 +25,7 @@
   "scripts": {
     "clean": "git clean -xfd dist/",
     "build": "rollup -c --configPlugin @rollup/plugin-typescript",
+    "lint": "biome check .",
     "prepare": "npm run build",
     "develop": "npm run storybook",
     "storybook": "storybook dev -p 3000",

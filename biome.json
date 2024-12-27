@@ -18,7 +18,7 @@
     "indentStyle": "space",
     "indentWidth": 2,
     "formatWithErrors": true,
-    "lineWidth": 100
+    "lineWidth": 80
   },
   "linter": {
     "enabled": true,
@@ -49,7 +49,7 @@
       "semicolons": "asNeeded",
       "quoteStyle": "single",
       "indentStyle": "space",
-      "lineWidth": 100,
+      "lineWidth": 80,
       "trailingCommas": "all"
     },
     "parser": {

@@ -51,12 +51,24 @@ export default class ParticleGenerator implements IParticleGenerator {
   getParticle = () => {
     const newParticleX = randomRange(this.x, this.w + this.x)
     const newParticleY = randomRange(this.y, this.h + this.y)
-    return new Particle(this.context, this.getOptions, newParticleX, newParticleY)
+    return new Particle(
+      this.context,
+      this.getOptions,
+      newParticleX,
+      newParticleY,
+    )
   }
 
   animate = (): boolean => {
     const { canvas, context, particlesGenerated, lastNumberOfPieces } = this
-    const { run, recycle, numberOfPieces, debug, tweenFunction, tweenDuration } = this.getOptions()
+    const {
+      run,
+      recycle,
+      numberOfPieces,
+      debug,
+      tweenFunction,
+      tweenDuration,
+    } = this.getOptions()
     if (!run) {
       return false
     }
@@ -76,8 +88,16 @@ export default class ParticleGenerator implements IParticleGenerator {
       const { tweenInitTime } = this
       // Add more than one piece per loop, otherwise the number of pieces would
       // be limitted by the RAF framerate
-      const progressTime = now - tweenInitTime > tweenDuration ? tweenDuration : Math.max(0, now - tweenInitTime)
-      const tweenedVal = tweenFunction(progressTime, activeCount, numberOfPieces, tweenDuration)
+      const progressTime =
+        now - tweenInitTime > tweenDuration
+          ? tweenDuration
+          : Math.max(0, now - tweenInitTime)
+      const tweenedVal = tweenFunction(
+        progressTime,
+        activeCount,
+        numberOfPieces,
+        tweenDuration,
+      )
       const numToAdd = Math.round(tweenedVal - activeCount)
       for (let i = 0; i < numToAdd; i++) {
         this.particles.push(this.getParticle())
@@ -89,7 +109,11 @@ export default class ParticleGenerator implements IParticleGenerator {
       context.font = '12px sans-serif'
       context.fillStyle = '#333'
       context.textAlign = 'right'
-      context.fillText(`Particles: ${nP}`, canvas.width - 10, canvas.height - 20)
+      context.fillText(
+        `Particles: ${nP}`,
+        canvas.width - 10,
+        canvas.height - 20,
+      )
     }
 
     // Maintain the population
@@ -97,7 +121,12 @@ export default class ParticleGenerator implements IParticleGenerator {
       // Update each particle's position
       p.update()
       // Prune the off-canvas particles
-      if (p.y > canvas.height || p.y < -100 || p.x > canvas.width + 100 || p.x < -100) {
+      if (
+        p.y > canvas.height ||
+        p.y < -100 ||
+        p.x > canvas.width + 100 ||
+        p.x < -100
+      ) {
         if (recycle && activeCount <= numberOfPieces) {
           // Replace the particle with a brand new one
           this.particles[i] = this.getParticle()

@@ -22,7 +22,14 @@ export const MouseRain = (args: any) => {
       }
   return (
     <div style={{ minHeight: 200, width: '100%' }}>
-      <p style={{ textAlign: 'center', fontFamily: 'sans-serif', color: '#999', margin: '20%' }}>
+      <p
+        style={{
+          textAlign: 'center',
+          fontFamily: 'sans-serif',
+          color: '#999',
+          margin: '20%',
+        }}
+      >
         Move your mouse
       </p>
       <ReactConfetti

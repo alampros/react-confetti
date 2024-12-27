@@ -10,7 +10,13 @@ export function lerp(lnorm: number, min: number, max: number) {
   return (max - min) * lnorm + min
 }
 
-export function map(value: number, sourceMin: number, sourceMax: number, destMin: number, destMax: number) {
+export function map(
+  value: number,
+  sourceMin: number,
+  sourceMax: number,
+  destMin: number,
+  destMax: number,
+) {
   return lerp(norm(value, sourceMin, sourceMax), destMin, destMax)
 }
 
@@ -43,15 +49,29 @@ export function inRange(value: number, min: number, max: number) {
 }
 
 export function pointInRect(p: IPoint, rect: IRect) {
-  return inRange(p.x, rect.x, rect.x + rect.w) && inRange(p.y, rect.y, rect.y + rect.h)
+  return (
+    inRange(p.x, rect.x, rect.x + rect.w) &&
+    inRange(p.y, rect.y, rect.y + rect.h)
+  )
 }
 
-export function rangeIntersect(min0: number, max0: number, min1: number, max1: number) {
-  return Math.max(min0, max0) >= Math.min(min1, max1) && Math.min(min0, max0) <= Math.max(min1, max1)
+export function rangeIntersect(
+  min0: number,
+  max0: number,
+  min1: number,
+  max1: number,
+) {
+  return (
+    Math.max(min0, max0) >= Math.min(min1, max1) &&
+    Math.min(min0, max0) <= Math.max(min1, max1)
+  )
 }
 
 export function rectIntersect(r0: IRect, r1: IRect) {
-  return rangeIntersect(r0.x, r0.x + r0.w, r1.x, r1.x + r1.w) && rangeIntersect(r0.y, r0.y + r0.h, r1.y, r1.y + r1.h)
+  return (
+    rangeIntersect(r0.x, r0.x + r0.w, r1.x, r1.x + r1.w) &&
+    rangeIntersect(r0.y, r0.y + r0.h, r1.y, r1.y + r1.h)
+  )
 }
 
 export function degreesToRads(degrees: number) {
