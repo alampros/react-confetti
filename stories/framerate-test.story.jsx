@@ -38,6 +38,12 @@ storiesOf('Tests|Performance', module)
           max: 100,
           step: 1,
         }) / 100}
+        frameRate={number('Frame Rate', 60, {
+          range: true,
+          min: 1,
+          max: 60,
+          step: 1,
+        })}
       />
       <FPSStats right={0} left="auto" />
     </div>
