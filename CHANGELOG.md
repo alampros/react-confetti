@@ -1,3 +1,11 @@
+# [6.2.0](https://github.com/alampros/react-confetti/compare/v6.1.0...v6.2.0) (2024-12-27)
+
+
+### Features
+
+* update `peerDependencies` to support React 19 ([ce2d40a](https://github.com/alampros/react-confetti/commit/ce2d40a65cfbb0fc491df550bd5a9caea149d82b))
+* upgrade tooling ([9c84a99](https://github.com/alampros/react-confetti/commit/9c84a9941b5efeec2082ee9d54f8e2655f990d2f))
+
 # [6.1.0](https://github.com/alampros/react-confetti/compare/v6.0.1...v6.1.0) (2022-05-20)
 
 

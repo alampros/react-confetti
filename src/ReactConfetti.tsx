@@ -3,7 +3,10 @@ import Confetti, { IConfettiOptions, confettiDefaults } from './Confetti'
 
 const ref = React.createRef<HTMLCanvasElement>()
 
-export type Props = Partial<IConfettiOptions> & React.CanvasHTMLAttributes<HTMLCanvasElement> & { canvasRef?: React.Ref<HTMLCanvasElement> }
+export type Props = Partial<IConfettiOptions> &
+  React.CanvasHTMLAttributes<HTMLCanvasElement> & {
+    canvasRef?: React.Ref<HTMLCanvasElement>
+  }
 
 class ReactConfettiInternal extends React.Component<Props> {
   static readonly defaultProps = {
@@ -54,18 +57,38 @@ class ReactConfettiInternal extends React.Component<Props> {
       right: 0,
       ...passedProps.style,
     }
-    return <canvas width={confettiOptions.width} height={confettiOptions.height} ref={this.canvas} {...passedProps} style={canvasStyles} />
+    return (
+      <canvas
+        width={confettiOptions.width}
+        height={confettiOptions.height}
+        ref={this.canvas}
+        {...passedProps}
+        style={canvasStyles}
+      />
+    )
   }
 }
 
 interface Refs {
   [key: string]: React.Ref<HTMLElement>
 }
-function extractCanvasProps(props: Partial<IConfettiOptions> | any): [Partial<IConfettiOptions>, Partial<React.CanvasHTMLAttributes<HTMLCanvasElement>>, Refs] {
+function extractCanvasProps(
+  props: Partial<IConfettiOptions> | any,
+): [
+  Partial<IConfettiOptions>,
+  Partial<React.CanvasHTMLAttributes<HTMLCanvasElement>>,
+  Refs,
+] {
   const confettiOptions: Partial<IConfettiOptions> = {}
   const refs: Refs = {}
   const rest: any = {}
-  const confettiOptionKeys = [...Object.keys(confettiDefaults), 'confettiSource', 'drawShape', 'onConfettiComplete', 'frameRate']
+  const confettiOptionKeys = [
+    ...Object.keys(confettiDefaults),
+    'confettiSource',
+    'drawShape',
+    'onConfettiComplete',
+    'frameRate',
+  ]
   const refProps = ['canvasRef']
   for (const prop in props) {
     const val = props[prop as string]
@@ -80,6 +103,8 @@ function extractCanvasProps(props: Partial<IConfettiOptions> | any): [Partial<IC
   return [confettiOptions, rest, refs]
 }
 
-export const ReactConfetti = React.forwardRef<HTMLCanvasElement, Props>((props, ref) => <ReactConfettiInternal canvasRef={ref} {...props} />)
+export const ReactConfetti = React.forwardRef<HTMLCanvasElement, Props>(
+  (props, ref) => <ReactConfettiInternal canvasRef={ref} {...props} />,
+)
 
 export default ReactConfetti
