@@ -1,6 +1,6 @@
 {
   "name": "react-confetti",
-  "version": "6.2.0",
+  "version": "6.2.1",
   "description": "React component to draw confetti for your party.",
   "main": "dist/index.js",
   "type": "commonjs",

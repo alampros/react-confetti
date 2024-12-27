@@ -1,3 +1,10 @@
+## [6.2.1](https://github.com/alampros/react-confetti/compare/v6.2.0...v6.2.1) (2024-12-27)
+
+
+### Bug Fixes
+
+* specify commonjs module ([aa99153](https://github.com/alampros/react-confetti/commit/aa99153ccb42c25f596ddbc956a68b52c53512f3))
+
 # [6.2.0](https://github.com/alampros/react-confetti/compare/v6.1.0...v6.2.0) (2024-12-27)
 
 
