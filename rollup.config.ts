@@ -7,8 +7,9 @@ const config: RollupOptions = {
   input: 'src/index.ts',
   output: {
     dir: 'dist',
-    format: 'es',
+    format: 'module',
     sourcemap: true,
+    exports: 'default',
   },
   external: ['react', 'react-dom', 'tween-functions'],
   plugins: [

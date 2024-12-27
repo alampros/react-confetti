@@ -3,6 +3,7 @@
   "version": "6.2.0",
   "description": "React component to draw confetti for your party.",
   "main": "dist/index.js",
+  "type": "commonjs",
   "repository": {
     "type": "git",
     "url": "https://github.com/alampros/react-confetti.git"
