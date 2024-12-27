@@ -1,10 +1,10 @@
-import { randomRange, randomInt, degreesToRads } from './utils'
 import { IConfettiOptions } from './Confetti'
+import { degreesToRads, randomInt, randomRange } from './utils'
 
 export enum ParticleShape {
   Circle = 0,
-  Square,
-  Strip,
+  Square = 1,
+  Strip = 2,
 }
 
 enum RotationDirection {
@@ -15,11 +15,7 @@ enum RotationDirection {
 export default class Particle {
   constructor(context: CanvasRenderingContext2D, getOptions: () => IConfettiOptions, x: number, y: number) {
     this.getOptions = getOptions
-    const {
-      colors,
-      initialVelocityX,
-      initialVelocityY,
-    } = this.getOptions()
+    const { colors, initialVelocityX, initialVelocityY } = this.getOptions()
     this.context = context
     this.x = x
     this.y = y
@@ -68,22 +64,16 @@ export default class Particle {
   getOptions: () => IConfettiOptions
 
   update() {
-    const {
-      gravity,
-      wind,
-      friction,
-      opacity,
-      drawShape,
-    } = this.getOptions()
+    const { gravity, wind, friction, opacity, drawShape } = this.getOptions()
     this.x += this.vx
     this.y += this.vy
     this.vy += gravity
     this.vx += wind
     this.vx *= friction
     this.vy *= friction
-    if(this.rotateY >= 1 && this.rotationDirection === RotationDirection.Positive) {
+    if (this.rotateY >= 1 && this.rotationDirection === RotationDirection.Positive) {
       this.rotationDirection = RotationDirection.Negative
-    } else if(this.rotateY <= -1 && this.rotationDirection === RotationDirection.Negative) {
+    } else if (this.rotateY <= -1 && this.rotationDirection === RotationDirection.Negative) {
       this.rotationDirection = RotationDirection.Positive
     }
 
@@ -102,10 +92,10 @@ export default class Particle {
     this.context.globalAlpha = opacity
     this.context.lineCap = 'round'
     this.context.lineWidth = 2
-    if(drawShape && typeof drawShape === 'function') {
+    if (drawShape && typeof drawShape === 'function') {
       drawShape.call(this, this.context)
     } else {
-      switch(this.shape) {
+      switch (this.shape) {
         case ParticleShape.Circle: {
           this.context.beginPath()
           this.context.arc(0, 0, this.radius, 0, 2 * Math.PI)

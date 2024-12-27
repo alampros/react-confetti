@@ -3,16 +3,15 @@
     "baseUrl": ".",
     "paths": { "*": ["types/*"] },
     "target": "esnext",
-    "module": "commonjs",
+    "module": "esnext",
     "moduleResolution": "node",
     "declaration": true,
-    "declarationDir": "dist/types",
+    "outDir": "dist",
     "jsx": "preserve",
-    "emitDeclarationOnly": true,
+    "noEmitOnError": true,
+    // "emitDeclarationOnly": true,
     "strict": true,
     "esModuleInterop": true
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src", "rollup.config.ts"]
 }

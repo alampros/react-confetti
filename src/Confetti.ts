@@ -1,6 +1,6 @@
-import tweens from 'tween-functions'
-import { IRect } from './Rect'
+import * as tweens from 'tween-functions'
 import ParticleGenerator from './ParticleGenerator'
+import { IRect } from './Rect'
 
 export interface IConfettiOptions {
   /**
@@ -37,12 +37,12 @@ export interface IConfettiOptions {
    * How fast the confetti is emitted horizontally
    * @default 4
    */
-  initialVelocityX: {min: number, max: number} | number
+  initialVelocityX: { min: number; max: number } | number
   /**
    * How fast the confetti is emitted vertically
    * @default 10
    */
-  initialVelocityY: {min: number, max: number} | number
+  initialVelocityY: { min: number; max: number } | number
   /**
    * Array of colors to choose from.
    */
@@ -62,6 +62,11 @@ export interface IConfettiOptions {
    * @default true
    */
   run: boolean
+  /**
+   * The frame rate of the animation. If set, the animation will be throttled to that frame rate.
+   * @default undefined
+   */
+  frameRate?: number
   /**
    * Renders some debug text on the canvas.
    * @default false
@@ -107,10 +112,23 @@ export const confettiDefaults: Pick<IConfettiOptions, Exclude<keyof IConfettiOpt
   initialVelocityX: 4,
   initialVelocityY: 10,
   colors: [
-    '#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5',
-    '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4CAF50',
-    '#8BC34A', '#CDDC39', '#FFEB3B', '#FFC107', '#FF9800',
-    '#FF5722', '#795548',
+    '#f44336',
+    '#e91e63',
+    '#9c27b0',
+    '#673ab7',
+    '#3f51b5',
+    '#2196f3',
+    '#03a9f4',
+    '#00bcd4',
+    '#009688',
+    '#4CAF50',
+    '#8BC34A',
+    '#CDDC39',
+    '#FFEB3B',
+    '#FFC107',
+    '#FF9800',
+    '#FF5722',
+    '#795548',
   ],
   opacity: 1.0,
   debug: false,
@@ -124,12 +142,12 @@ export class Confetti {
   constructor(canvas: HTMLCanvasElement, opts: Partial<IConfettiOptions>) {
     this.canvas = canvas
     const ctx = this.canvas.getContext('2d')
-    if(!ctx) {
+    if (!ctx) {
       throw new Error('Could not get canvas context')
     }
     this.context = ctx
 
-    this.generator = new ParticleGenerator(this.canvas, () => (this.options as IConfettiOptions))
+    this.generator = new ParticleGenerator(this.canvas, () => this.options as IConfettiOptions)
     this.options = opts
     this.update()
   }
@@ -144,21 +162,23 @@ export class Confetti {
 
   rafId?: number
 
+  lastFrameTime: number = Date.now()
+
   get options(): Partial<IConfettiOptions> {
     return this._options
   }
 
   set options(opts: Partial<IConfettiOptions>) {
-    const lastRunState = this._options && this._options.run
-    const lastRecycleState = this._options && this._options.recycle
+    const lastRunState = this._options?.run
+    const lastRecycleState = this._options?.recycle
     this.setOptionsWithDefaults(opts)
-    if(this.generator) {
+    if (this.generator) {
       Object.assign(this.generator, this.options.confettiSource)
-      if(typeof opts.recycle === 'boolean' && opts.recycle && lastRecycleState === false) {
+      if (typeof opts.recycle === 'boolean' && opts.recycle && lastRecycleState === false) {
         this.generator.lastNumberOfPieces = this.generator.particles.length
       }
     }
-    if(typeof opts.run === 'boolean' && opts.run && lastRunState === false) {
+    if (typeof opts.run === 'boolean' && opts.run && lastRunState === false) {
       this.update()
     }
   }
@@ -178,21 +198,29 @@ export class Confetti {
 
   update = () => {
     const {
-      options: {
-        run,
-        onConfettiComplete,
-      },
+      options: { run, onConfettiComplete, frameRate },
       canvas,
       context,
     } = this
-    if(run) {
+    // Throttle the frame rate if set
+    if (frameRate) {
+      const now = Date.now()
+      const elapsed = now - this.lastFrameTime
+      if (elapsed < 1000 / frameRate) {
+        this.rafId = requestAnimationFrame(this.update)
+        return
+      }
+      this.lastFrameTime = now - (elapsed % frameRate)
+    }
+
+    if (run) {
       context.fillStyle = 'white'
       context.clearRect(0, 0, canvas.width, canvas.height)
     }
-    if(this.generator.animate()) {
+    if (this.generator.animate()) {
       this.rafId = requestAnimationFrame(this.update)
     } else {
-      if(onConfettiComplete && typeof onConfettiComplete === 'function' && this.generator.particlesGenerated > 0) {
+      if (onConfettiComplete && typeof onConfettiComplete === 'function' && this.generator.particlesGenerated > 0) {
         onConfettiComplete.call(this, this)
       }
       this._options.run = false
@@ -200,7 +228,7 @@ export class Confetti {
   }
 
   reset = () => {
-    if(this.generator && this.generator.particlesGenerated > 0) {
+    if (this.generator && this.generator.particlesGenerated > 0) {
       this.generator.particlesGenerated = 0
       this.generator.particles = []
       this.generator.lastNumberOfPieces = 0
@@ -209,7 +237,7 @@ export class Confetti {
 
   stop = () => {
     this.options = { run: false }
-    if(this.rafId) {
+    if (this.rafId) {
       cancelAnimationFrame(this.rafId)
       this.rafId = undefined
     }
