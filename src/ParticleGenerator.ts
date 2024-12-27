@@ -1,6 +1,6 @@
 import { IConfettiOptions } from './Confetti'
-import { IRect } from './Rect'
 import Particle from './Particle'
+import { IRect } from './Rect'
 import { randomRange } from './utils'
 
 export interface IParticleGenerator extends IRect {
@@ -15,7 +15,7 @@ export default class ParticleGenerator implements IParticleGenerator {
   constructor(canvas: HTMLCanvasElement, getOptions: () => IConfettiOptions) {
     this.canvas = canvas
     const ctx = this.canvas.getContext('2d')
-    if(!ctx) {
+    if (!ctx) {
       throw new Error('Could not get canvas context')
     }
     this.context = ctx
@@ -28,21 +28,21 @@ export default class ParticleGenerator implements IParticleGenerator {
 
   getOptions: () => IConfettiOptions
 
-  x: number = 0
+  x = 0
 
-  y: number = 0
+  y = 0
 
-  w: number = 0
+  w = 0
 
-  h: number = 0
+  h = 0
 
-  lastNumberOfPieces: number = 0
+  lastNumberOfPieces = 0
 
   tweenInitTime: number = Date.now()
 
   particles: Particle[] = []
 
-  particlesGenerated: number = 0
+  particlesGenerated = 0
 
   removeParticleAt = (i: number) => {
     this.particles.splice(i, 1)
@@ -55,21 +55,9 @@ export default class ParticleGenerator implements IParticleGenerator {
   }
 
   animate = (): boolean => {
-    const {
-      canvas,
-      context,
-      particlesGenerated,
-      lastNumberOfPieces,
-    } = this
-    const {
-      run,
-      recycle,
-      numberOfPieces,
-      debug,
-      tweenFunction,
-      tweenDuration,
-    } = this.getOptions()
-    if(!run) {
+    const { canvas, context, particlesGenerated, lastNumberOfPieces } = this
+    const { run, recycle, numberOfPieces, debug, tweenFunction, tweenDuration } = this.getOptions()
+    if (!run) {
       return false
     }
 
@@ -79,26 +67,24 @@ export default class ParticleGenerator implements IParticleGenerator {
     const now = Date.now()
 
     // Initial population
-    if(activeCount < numberOfPieces) {
+    if (activeCount < numberOfPieces) {
       // Use the numberOfPieces prop as a key to reset the easing timing
-      if(lastNumberOfPieces !== numberOfPieces) {
+      if (lastNumberOfPieces !== numberOfPieces) {
         this.tweenInitTime = now
         this.lastNumberOfPieces = numberOfPieces
       }
       const { tweenInitTime } = this
       // Add more than one piece per loop, otherwise the number of pieces would
       // be limitted by the RAF framerate
-      const progressTime = now - tweenInitTime > tweenDuration
-        ? tweenDuration
-        : Math.max(0, now - tweenInitTime)
+      const progressTime = now - tweenInitTime > tweenDuration ? tweenDuration : Math.max(0, now - tweenInitTime)
       const tweenedVal = tweenFunction(progressTime, activeCount, numberOfPieces, tweenDuration)
       const numToAdd = Math.round(tweenedVal - activeCount)
-      for(let i = 0; i < numToAdd; i++) {
+      for (let i = 0; i < numToAdd; i++) {
         this.particles.push(this.getParticle())
       }
       this.particlesGenerated += numToAdd
     }
-    if(debug) {
+    if (debug) {
       // Draw debug text
       context.font = '12px sans-serif'
       context.fillStyle = '#333'
@@ -111,8 +97,8 @@ export default class ParticleGenerator implements IParticleGenerator {
       // Update each particle's position
       p.update()
       // Prune the off-canvas particles
-      if(p.y > canvas.height || p.y < -100 || p.x > canvas.width + 100 || p.x < -100) {
-        if(recycle && activeCount <= numberOfPieces) {
+      if (p.y > canvas.height || p.y < -100 || p.x > canvas.width + 100 || p.x < -100) {
+        if (recycle && activeCount <= numberOfPieces) {
           // Replace the particle with a brand new one
           this.particles[i] = this.getParticle()
         } else {

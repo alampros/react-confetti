@@ -10,18 +10,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+    - uses: actions/checkout@v4
+
+    - name: Setup Biome
+      uses: biomejs/setup-biome@v2
+    - name: Lint
+      run: biome ci
+
+    - name: Use Node.js
+      uses: actions/setup-node@v4
       with:
-        node-version: 16
-        cache: 'yarn'
-    - run: yarn
-    - run: yarn semantic-release
+        node-version: 20
+    - run: npm ci
+    - run: npm run semantic-release
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-    - run: yarn build-storybook
+    - run: npm run build-storybook
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@v4.3.3
       with:
