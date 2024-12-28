@@ -1,17 +1,60 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": { "*": ["types/*"] },
-    "target": "esnext",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "declaration": true,
-    "outDir": "dist",
-    "jsx": "preserve",
-    "noEmitOnError": true,
-    // "emitDeclarationOnly": true,
+    // To ensure that our code is compatible with "slightly old" browsers,
+    // we target an older version of ECMAScript (ES2020 in this case).
+    // See https://www.typescriptlang.org/tsconfig#target
+    "target": "es2020",
+
+    // We load these 3 libraries in the global scope so TypeScript knows
+    // about the DOM and ES2020 features.
+    // See https://www.typescriptlang.org/tsconfig#lib
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+
+    // To have compatibility with ES modules, we can use the values:
+    // - ES2015: Very basic support for ES modules
+    // - ES2020: Supports dynamic imports and import.meta
+    // - ES2022: Supports top-level await
+    // See https://www.typescriptlang.org/tsconfig#module
+    "module": "ES2020",
+
+    // The 'bundler' resolution strategy is similar to the 'node16' and
+    // 'nodenext' strategies (in that it supports package.json "exports" and
+    // "imports" fields), but it allows us to not have to specify the file
+    // extension when importing files (which is nice, because we'll be bundling
+    // everything anyway, so the extensions are not relevant).
+    // See https://www.typescriptlang.org/tsconfig#moduleResolution
+    "moduleResolution": "Bundler",
+
+    // This tells TypeScript to use the `react-jsx` factory function when
+    // transpiling JSX syntax.
+    "jsx": "react-jsx",
+
+    // Our code will be placed in the ./src directory
+    "baseUrl": "./src",
+
+    // We'll use Rollup to emit code, instead of tsc.
+    "noEmit": true,
+
+    // Most bundlers have limitations when dealing with features such as
+    // `const enum` (which can affect code generation across different files).
+    // Because of this, it is a good idea to ensure that every module is
+    // compilable on its own, without relying on other modules.
+    // See https://www.typescriptlang.org/tsconfig#isolatedModules
+    "isolatedModules": true,
+
+    // I'm surprised that this option is still not enabled by default, because
+    // it's basically a bug fix for a mistake they made in their past
+    // assumptions on how ES modules work.
+    // See https://www.typescriptlang.org/tsconfig#esModuleInterop
+    "esModuleInterop": true,
+
+    // Feel free to not use these options if you don't want to, but my
+    // suggestion is to always use it, so you can catch more errors at compile
+    // time.
     "strict": true,
-    "esModuleInterop": true
+    "checkJs": true
   },
-  "include": ["src", "rollup.config.ts"]
+  // In a real project, we might need to add some more directories to the
+  // "exclude" array, but for this example we'll keep it simple.
+  "exclude": ["dist/**/*", "node_modules/**/*"]
 }
