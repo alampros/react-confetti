@@ -2,8 +2,21 @@
   "name": "react-confetti",
   "version": "6.2.1",
   "description": "React component to draw confetti for your party.",
-  "main": "dist/index.js",
-  "type": "commonjs",
+  "main": "dist/react-confetti.cjs",
+  "module": "dist/react-confetti.mjs",
+  "types": "dist/react-confetti.d.cts",
+  "exports": {
+    "import": {
+      "types": "./dist/react-confetti.d.mts",
+      "default": "./dist/react-confetti.mjs"
+    },
+    "require": {
+      "types": "./dist/react-confetti.d.cts",
+      "default": "./dist/react-confetti.cjs"
+    },
+    "browser": "./dist/react-confetti.iife.js",
+    "default": "./dist/react-confetti.umd.js"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/alampros/react-confetti.git"
@@ -59,6 +72,7 @@
     "@storybook/react-vite": "^8.4.7",
     "@storybook/test": "^8.4.7",
     "@types/react": "^19.0.2",
+    "@types/tween-functions": "^1.2.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-fps-stats": "^0.3.1",
