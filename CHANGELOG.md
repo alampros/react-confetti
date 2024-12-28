@@ -1,3 +1,10 @@
+## [6.2.2](https://github.com/alampros/react-confetti/compare/v6.2.1...v6.2.2) (2024-12-28)
+
+
+### Bug Fixes
+
+* build multiple module types ([3be757d](https://github.com/alampros/react-confetti/commit/3be757d656a833966370d0fd5ee0c9fa6a1efe75)), closes [#162](https://github.com/alampros/react-confetti/issues/162) [#158](https://github.com/alampros/react-confetti/issues/158)
+
 ## [6.2.1](https://github.com/alampros/react-confetti/compare/v6.2.0...v6.2.1) (2024-12-27)
 
 
