@@ -1,6 +1,8 @@
 import React from 'react'
 import Confetti, { IConfettiOptions, confettiDefaults } from './Confetti'
 
+export type { IConfettiOptions } from './Confetti'
+
 const ref = React.createRef<HTMLCanvasElement>()
 
 export type Props = Partial<IConfettiOptions> &
