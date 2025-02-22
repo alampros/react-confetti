@@ -1,3 +1,10 @@
+## [6.2.3](https://github.com/alampros/react-confetti/compare/v6.2.2...v6.2.3) (2025-02-22)
+
+
+### Bug Fixes
+
+* export IConfettiOptions ([73dffe8](https://github.com/alampros/react-confetti/commit/73dffe8f87cb87ed7aed42effdc056ac6fe8ffde)), closes [#165](https://github.com/alampros/react-confetti/issues/165)
+
 ## [6.2.2](https://github.com/alampros/react-confetti/compare/v6.2.1...v6.2.2) (2024-12-28)
 
 
