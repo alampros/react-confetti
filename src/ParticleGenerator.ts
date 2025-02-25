@@ -116,8 +116,9 @@ export default class ParticleGenerator implements IParticleGenerator {
       )
     }
 
-    // Maintain the population
-    this.particles.forEach((p, i) => {
+    // Maintain the population, iterating backwards to prevent issues when removing particles
+    for (let i = this.particles.length - 1; i >= 0; i--) {
+      const p = this.particles[i]
       // Update each particle's position
       p.update()
       // Prune the off-canvas particles
@@ -134,7 +135,7 @@ export default class ParticleGenerator implements IParticleGenerator {
           this.removeParticleAt(i)
         }
       }
-    })
+    }
     return nP > 0 || activeCount < numberOfPieces
   }
 }
