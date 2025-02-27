@@ -12,6 +12,8 @@ enum RotationDirection {
   Negative = -1,
 }
 
+const DEFAULT_FRAME_TIME = 1000 / 60
+
 export default class Particle {
   constructor(
     context: CanvasRenderingContext2D,
@@ -76,14 +78,15 @@ export default class Particle {
 
   getOptions: () => IConfettiOptions
 
-  update() {
+  update(elapsed: number) {
     const { gravity, wind, friction, opacity, drawShape } = this.getOptions()
-    this.x += this.vx
-    this.y += this.vy
-    this.vy += gravity
-    this.vx += wind
-    this.vx *= friction
-    this.vy *= friction
+    const frameTimeMultiplier = elapsed / DEFAULT_FRAME_TIME
+    this.x += this.vx * frameTimeMultiplier
+    this.y += this.vy * frameTimeMultiplier
+    this.vy += gravity * frameTimeMultiplier
+    this.vx += wind * frameTimeMultiplier
+    this.vx *= friction ** frameTimeMultiplier
+    this.vy *= friction ** frameTimeMultiplier
     if (
       this.rotateY >= 1 &&
       this.rotationDirection === RotationDirection.Positive
@@ -96,7 +99,7 @@ export default class Particle {
       this.rotationDirection = RotationDirection.Positive
     }
 
-    const rotateDelta = 0.1 * this.rotationDirection
+    const rotateDelta = 0.1 * this.rotationDirection * frameTimeMultiplier
 
     this.rotateY += rotateDelta
     this.angle += this.angularSpin
