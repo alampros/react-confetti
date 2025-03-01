@@ -174,7 +174,7 @@ export class Confetti {
 
   rafId?: number
 
-  lastFrameTime: number = 0
+  lastFrameTime = 0
 
   get options(): Partial<IConfettiOptions> {
     return this._options
@@ -216,7 +216,7 @@ export class Confetti {
     Object.assign(this, opts.confettiSource)
   }
 
-  update = (timestamp: number = 0) => {
+  update = (timestamp = 0) => {
     const {
       options: { run, onConfettiComplete, frameRate },
       canvas,
