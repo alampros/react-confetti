@@ -1,3 +1,15 @@
+# [6.3.0](https://github.com/alampros/react-confetti/compare/v6.2.3...v6.3.0) (2025-03-01)
+
+
+### Bug Fixes
+
+* prevent particle flicker on removal ([5cb5bd8](https://github.com/alampros/react-confetti/commit/5cb5bd87032705b90a8d85588d931b985a4127e5))
+
+
+### Features
+
+* using elapsed time in physics updates ([d1626dc](https://github.com/alampros/react-confetti/commit/d1626dcd16758f627749a30794075663c5fce15f))
+
 ## [6.2.3](https://github.com/alampros/react-confetti/compare/v6.2.2...v6.2.3) (2025-02-22)
 
 
