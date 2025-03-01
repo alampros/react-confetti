@@ -174,7 +174,7 @@ export class Confetti {
 
   rafId?: number
 
-  lastFrameTime: number = Date.now()
+  lastFrameTime: number = 0
 
   get options(): Partial<IConfettiOptions> {
     return this._options
@@ -216,28 +216,27 @@ export class Confetti {
     Object.assign(this, opts.confettiSource)
   }
 
-  update = () => {
+  update = (timestamp: number = 0) => {
     const {
       options: { run, onConfettiComplete, frameRate },
       canvas,
       context,
     } = this
+    // Cap elapsed time to 50ms to prevent large time steps
+    const elapsed = Math.min(timestamp - this.lastFrameTime, 50)
     // Throttle the frame rate if set
-    if (frameRate) {
-      const now = Date.now()
-      const elapsed = now - this.lastFrameTime
-      if (elapsed < 1000 / frameRate) {
-        this.rafId = requestAnimationFrame(this.update)
-        return
-      }
-      this.lastFrameTime = now - (elapsed % frameRate)
+    if (frameRate && elapsed < 1000 / frameRate) {
+      this.rafId = requestAnimationFrame(this.update)
+      return
     }
+
+    this.lastFrameTime = timestamp - (frameRate ? elapsed % frameRate : 0)
 
     if (run) {
       context.fillStyle = 'white'
       context.clearRect(0, 0, canvas.width, canvas.height)
     }
-    if (this.generator.animate()) {
+    if (this.generator.animate(elapsed)) {
       this.rafId = requestAnimationFrame(this.update)
     } else {
       if (

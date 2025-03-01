@@ -6,7 +6,7 @@ import { randomRange } from './utils'
 export interface IParticleGenerator extends IRect {
   removeParticleAt: (index: number) => void
   getParticle: () => void
-  animate: () => boolean
+  animate: (elapsed: number) => boolean
   particles: Particle[]
   particlesGenerated: number
 }
@@ -38,7 +38,7 @@ export default class ParticleGenerator implements IParticleGenerator {
 
   lastNumberOfPieces = 0
 
-  tweenInitTime: number = Date.now()
+  tweenInitTime: number = 0
 
   particles: Particle[] = []
 
@@ -59,7 +59,7 @@ export default class ParticleGenerator implements IParticleGenerator {
     )
   }
 
-  animate = (): boolean => {
+  animate = (elapsed: number): boolean => {
     const { canvas, context, particlesGenerated, lastNumberOfPieces } = this
     const {
       run,
@@ -76,24 +76,19 @@ export default class ParticleGenerator implements IParticleGenerator {
     const nP = this.particles.length
     const activeCount = recycle ? nP : particlesGenerated
 
-    const now = Date.now()
-
     // Initial population
     if (activeCount < numberOfPieces) {
       // Use the numberOfPieces prop as a key to reset the easing timing
       if (lastNumberOfPieces !== numberOfPieces) {
-        this.tweenInitTime = now
+        this.tweenInitTime = 0
         this.lastNumberOfPieces = numberOfPieces
       }
-      const { tweenInitTime } = this
+
       // Add more than one piece per loop, otherwise the number of pieces would
       // be limitted by the RAF framerate
-      const progressTime =
-        now - tweenInitTime > tweenDuration
-          ? tweenDuration
-          : Math.max(0, now - tweenInitTime)
+      this.tweenInitTime += elapsed
       const tweenedVal = tweenFunction(
-        progressTime,
+        this.tweenInitTime,
         activeCount,
         numberOfPieces,
         tweenDuration,
@@ -120,7 +115,7 @@ export default class ParticleGenerator implements IParticleGenerator {
     for (let i = this.particles.length - 1; i >= 0; i--) {
       const p = this.particles[i]
       // Update each particle's position
-      p.update()
+      p.update(elapsed)
       // Prune the off-canvas particles
       if (
         p.y > canvas.height ||
