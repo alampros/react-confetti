@@ -38,7 +38,7 @@ export default class ParticleGenerator implements IParticleGenerator {
 
   lastNumberOfPieces = 0
 
-  tweenInitTime: number = 0
+  tweenInitTime = 0
 
   particles: Particle[] = []
 
