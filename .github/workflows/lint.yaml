@@ -1,11 +1,11 @@
-name: Publish
+name: Lint
 
 on:
   push:
     branches: [ develop ]
 
 jobs:
-  build:
+  lint:
 
     runs-on: ubuntu-latest
 
