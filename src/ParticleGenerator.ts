@@ -87,9 +87,8 @@ export default class ParticleGenerator implements IParticleGenerator {
         this.lastNumberOfPieces = numberOfPieces
       }
 
-      // Add more than one piece per loop, otherwise the number of pieces would
-      // be limitted by the RAF framerate
-      this.tweenInitTime += elapsed
+      // Clamp tweenProgress between 0 and tweenDuration
+      this.tweenProgress = Math.min(tweenDuration, Math.max(0, this.tweenProgress + elapsed))
       const tweenedVal = tweenFunction(
         this.tweenProgress,
         this.tweenFrom,
