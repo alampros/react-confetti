@@ -1,3 +1,15 @@
+# [6.4.0](https://github.com/alampros/react-confetti/compare/v6.3.0...v6.4.0) (2025-03-04)
+
+
+### Bug Fixes
+
+* clamp tweenProgress between 0 and tweenDuration ([f988305](https://github.com/alampros/react-confetti/commit/f988305151150522111c7b846303ba2263fa85e9))
+
+
+### Features
+
+* adding tweenFrom property to allow smooth transition when parameters change ([dde31e0](https://github.com/alampros/react-confetti/commit/dde31e0e28da164f7b9f3909e73baa6ffe24cf68))
+
 # [6.3.0](https://github.com/alampros/react-confetti/compare/v6.2.3...v6.3.0) (2025-03-01)
 
 
