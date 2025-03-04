@@ -38,9 +38,9 @@ export default class ParticleGenerator implements IParticleGenerator {
 
   lastNumberOfPieces = 0
 
-  tweenProgress: number = 0
+  tweenProgress = 0
 
-  tweenFrom: number = 0;
+  tweenFrom = 0
 
   particles: Particle[] = []
 
@@ -83,12 +83,15 @@ export default class ParticleGenerator implements IParticleGenerator {
       // Use the numberOfPieces prop as a key to reset the easing timing
       if (lastNumberOfPieces !== numberOfPieces) {
         this.tweenProgress = 0
-        this.tweenFrom = activeCount;
+        this.tweenFrom = activeCount
         this.lastNumberOfPieces = numberOfPieces
       }
 
       // Clamp tweenProgress between 0 and tweenDuration
-      this.tweenProgress = Math.min(tweenDuration, Math.max(0, this.tweenProgress + elapsed))
+      this.tweenProgress = Math.min(
+        tweenDuration,
+        Math.max(0, this.tweenProgress + elapsed),
+      )
       const tweenedVal = tweenFunction(
         this.tweenProgress,
         this.tweenFrom,
