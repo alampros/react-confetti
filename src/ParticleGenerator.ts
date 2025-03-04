@@ -38,7 +38,9 @@ export default class ParticleGenerator implements IParticleGenerator {
 
   lastNumberOfPieces = 0
 
-  tweenInitTime = 0
+  tweenProgress = 0
+
+  tweenFrom = 0
 
   particles: Particle[] = []
 
@@ -80,16 +82,19 @@ export default class ParticleGenerator implements IParticleGenerator {
     if (activeCount < numberOfPieces) {
       // Use the numberOfPieces prop as a key to reset the easing timing
       if (lastNumberOfPieces !== numberOfPieces) {
-        this.tweenInitTime = 0
+        this.tweenProgress = 0
+        this.tweenFrom = activeCount
         this.lastNumberOfPieces = numberOfPieces
       }
 
-      // Add more than one piece per loop, otherwise the number of pieces would
-      // be limitted by the RAF framerate
-      this.tweenInitTime += elapsed
+      // Clamp tweenProgress between 0 and tweenDuration
+      this.tweenProgress = Math.min(
+        tweenDuration,
+        Math.max(0, this.tweenProgress + elapsed),
+      )
       const tweenedVal = tweenFunction(
-        this.tweenInitTime,
-        activeCount,
+        this.tweenProgress,
+        this.tweenFrom,
         numberOfPieces,
         tweenDuration,
       )
