@@ -4,6 +4,7 @@ import React from 'react'
 import { useWindowSize } from 'react-use'
 import ReactConfetti from '../ReactConfetti'
 import { randomInt } from '../utils'
+import { MakeItRain } from './MakeItRain'
 import { MouseRain } from './MouseRain'
 import { PartyMode } from './PartyMode'
 import SizedConfetti from './SizedConfetti'
@@ -145,6 +146,18 @@ export const MouseRainStory: Story = {
 
 export const Party: Story = {
   render: () => <PartyMode />,
+  parameters: {
+    layout: 'fullscreen',
+    controls: {
+      disable: true,
+      include: [],
+    },
+  },
+}
+
+export const MakeItRainStory: Story = {
+  name: 'Make It Rain',
+  render: () => <MakeItRain />,
   parameters: {
     layout: 'fullscreen',
     controls: {
