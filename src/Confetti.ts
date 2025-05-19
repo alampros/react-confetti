@@ -1,4 +1,4 @@
-import * as tweens from 'tween-functions'
+import { easeInOutQuad } from 'tween-functions'
 import ParticleGenerator from './ParticleGenerator'
 import { IRect } from './Rect'
 
@@ -141,7 +141,7 @@ export const confettiDefaults: Pick<
   ],
   opacity: 1.0,
   debug: false,
-  tweenFunction: tweens.easeInOutQuad,
+  tweenFunction: easeInOutQuad,
   tweenDuration: 5000,
   recycle: true,
   run: true,
