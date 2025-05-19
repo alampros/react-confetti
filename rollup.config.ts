@@ -3,11 +3,12 @@ import { RollupOptions } from 'rollup'
 import dts from 'rollup-plugin-dts'
 
 const input = 'src/index.ts'
-const external = ['react', 'react-dom', 'react/jsx-runtime']
+const external = ['react', 'react-dom', 'react/jsx-runtime', 'tween-functions']
 const globals = {
   react: 'React',
   'react-dom': 'ReactDOM',
   'react/jsx-runtime': 'jsxRuntime',
+  'tween-functions': 'tweenFunctions',
 }
 
 const config: RollupOptions[] = [
